@@ -814,7 +814,15 @@ mistake turns an agent into a chat box.
 
 </details>
 
-## Status — v1.9.20
+## Status — v1.9.21
+
+[Version 1.9.21](docs/release-notes/v1.9.21.md), 12 October 2026, brings:
+
+- **A cut room with history and background jobs**: edits survive a restart with undo/redo, long jobs run in the background with progress and cancel, and the timeline gains markers, ripple cuts, waveforms and proxies.
+- **A calendar, ideas board and reading list in the assistant's day**: day, week, month and year views with blocks and deadlines, a Notion-style ideas board, and links the assistant reads and summarizes for you.
+- **Agents that see your desk, and one dropdown everywhere**: the agent knows which page you are looking at, tool runs show in true order with queued work named, and every picker is the same component.
+
+### Previously — v1.9.20
 
 [Version 1.9.20](docs/release-notes/v1.9.20.md), 10 October 2026, brings:
 
