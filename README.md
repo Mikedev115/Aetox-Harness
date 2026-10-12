@@ -814,7 +814,15 @@ mistake turns an agent into a chat box.
 
 </details>
 
-## Status — v1.9.21
+## Status — v1.9.22
+
+[Version 1.9.22](docs/release-notes/v1.9.22.md), 12 October 2026, brings:
+
+- **Faster chat switching**: the engines of your last three chats stay warm, and the sidebar no longer reads project cover images on every switch (2.4 MB down to 71–309 KB).
+- **Chat history that stays short**: the assistant's sidebar loads this month, groups by week and shows the 5 latest chats; the code desk gains a "working now" group and a per-project history page.
+- **Search and edit tools that no longer stall**: concurrent edits stop fighting over LSP answers (93.5 s down to 7.6 s on 24 edits), `grep` no longer wanders into `output/`, and the first `trace` builds its index in 7 s instead of 29.
+
+### Previously — v1.9.21
 
 [Version 1.9.21](docs/release-notes/v1.9.21.md), 12 October 2026, brings:
 
