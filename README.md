@@ -5,7 +5,7 @@
 <h1 align="center">Aetox Harness</h1>
 
 <p align="center">
-  <strong>A Windows-native agent harness — Assistant · Code desk · Agent teams are three surfaces of one system that does the work on your machine</strong>
+  <strong>A Windows-native agent harness — Assistant and Code are two workspaces; both can hand whole jobs to agent teams</strong>
 </p>
 
 <h3 align="center">System over model: the environment turns an answer into verified work.</h3>
@@ -28,8 +28,10 @@
 </p>
 
 <p align="center">
-  <img src="docs/assets/hero-app.png" alt="Aetox desktop" width="90%">
+  <img src="docs/assets/readme-assistant-20261013.png" alt="Aetox Assistant workspace — example website task and plan" width="90%">
 </p>
+
+*Example screens refreshed 13 October 2026; the Thai interface is shown. These are product demo captures, not a benchmark run.*
 
 > Free to use · **source-available, not open source** · the source in this repository stops at v1.7.0, while the
 > program itself still ships every release here — [read more](#source-licence-and-who-makes-it)
@@ -40,12 +42,12 @@
 [Aetox CLI](https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-cli-setup.exe) for the terminal ·
 Scoop, portable zip and SmartScreen notes in [Install](#install) · every other document is listed in [docs/](docs/README.md)
 
-**Jump to:** [Harness surfaces](#one-harness-three-surfaces) · [System over model](#system-over-model) ·
-[Assistant](#the-assistant-door) · [Code](#the-code-door) · [Team](#the-team-door) · [Models](#which-models-it-works-with) ·
+**Jump to:** [Workspaces](#one-harness-two-workspaces) · [System over model](#system-over-model) ·
+[Assistant](#the-assistant-door) · [Code](#the-code-door) · [Teams](#teams-from-assistant-and-code) · [Models](#which-models-it-works-with) ·
 [Measured results](#measured-results) · [Install](#install) · [Safety](#safety-and-your-data) ·
 [How the system works](#how-the-system-works) · [Licence](#source-licence-and-who-makes-it)
 
-## One harness, three surfaces
+## One harness, two workspaces
 
 **Aetox Harness is a Windows-native agent harness:** the system around a model that supplies tools, a workspace,
 permissions, memory, and a verification loop so it can do real work rather than only generate an answer.
@@ -54,10 +56,11 @@ permissions, memory, and a verification loop so it can do real work rather than 
 |:---|:---|:---|
 | AI that works with your files, the web and documents on your machine | **Assistant**<br>Use, remember, and create | Real file reads and writes, real commands, and a real browser you watch and can take over. It reads images, PDFs and audio, and hands back spreadsheets, documents and slides that actually open |
 | To write, fix and test code | **Code — flagship use case**<br>Build, debug, and ship | A desk bound to your project. Agent mode lets the agent do the work; Editor mode lets you write while Aetox helps. Language servers, Git, a real terminal, and `aetox` in your terminal too |
-| To split work across several roles at once | **Team**<br>Arrange, start, and watch | Talk to one secretary; the work goes to a team, a department or a company of agents with a head at every level, and comes back as real files |
+| To split work across several roles at once | **Assistant or Code → appointed teams** | Your main agent hands the whole job to a team, department or company; its head splits the work and returns real files. No separate secretary chat |
 
-Assistant and Team are surfaces of the same harness as Code, sharing one set of keys, memory, settings and
-permissions; switch in the top bar at any time. It works with [28 external model providers](#which-models-it-works-with), cloud and local, plus a
+Assistant and Code share one harness, keys, memory, settings and permissions; switch in the top bar at any time.
+Since [v1.9.21](docs/release-notes/v1.9.21.md), the separate Team door is closed: both main agents delegate to
+teams directly, and the old team rooms and chat history sit behind Assistant. It works with [28 external model providers](#which-models-it-works-with), cloud and local, plus a
 built-in trial provider, so you can start without an API key. The interface ships in Thai and English, with Thai
 as the default. **[Install](#install)** from the Microsoft Store, the installer, or as Aetox CLI.
 
@@ -71,10 +74,14 @@ as the default. **[Install](#install)** from the Microsoft Store, the installer,
                   ┌─────────┐
                   │  AETOX  │     ← the body: eyes, ears, hands, tools, permission
                   └────┬────┘
-          ┌────────────┼────────────┐
-          ↓            ↓            ↓
-      Assistant       Code         Team
-   files web docs   project Git   secretary → head → agent
+              ┌────────┴────────┐
+              ↓                 ↓
+          Assistant            Code
+       files web docs       project Git
+              └────────┬────────┘
+                       ↓  delegate whole jobs
+             Team / Department / Company
+                   head → agents
 ```
 
 > **The north star of this project.** *Do not build an AI that answers more. Build an AI that does more.*
@@ -101,7 +108,7 @@ Much of what people assume has to come from a bigger model is, in Aetox, the sys
    definitions load when they are actually used → [How the system works](#how-the-system-works)
 6. **An organisation run by the system, not by pleading in a prompt** — your words reach the head at every
    level verbatim, send-back rounds are counted by the system, and heads hold no run slot, so work fans out
-   across several levels at once without deadlocking → [Team door](#the-team-door)
+   across several levels at once without deadlocking → [Teams](#teams-from-assistant-and-code)
 
 The app is two self-contained executables — `aetox.exe`, the window, and `aetox-engine.exe`, the engine that
 thinks and works. No runtime to install, no `node_modules`, no bundled copy of Chromium. Because the engine is
@@ -133,7 +140,7 @@ queries genuinely fire. The layer that drives it is ours, designed and built for
 element's number, not at x,y coordinates. Every tab has a **Let the agent use this tab** button: lit means the agent
 may touch that tab, and switching it off makes the tab yours.
 
-<img src="docs/assets/cap-browser.png" alt="The agent driving a page in the workbench browser" width="100%">
+<img src="docs/assets/readme-browser-20261013.png" alt="Example website preview in Aetox's workbench browser" width="100%">
 
 **Images, PDFs and audio.** `image_ocr` runs Tesseract in Thai and English, so a screenshot, a scan or a
 photographed form becomes text a 9B/35B model can reason about; a model that *can* see gets the image itself.
@@ -141,8 +148,6 @@ PDFs are read with the layout intact and audio is transcribed offline. Hand over
 actually want — *"go through this folder of receipts and give me one spreadsheet"*: it OCRs each image, works
 out the totals in the JavaScript interpreter, puts the script beside the answer, and writes a real `.xlsx`
 with live formulas.
-
-<img src="docs/assets/cap-image-ocr.png" alt="OCR pulling Thai text out of an image" width="100%">
 
 **Real files back.** A deck comes back as one self-contained `.html` file, editable by hand and openable on any
 machine with a browser. Page through it, present it full screen, and export `.pdf`, `.png` or `.jpg` from the
@@ -249,6 +254,8 @@ or creating worktrees. A pull starts with fast-forward; a diverged branch offers
 a real ConPTY terminal with unlimited tabs, the browser the agent drives, the file tree, Git with the commit
 timeline on the same page, and a code map.
 
+<img src="docs/assets/readme-code-20261013.jpg" alt="Aetox Code in Agent mode — example edits and a test command in the terminal" width="100%">
+
 - **Find out why a test is flaky** — it greps the repo, runs the suite in a terminal tab you are watching,
   reads the failure, and edits the file.
 - **Know what a name is before you trust it** — `codebase` asks the language server instead of a text search
@@ -323,14 +330,23 @@ On the same models against OpenCode · Codex CLI · omp · pi (1.9.7, 461 runs),
 models and passes the most checkpoints in long multi-turn coding on GPT-5.6 Terra; on hard tasks with GPT-6 Sol it
 ties Codex CLI. It trails on Web-Bench, and the price is more time and more tokens — see [Measured results](#measured-results).
 
-## The Team door
+## Teams from Assistant and Code
 
-*Arrange, start, and watch* — the third door is where Aetox stops being one assistant and becomes an
-organisation. You talk to one **secretary**. The secretary has no hands and no shell: it takes the order, asks
-when it must, decides which level the work should reach, hands it on and reports back. It never redoes the work
-itself and never rewrites your words into a brief of its own.
+*Arrange, start, and watch* — teams are a capability of both main agents, not a third door. Ask Assistant or
+Code for the result you want; it can do focused work itself, use its own helpers, or hand a whole job to an
+appointed team, department or company. The head splits that job, checks the members' work and returns it to
+the main chat. There is no separate secretary to talk to.
 
-> **What the system does for the model at this door**
+**Set up once, delegate from the chat.** Manage the organisation under **Settings → Teams** and appoint who
+each main agent may delegate to under **Settings → Main assistants → Assistant or Code → Delegation**
+(ตั้งค่า → ตัวหลัก → ผู้ช่วยหรือโค้ด → มอบงาน). Making a team and appointing it are separate decisions;
+the same team can serve both main agents.
+
+Since [v1.9.23](docs/release-notes/v1.9.23.md), you can also ask Assistant to set up the team: it offers a draft
+card, you press **Create**, and the app creates the organisation with an undo action. Teams made through this
+card are appointed to Assistant; appoint them to Code separately if you want Code to use them too.
+
+> **What the system does for delegated work**
 > - Delivers your words to the head at every level verbatim, never rephrased
 > - Gives heads no run slot, so a department hands work to three teams and a company to three departments at once
 > - Counts how many times a head sends work back, instead of asking for a limit in the prompt
@@ -346,20 +362,20 @@ itself and never rewrites your words into a brief of its own.
 | **Department** | a department head + teams | Broad work within one domain, handed to several teams at once; a team may belong to several departments |
 | **Company** | a company head + departments | The whole picture, handed to departments or straight to a team; founded once three departments have heads |
 
-The secretary picks **the lowest level that can own the job**: clear work for one team goes straight to that
+The main agent picks **the lowest level that can own the job**: clear work for one team goes straight to that
 team, broader work goes up to a department or the company. No level is a forced pass-through, because going
 higher than the job needs costs a round and gains nothing. Members receive only their head's order and their
 own seat in the team, and the team's rules reach everyone in it.
 
 ### Watch the work at every level
 
-- **The card in the left bar sets where you stand** — team, department or company. The secretary is told on
-  every message; changing level starts a new chat. History stays one list, each row labelled with where it started.
+- **Stay in the main chat** — Assistant or Code sends the job to an appointed team, department or company.
+  The old Team door's rooms and chat history are accessible from Assistant; there is no third door to switch to.
 - **Delegated work is one tree in the chat** — the head on top, members below, each row saying what it is doing
   with a stop button of its own. A question appears under whoever asked it and is answered right there; click a
   row to open the full work in the right panel.
 - **Deliverables are real files** — in the team's folder or the focused project, and they show up as cards in
-  the secretary's answer.
+  the main agent's answer.
 - **The company room** — a 3D office opened from the company card in the Workroom (or Mission Control), with a campus or tower map (a 2.5D room on machines
   without WebGL). Each agent sits at a desk and moves with the tool it is using, heads have their own desks and
   ranks, finished work is carried off to delivery, time of day follows your clock, and a board shows done today
@@ -367,12 +383,12 @@ own seat in the team, and the team's rules reach everyone in it.
 - **The workroom** — save a pipeline where each step names the team that takes which piece; start it and it
   walks step by step, and a step that stops to ask resumes once you answer.
 - **A web console** — the `:8317` page on your machine configures teams, departments and companies, and has a
-  simulated phone that chats with the secretary through the same chat as the window.
+  simulated phone that sends orders to the assistant. This is not a separate Secretary door.
 
 ### The organisation is plain files
 
-Every level is markdown on disk, managed under **ตั้งค่า › องค์กร** (Settings › Organisation), which draws the
-whole organisation as a tree, checks its shape, and summarises what each team has spent.
+Every level is markdown on disk. **Settings → Teams** (ตั้งค่า → ทีม) manages teams, departments and companies;
+the organisation view draws the hierarchy, checks its shape and summarises what each team has spent.
 
 ```text
 <DataRoot>/teams/<name>/TEAM.md                head · members · each member's seat · ## team rules
@@ -380,16 +396,10 @@ whole organisation as a tree, checks its shape, and summarises what each team ha
 <DataRoot>/companies/<name>/COMPANY.md         company head · departments · ## company context · ## company rules
 ```
 
-The installer seeds one team, **ทีมคอนเทนต์** (the content team). Everything else you create from Settings or
-from template sheets that fill in identity, way of thinking and duties, with recommended MCP servers per role.
-Twenty-one people ship with the app to choose from:
-
-| Role | Ships with the app |
-|:---|:---|
-| Team heads | `lead` `producer` `planner` `headwriter` `director` `publisher` |
-| Department heads | `chief` `showrunner` |
-| Company head | `boss` |
-| Working agents | `ads` `automation` `content` `deepresearch` `doc` `editor` `github` `scriptwriter` `sheet` `video` `web` `youtube` |
+The app seeds **ทีมคอนเทนต์** (the content team) as a led team, alongside the specialist roster
+**ผู้ช่วยในคอมพิวเตอร์** (research, documents, spreadsheets and video). Keep, rename or replace those starting
+files in Settings, or ask Assistant to draft a led team for your own work. Available workers and heads are
+shown in the personnel directory; a led team reaches a main agent only when appointed to it.
 
 ### One agent is one folder
 
@@ -404,9 +414,9 @@ what was found runs on something strong, and the bill follows the work instead o
 keeps **its own memory**, so what the research agent learned about a source does not leak into the document
 agent's judgement about a contract.
 
-Agents work for you outside the Team door as well. At the Assistant and Code doors, the assistant hands work to
-the agents that chat may delegate to (set under ตั้งค่า › สิทธิ์มอบงาน, Settings › Delegation), or you can talk
-to an agent directly in the specialist room. Separately there are two **sub-agents** (`explore`, `general`):
+You can also talk to a worker directly in the specialist room or pick them from the chat's `@` menu.
+Appointments are managed per main agent under **Settings → Main assistants → Delegation**; Assistant and Code each
+have their own appointed organisation and helpers. Separately there are two **sub-agents** (`explore`, `general`):
 internal helpers, a fixed set that cannot be extended by design, though you may tune each one's model,
 provider, prompt, step ceiling and look.
 
@@ -671,9 +681,10 @@ inside a dev tree — `wails-dev.bat` builds it for you.
 <details>
 <summary>In detail: desks, the workspace, permissions, the shell scanner, and what is stored</summary>
 
-**A desk** is the tool ceiling of a session. There are five — `assistant`, `coding` (Code, Agent mode),
-`editor` (Code, Editor mode), `secretary` and `specialized` (a specialist agent). A chat's desk is fixed when it
-opens. MCP servers and external connections are placed per desk and per agent, so a tool installed for one kind
+**A desk** is the tool ceiling of a session, not an entry in the top bar. The five bundled desks are
+`assistant`, `coding` (Code, Agent mode), `editor` (Code, Editor mode), `specialized` (a specialist agent), and
+`secretary` (the unattended assistant for schedules, watchers and web orders, not a separate Secretary door).
+A chat's desk is fixed when it opens. MCP servers and external connections are placed per desk and per agent, so a tool installed for one kind
 of work does not show up in another — not hidden from the model, simply absent from that chat.
 
 **The workspace.** With a project focused, the workspace is that folder plus any folder you add, which gets the
@@ -836,6 +847,7 @@ mistake turns an agent into a chat box.
 
 - **A cut room with history and background jobs**: edits survive a restart with undo/redo, long jobs run in the background with progress and cancel, and the timeline gains markers, ripple cuts, waveforms and proxies.
 - **A calendar, ideas board and reading list in the assistant's day**: day, week, month and year views with blocks and deadlines, a Notion-style ideas board, and links the assistant reads and summarizes for you.
+- **Teams without a separate secretary**: Assistant and Code hand work to appointed teams directly; the old Team door's rooms and history move behind Assistant.
 - **Agents that see your desk, and one dropdown everywhere**: the agent knows which page you are looking at, tool runs show in true order with queued work named, and every picker is the same component.
 
 ### Previously — v1.9.20
@@ -874,14 +886,14 @@ The core is in place. [Version 1.9.14](docs/release-notes/v1.9.14.md), 6 October
 
 - **An editable cut room**: the agent and the person work on the same `.cut` file, with a multi-track timeline,
   live playback, editable captions, clip properties, transitions, titles, keyframes and export settings.
-- **Prompt presets for each desk**: the assistant, code and secretary desks have their own empty-chat starters,
+- **Prompt presets for each desk (at that release)**: the assistant, code and then-separate secretary desks gained their own empty-chat starters,
   a shared slash menu and glass-style design recipes with a bundled component catalogue.
 - **Clearer Thai speech and an easier PowerPoint connection**: reading aloud handles English words in Thai answers,
   local transcription falls back to CPU when CUDA fails, and the MCP shelf offers a PowerPoint preset for Windows
   with desktop PowerPoint installed. It adds the server only, not Office or the upstream skill.
 
 **Next** — a provider chain that switches accounts when a plan window runs out · external agent programs as
-engines · a personal secretary connected to Google through the user's own Apps Script bridge · RAM measured under
+engines · a personal assistant connected to Google through the user's own Apps Script bridge · RAM measured under
 the same conditions for every app in the tour's last scene
 
 Documents: [every release note](docs/release-notes/) · [roadmap](ROADMAP.md) · [platform support](PLATFORM-SUPPORT.md) ·
