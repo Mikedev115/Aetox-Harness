@@ -814,7 +814,15 @@ mistake turns an agent into a chat box.
 
 </details>
 
-## Status — v1.9.22
+## Status — v1.9.23
+
+[Version 1.9.23](docs/release-notes/v1.9.23.md), 13 October 2026, brings:
+
+- **The assistant sets up your team for you**: ask in a chat, or press "Ask the assistant" on the Teams, Departments or Companies page; it drafts the agents, seats and team as a card that passes six checks, and the app builds it when you press Create, with undo on the same card.
+- **New chats offered as a card**: when an agent finds work that belongs in a chat of its own, it shows a card with the desk and project it would open at; press Start and the new chat opens beside the current one.
+- **Promo clips from the video agent**: a new `promo-film` skill gives sales clips a five-part arc, fresh screenshots and the product's own look; the in-app browser also stops reporting "page failed to load" on pages that loaded.
+
+### Previously — v1.9.22
 
 [Version 1.9.22](docs/release-notes/v1.9.22.md), 12 October 2026, brings:
 

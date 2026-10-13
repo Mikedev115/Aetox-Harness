@@ -48,7 +48,7 @@
 | มาตรฐาน | [EffiBench](https://github.com/huangd1999/EffiBench) | Apache-2.0 | EFF1 (ข้อยาก 10 ข้อ วัดความเร็วเทียบคำตอบมาตรฐาน) |
 | มาตรฐาน | [SlidesBench / AutoPresent](https://github.com/para-lost/AutoPresent) | MIT | SL1 · SL3 |
 | ดัดแปลงจากมาตรฐาน | [Terminal-Bench](https://github.com/laude-institute/terminal-bench) `fix-git`, `git-leak-recovery` | Apache-2.0 | G2, G3 |
-| เขียนเอง | – | – | A2, B6, C4, F1, F2, BS2, CR2, CR3, G1, G4, FE2, FE3, UI1, P1, P2, SL2, DS1, BR1, BR2, K1–K6, D2, DEP1, DEP2, WEB1, IDEA1, IDEA2, THINK1, SH1, RX1 |
+| เขียนเอง | – | – | A2, B6, C4, F1, F2, BS2, CR2, CR3, G1, G4, FE2, FE3, UI1, P1, P2, SL2, DS1, BR1, BR2, K1–K6, D2, DEP1, DEP2, WEB1, IDEA1, IDEA2, THINK1 |
 
 ชุดที่พิจารณาแล้วไม่ใช้
 
@@ -175,8 +175,6 @@
 | FM1 | ui-design | Web-Bench form | ฟอร์ม 8 ขั้น | Playwright ของ Web-Bench | 8/8 ขั้น (37 เทสต์) |
 | TB1 | frontend-design | Web-Bench table | ตาราง 8 ขั้น | Playwright ของ Web-Bench | 8/8 ขั้น (41 เทสต์) |
 | P2 | performance | เขียนเอง | รายงานช้า 46 วินาที ต้นเหตุซ่อนสองที่ ไม่ใช่จุดที่ดูน่าสงสัย | ผลตรงทุกไบต์ เร็วขึ้น 20 เท่าขึ้นไป แก้อัตราภาษีแล้วยังใช้ค่าใหม่ บอกต้นเหตุถูก | 7/7 (เร็วขึ้น 164 เท่า) |
-| SH1 | shadcn | เขียนเอง (เกณฑ์จากกฎที่ shadcn บังคับไว้) | หน้าตั้งค่าร้านในโปรเจกต์ shadcn | build ผ่าน และทำตามกฎ 11 ข้อของ shadcn | 12/12 · 5/12 |
-| RX1 | radix-ui-to-base-ui | เขียนเอง | ย้ายโปรเจกต์ shadcn จาก Radix ไป Base UI | build ผ่าน ไม่เหลือ Radix ไฟล์ล็อกตรงกัน โค้ดที่เรียกใช้เปลี่ยนตามจริง | 9/9 · 3/9 |
 
 ---
 
@@ -345,8 +343,8 @@ python scripts/behavior-bench.py --pilot --models gpt-6-luna,gpt-5.6-terra --har
 ```
 python scripts/skill-gate.py --list
 python scripts/skill-gate.py aetox-database --build HEAD            # บิวด์สะอาดจาก commit แล้ววัด
-python scripts/skill-gate.py ui-libraries --exe <aetox.exe>        # ทุกสกิลในหมวด
-python scripts/skill-gate.py aetox-shadcn --report-only --root <โฟลเดอร์ผล>
+python scripts/skill-gate.py web-3d --exe <aetox.exe>              # ทุกสกิลในหมวด
+python scripts/skill-gate.py aetox-database --report-only --root <โฟลเดอร์ผล>
 ```
 
 **ค่าตั้งต้น**
@@ -361,6 +359,6 @@ python scripts/skill-gate.py aetox-shadcn --report-only --root <โฟลเด�
 
 ## 8. สิ่งที่ยังไม่ได้วัด และแผนต่อไป
 
-- **สกิลที่ยังไม่มีงานวัดเลย:** `aetox-shadcn`, `aetox-radix-ui-to-base-ui`, `aetox-web-3d` (มีชุดแยกของตัวเองที่ benchmarks/web3d), `aetox-run-plan`, `aetox-skills`, `aetox-slide-templates` (วัดรวมกับสไลด์)
+- **สกิลที่ยังไม่มีงานวัดเลย:** `aetox-web-3d` (มีชุดแยกของตัวเองที่ benchmarks/web3d), `aetox-run-plan`, `aetox-skills`, `aetox-slide-templates` (วัดรวมกับสไลด์)
 - **งานที่ง่ายเกินจนแยกผลไม่ออก:** P1, DS1, K2, DEP1 ต้องทำโจทย์ที่ยากขึ้น
 - **แผน:** เพิ่มงานยากหมวดละหลายงาน รันงานละ 3 ครั้งทั้งสองโมเดล แล้วเทียบกับ Codex และ OpenCode ใหม่ทั้งชุด
