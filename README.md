@@ -825,7 +825,15 @@ mistake turns an agent into a chat box.
 
 </details>
 
-## Status — v1.9.25
+## Status — v1.9.26
+
+[Version 1.9.26](docs/release-notes/v1.9.26.md), 16 October 2026, brings:
+
+- **Manage chat history in batches**: search and filter older chats, select several to delete, and keep pinned or working chats protected.
+- **Install local Thai speech packs**: the shared Python/ONNX runtime is now available, with verified downloads and the additional speech dependency installed automatically.
+- **Connection and menu fixes**: configure the Google Workspace sign-in callback port, read long model names, and open video menus without clipping.
+
+### Previously — v1.9.25
 
 [Version 1.9.25](docs/release-notes/v1.9.25.md), 15 October 2026, brings:
 
