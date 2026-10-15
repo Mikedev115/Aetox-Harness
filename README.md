@@ -825,7 +825,15 @@ mistake turns an agent into a chat box.
 
 </details>
 
-## Status — v1.9.24
+## Status — v1.9.25
+
+[Version 1.9.25](docs/release-notes/v1.9.25.md), 15 October 2026, brings:
+
+- **More control over read-aloud**: adjust voice playback and manage local speech packs from their provider pages.
+- **Read-aloud fixes**: update Microsoft Edge speech authentication and keep local speech workers ready between requests.
+- **Fewer unnecessary questions**: the assistant continues with actions you already requested and makes reversible technical choices itself.
+
+### Previously — v1.9.24
 
 [Version 1.9.24](docs/release-notes/v1.9.24.md), 15 October 2026, brings:
 
