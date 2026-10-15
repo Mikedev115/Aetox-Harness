@@ -486,9 +486,9 @@ round, the method and where Aetox loses are in the reports — start at [the rep
 | [PUBLISHED-NUMBERS.md](docs/reports/PUBLISHED-NUMBERS.md) | Where every published number appears, and where it was measured |
 
 <details>
-<summary>The app's own numbers — 1.9.25 package sizes and dated runtime figures</summary>
+<summary>The app's own numbers — 1.9.26 package sizes and dated runtime figures</summary>
 
-**1.9.25 packages, measured 15 October 2026.** Built locally; `relcheck` verified the release signature with the app's key and checked every uploaded artifact's digest. The app size was read from the published portable archive; the Store figure is the local package, not a completed Store submission. MiB is bytes / 1,048,576. Sizes are rounded separately; the total is calculated from bytes before rounding.
+**1.9.26 packages, measured 16 October 2026.** Built locally; `relcheck` verified the release signature with the app's key and checked every uploaded artifact's digest. The app size was read from the published portable archive; the Store figure is the local package, not a completed Store submission. MiB is bytes / 1,048,576. Sizes are rounded separately; the total is calculated from bytes before rounding.
 See the [package measurement history](docs/reports/BENCHMARK.md#13-ประวัติการวัด).
 
 | Package | Size |
@@ -496,8 +496,8 @@ See the [package measurement history](docs/reports/BENCHMARK.md#13-ประว�
 | App on disk, two executables | **113.0 MiB** (window 67.1 + engine 45.9) |
 | App installer | **45.3 MiB** |
 | Portable app | 44.5 MiB |
-| CLI installer / portable | 29.2 / 39.5 MiB |
-| Microsoft Store package | 45.9 MiB · version 1.9.25.0 · not submitted |
+| CLI installer / portable | 29.2 / 39.6 MiB |
+| Microsoft Store package | 46.0 MiB · version 1.9.26.0 · not submitted |
 
 **Historical measurements below.**
 
