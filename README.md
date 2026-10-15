@@ -825,7 +825,15 @@ mistake turns an agent into a chat box.
 
 </details>
 
-## Status — v1.9.23
+## Status — v1.9.24
+
+[Version 1.9.24](docs/release-notes/v1.9.24.md), 15 October 2026, brings:
+
+- **Meeting recording and a dedicated meeting room**: prepare an agenda, record with pause and resume, and keep the original audio alongside the transcript and summary.
+- **A clearer workspace**: edit ideas as line-based documents, open meetings on the workbench, and choose working modes from cards behind the chat composer.
+- **Your agents in one place**: browse the agent directory and organisation overview, ask the assistant to draft an agent, and pick speech and image models on provider pages.
+
+### Previously — v1.9.23
 
 [Version 1.9.23](docs/release-notes/v1.9.23.md), 13 October 2026, brings:
 
