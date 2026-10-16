@@ -49,6 +49,16 @@ because it is not code-signed yet; see [installation and safety notes](#install)
 **Choose one channel:** Store and installer builds keep separate settings, chats and keys.
 [Scoop, portable ZIP and CLI](#install) · [Update guide](docs/UPDATING.md)
 
+## Aetox Mobile — Android preview
+
+[**Download the Android test APK**](https://github.com/Mikedev115/Aetox-Harness/releases/download/mobile-v0.1.0-test/Aetox-Mobile-Android-Test.apk) · [Preview release and setup requirements](https://github.com/Mikedev115/Aetox-Harness/releases/tag/mobile-v0.1.0-test)
+
+Continue conversations, follow work, review files, and answer requests from your phone while **Windows does the work**. The Android companion requires Android 10 or later; it does not ask you to copy provider keys to your phone.
+
+> **Testing preview, not a production mobile release.** You need a Windows development build with **Aetox Link** and trusted Tailscale HTTPS. The current stable Windows release does not include this new Link integration yet. Windows and Aetox must stay running; physical-device end-to-end verification is still pending.
+
+**iPhone:** a removable full-screen Web Clip is supported, **not a native IPA**. Its profile is generated for your Windows HTTPS address; personal profiles are not published as universal public installers.
+
 ## What will you get done?
 
 | Your task | How Aetox helps |

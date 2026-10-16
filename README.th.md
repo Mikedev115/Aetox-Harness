@@ -47,6 +47,16 @@ Scoop ไฟล์ zip พกพา และเรื่อง SmartScreen อ�
 [ติดตั้ง](#ติดตั้ง) · [ความปลอดภัย](#ความปลอดภัยและข้อมูลของคุณ) · [ระบบทำงานอย่างไร](#ระบบทำงานอย่างไร) ·
 [สัญญาอนุญาต](#ซอร์สโค้ด-สัญญาอนุญาต-และคนที่ทำ)
 
+## Aetox Mobile — รุ่นทดสอบ Android
+
+[**ดาวน์โหลด APK ทดสอบสำหรับ Android**](https://github.com/Mikedev115/Aetox-Harness/releases/download/mobile-v0.1.0-test/Aetox-Mobile-Android-Test.apk) · [รายละเอียดรุ่นทดสอบและสิ่งที่ต้องเตรียม](https://github.com/Mikedev115/Aetox-Harness/releases/tag/mobile-v0.1.0-test)
+
+คุยต่อ ติดตามงาน ดูผลงาน และตอบคำขอจากมือถือ โดย **Windows ยังเป็นผู้ทำงานและเก็บข้อมูล** รองรับ Android 10 ขึ้นไป ไม่ต้องคัดลอก provider key ไปตั้งบนมือถือ
+
+> **เป็นรุ่นทดลอง ยังไม่ใช่ mobile production release** ต้องใช้ Windows development build ที่มี **Aetox Link** และ HTTPS ที่เชื่อถือได้ผ่าน Tailscale รุ่น Windows stable ปัจจุบันยังไม่มี Link ชุดใหม่นี้ ต้องเปิด Windows กับ Aetox ค้างไว้ และยังรอตรวจครบเส้นทางบนมือถือจริง
+
+**iPhone:** ใช้ Web Clip เพิ่มไอคอนเว็บเต็มจอแบบลบได้ **ไม่ใช่ IPA/native app** โปรไฟล์ต้องสร้างให้ตรง HTTPS ของ Windows แต่ละเครื่อง จึงไม่เผยแพร่โปรไฟล์ส่วนตัวเป็นตัวติดตั้งกลาง
+
 ## harness เดียว สองพื้นที่ทำงาน
 
 **Aetox คือ agent harness แบบเนทีฟสำหรับ Windows:** ระบบที่ห่ออยู่รอบโมเดลและให้เครื่องมือ พื้นที่ทำงาน
