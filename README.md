@@ -1,46 +1,114 @@
 <p align="center">
-  <img src="docs/assets/logo.png" alt="Aetox Harness" width="110">
+  <img src="docs/assets/logo.png" alt="Aetox Harness" width="72">
 </p>
 
 <h1 align="center">Aetox Harness</h1>
 
-<p align="center">
-  <strong>A Windows-native agent harness — Assistant and Code are two workspaces; both can hand whole jobs to agent teams</strong>
-</p>
-
-<h3 align="center">System over model: the environment turns an answer into verified work.</h3>
+<h3 align="center">An AI agent that does real work on your Windows desktop.</h3>
 
 <p align="center">
-  <a href="https://github.com/Mikedev115/Aetox/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/Mikedev115/Aetox?color=2f81f7"></a>
-  <a href="docs/reports/coding-harness-1.9.7/README.md"><img alt="Coding benchmark" src="https://img.shields.io/badge/coding%20benchmark-461%20runs%20%C2%B7%205%20harnesses-8250df"></a>
-  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-proprietary%20%C2%B7%20source%20available-blue"></a>
-  <img alt="Platform" src="https://img.shields.io/badge/platform-Windows%2010%2B-lightgrey">
+  Work with files and websites. Build and test code.<br>
+  Watch the work, review the result, stay in control.
 </p>
 
 <p align="center">
-  <a href="README.th.md">ภาษาไทย</a> ·
+  <a href="https://apps.microsoft.com/detail/9N4KKBRRSCZZ"><img src="docs/assets/microsoft-store-en.svg" alt="Get it from Microsoft Store" width="256"></a>
+</p>
+
+<p align="center">
+  <strong><a href="https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-amd64-installer.exe">Download Windows installer (.exe) from GitHub</a></strong><br>
+  Direct download. No Microsoft Store required.
+</p>
+
+<p align="center">
+  Windows 10+ · x64 · Free to use · Built-in trial, no API key needed to try
+</p>
+
+<p align="center">
   <a href="https://mikedev115.github.io/Aetox-landing/">Website</a> ·
-  <a href="https://apps.microsoft.com/detail/9N4KKBRRSCZZ">Microsoft Store</a> ·
-  <a href="https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-amd64-installer.exe">Download</a> ·
+  <a href="https://github.com/Mikedev115/Aetox/releases/latest">All downloads</a> ·
   <a href="https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-cli-setup.exe">Aetox CLI</a> ·
-  <a href="docs/reports/README.md">Coding benchmark</a> ·
-  <a href="https://www.facebook.com/share/g/1BnXC5EiWg/">Community</a>
+  <a href="README.th.md">ภาษาไทย</a>
 </p>
 
 <p align="center">
-  <img src="docs/assets/readme-assistant-20261013.png" alt="Aetox Assistant workspace — example website task and plan" width="90%">
+  <a href="https://mikedev115.github.io/Aetox-landing/assets/hero-en.mp4"><img src="docs/assets/readme-hero-en.gif" alt="English product walkthrough: a website task becomes a plan, tool actions and a completed result in Aetox" width="1008"></a>
 </p>
 
-*Example screens refreshed 13 October 2026; the Thai interface is shown. These are product demo captures, not a benchmark run.*
+*Scripted product walkthrough using the app UI, not a timed live run or benchmark result.
+[Watch the MP4](https://mikedev115.github.io/Aetox-landing/assets/hero-en.mp4).*
 
-> Free to use · **source-available, not open source** · the source in this repository stops at v1.7.0, while the
-> program itself still ships every release here — [read more](#source-licence-and-who-makes-it)
+### Choose how to install
 
-**Get started** — Windows 10 or later, x64, no API key needed to try it:
-[Microsoft Store](https://apps.microsoft.com/detail/9N4KKBRRSCZZ) (signed, updates itself) ·
-[installer](https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-amd64-installer.exe) ·
-[Aetox CLI](https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-cli-setup.exe) for the terminal ·
-Scoop, portable zip and SmartScreen notes in [Install](#install) · every other document is listed in [docs/](docs/README.md)
+| Microsoft Store | GitHub installer |
+|:---|:---|
+| [Get it from Microsoft Store](https://apps.microsoft.com/detail/9N4KKBRRSCZZ). Microsoft signs the package; Windows handles updates. | [Download the Windows installer (.exe)](https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-amd64-installer.exe). Install directly without the Store; use Aetox's in-app **Download the update → Restart to update** flow for new releases. |
+
+The GitHub installer is a first-class option, not just a fallback. It may show a Windows SmartScreen warning
+because it is not code-signed yet; see [installation and safety notes](#install).
+**Choose one channel:** Store and installer builds keep separate settings, chats and keys.
+[Scoop, portable ZIP and CLI](#install) · [Update guide](docs/UPDATING.md)
+
+## What will you get done?
+
+| Your task | How Aetox helps |
+|:---|:---|
+| **Everyday work** | Read files, research the web, and create editable documents in **Assistant**. |
+| **Software work** | Explore a project, edit code, and run checks in **Code**. |
+| **Multi-part jobs** | Delegate to **agent teams** from either workspace. |
+
+### See the workflows
+
+Assistant and Code are the two workspaces. Teams are available from both, not a separate third workspace.
+Open a walkthrough below; each is a scripted English product demo, not benchmark evidence.
+
+<details>
+<summary><strong>Assistant: everyday work, documents and research</strong></summary>
+
+Read and work with files, websites and documents on the workbench beside your chat.
+
+[![Assistant product walkthrough](docs/assets/readme-assistant-en.gif)](https://mikedev115.github.io/Aetox-landing/assets/mode-assist-en.mp4)
+
+[Watch the MP4](https://mikedev115.github.io/Aetox-landing/assets/mode-assist-en.mp4) · [More about Assistant](#the-assistant-door)
+
+</details>
+
+<details>
+<summary><strong>Code: read projects, edit files and run checks</strong></summary>
+
+Work inside a project with its file tree, editor, Git, language servers and a real terminal.
+
+[![Code product walkthrough](docs/assets/readme-code-en.gif)](https://mikedev115.github.io/Aetox-landing/assets/mode-code-en.mp4)
+
+[Watch the MP4](https://mikedev115.github.io/Aetox-landing/assets/mode-code-en.mp4) · [More about Code](#the-code-door)
+
+</details>
+
+<details>
+<summary><strong>Delegate to teams: split a multi-part job across specialists</strong></summary>
+
+Hand a whole job to a team from Assistant or Code. Follow the head and specialists in one delegation tree.
+
+[![Team delegation product walkthrough from Assistant](docs/assets/readme-teams-en.gif)](https://mikedev115.github.io/Aetox-landing/assets/mode-team-en.mp4)
+
+[Watch the MP4](https://mikedev115.github.io/Aetox-landing/assets/mode-team-en.mp4) · [More about teams](#teams-from-assistant-and-code)
+
+</details>
+
+### Your model. Your workspace. Your control.
+
+- Connect a supported **cloud provider or local model**.
+- Review permission requests and **watch the work** on your desk.
+- Inspect the published **benchmark methods, results and limitations**.
+
+[Safety & data](#safety-and-your-data) · [Measured results](#measured-results) ·
+[Licence](#source-licence-and-who-makes-it) · [Community](https://www.facebook.com/share/g/1BnXC5EiWg/)
+
+> **Free to use, not unlimited free cloud inference.** The built-in trial lets you try the app without an API key;
+> your chosen cloud provider's pricing applies when you connect your own account. Local-first does not mean
+> cloud requests stay on your machine: cloud models receive the requests you send them.
+> **Source-available, not open source:** this repository's source stops at v1.7.0; current releases still ship here
+> as binaries. [Read more](#source-licence-and-who-makes-it).
 
 **Jump to:** [Workspaces](#one-harness-two-workspaces) · [System over model](#system-over-model) ·
 [Assistant](#the-assistant-door) · [Code](#the-code-door) · [Teams](#teams-from-assistant-and-code) · [Models](#which-models-it-works-with) ·
