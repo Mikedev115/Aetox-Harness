@@ -4,7 +4,7 @@
     "homepage": "https://github.com/Mikedev115/Aetox",
     "license": "Proprietary",
     "url": "https://github.com/Mikedev115/Aetox/releases/download/v1.9.27/aetox-windows-amd64-portable.zip",
-    "hash": "607D83FDAF7E2A03FD664A0FAE88EE80C8CEC80FB965702D6E4B17B2EA517055",
+    "hash": "B720C5F74D523611E86FBED464592DAFE4D0126CBAF943B09C669943F8CA33BF",
     "shortcuts": [
         ["aetox.exe", "Aetox"]
     ],
