@@ -1012,14 +1012,9 @@ Architecture notes, decision records and design standards are not in this reposi
 
 ## Source, licence and who makes it
 
-**Source.** The source published in this repository stops at v1.7.0 (15 September 2026), a complete release that
-can be read and studied under the [LICENSE](LICENSE); the code here is the real v1.7.0, unmodified. The source was
-open through v1.8.0 for one day (20–21 September 2026) and was then rolled back to v1.7.0. Every release since is
-still published here in full — tags, installers, the portable zip, the Linux engine, checksums, release notes and
-measurement reports — and the in-app update check, scoop and the Microsoft Store work exactly as before. The
-architectural layer that arrived after v1.7.0 — the MCP shelf, the editor with language servers behind it, the
-session context handed back on reopen, and a window nearly half as heavy at rest — is the most valuable part of the
-work, and the author, who builds it alone, has chosen to keep it in order to keep developing it.
+**Source.** The source in this repository stops at v1.7.0 (15 September 2026) and can be read and audited under
+the [LICENSE](LICENSE). Later releases ship here as binaries: installers, the portable zip, the Linux engine,
+checksums and release notes. Their source is not published.
 
 **Licence.** Aetox is free to use and is not open source. From v1.3.0 it is under a [proprietary licence](LICENSE):
 install it on as many machines as you like, use it for commercial work, and read and audit the source published in
