@@ -51,7 +51,7 @@ because it is not code-signed yet; see [installation and safety notes](#install)
 
 ## Aetox Mobile 0.2.0 — Android
 
-[**Download the Android APK**](https://github.com/Mikedev115/Aetox-Harness/releases/download/mobile-v0.2.0/Aetox-Mobile-Android-Test.apk) · [Release notes and setup requirements](https://github.com/Mikedev115/Aetox-Harness/releases/tag/mobile-v0.2.0)
+[**Download the Android APK**](https://github.com/Mikedev115/Aetox-Harness/releases/download/mobile-v0.3.1/Aetox-Mobile-Android-Test.apk) · [Release notes and setup requirements](https://github.com/Mikedev115/Aetox-Harness/releases/tag/mobile-v0.3.1)
 
 A phone chat for the Aetox on your PC: chats, models, files and the agent stay on **Windows**, the phone is the screen. Pick the model and thinking level, attach photos or files, answer approvals, and open delivered files. **Talk to it:** dictate into the box, or hold a voice conversation that is answered aloud sentence by sentence, using the speech engine and voice set in Aetox on Windows. It wears the same themes as the desktop app. Android 10 or later; provider keys never leave the PC.
 

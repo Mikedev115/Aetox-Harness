@@ -49,7 +49,7 @@ Scoop ไฟล์ zip พกพา และเรื่อง SmartScreen อ�
 
 ## Aetox Mobile 0.2.0 — Android
 
-[**ดาวน์โหลด APK สำหรับ Android**](https://github.com/Mikedev115/Aetox-Harness/releases/download/mobile-v0.2.0/Aetox-Mobile-Android-Test.apk) · [รายละเอียดรุ่นและสิ่งที่ต้องเตรียม](https://github.com/Mikedev115/Aetox-Harness/releases/tag/mobile-v0.2.0)
+[**ดาวน์โหลด APK สำหรับ Android**](https://github.com/Mikedev115/Aetox-Harness/releases/download/mobile-v0.3.1/Aetox-Mobile-Android-Test.apk) · [รายละเอียดรุ่นและสิ่งที่ต้องเตรียม](https://github.com/Mikedev115/Aetox-Harness/releases/tag/mobile-v0.3.1)
 
 แอปแชทบนมือถือสำหรับ Aetox บนเครื่องคุณ แชท โมเดล ไฟล์ และเอเจนต์อยู่บน **Windows** ทั้งหมด มือถือเป็นแค่หน้าจอ เลือกโมเดลและระดับความคิดได้ แนบรูปหรือไฟล์ ตอบคำขออนุญาต และเปิดไฟล์ที่ส่งมอบแล้ว **คุยด้วยเสียงได้** ทั้งพูดแล้วพิมพ์ให้ และคุยสดที่ตอบกลับเป็นเสียงทีละประโยค โดยใช้ตัวแปลงเสียงและเสียงอ่านที่ตั้งไว้ใน Aetox บน Windows ใช้ธีมชุดเดียวกับแอปบน Windows รองรับ Android 10 ขึ้นไป provider key ไม่ออกจากเครื่อง PC
 
