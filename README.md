@@ -49,13 +49,13 @@ because it is not code-signed yet; see [installation and safety notes](#install)
 **Choose one channel:** Store and installer builds keep separate settings, chats and keys.
 [Scoop, portable ZIP and CLI](#install) · [Update guide](docs/UPDATING.md)
 
-## Aetox Mobile — Android preview
+## Aetox Mobile 0.2.0 — Android
 
-[**Download the Android test APK**](https://github.com/Mikedev115/Aetox-Harness/releases/download/mobile-v0.1.0-test/Aetox-Mobile-Android-Test.apk) · [Preview release and setup requirements](https://github.com/Mikedev115/Aetox-Harness/releases/tag/mobile-v0.1.0-test)
+[**Download the Android APK**](https://github.com/Mikedev115/Aetox-Harness/releases/download/mobile-v0.2.0/Aetox-Mobile-Android-Test.apk) · [Release notes and setup requirements](https://github.com/Mikedev115/Aetox-Harness/releases/tag/mobile-v0.2.0)
 
-Continue conversations, follow work, review files, and answer requests from your phone while **Windows does the work**. The Android companion requires Android 10 or later; it does not ask you to copy provider keys to your phone.
+A phone chat for the Aetox on your PC: chats, models, files and the agent stay on **Windows**, the phone is the screen. Pick the model and thinking level, attach photos or files, answer approvals, and open delivered files. **Talk to it:** dictate into the box, or hold a voice conversation that is answered aloud sentence by sentence, using the speech engine and voice set in Aetox on Windows. It wears the same themes as the desktop app. Android 10 or later; provider keys never leave the PC.
 
-> **Testing preview, not a production mobile release.** You need a Windows development build with **Aetox Link** and trusted Tailscale HTTPS. The current stable Windows release does not include this new Link integration yet. Windows and Aetox must stay running; physical-device end-to-end verification is still pending.
+> **Preview, test-signed, not from the Play Store.** You need Aetox for Windows **1.9.27 or later** (it includes **Aetox Link**) and trusted Tailscale HTTPS. Windows and Aetox must stay running. Voice, camera and installation have not yet been checked on a physical phone.
 
 **iPhone:** a removable full-screen Web Clip is supported, **not a native IPA**. Its profile is generated for your Windows HTTPS address; personal profiles are not published as universal public installers.
 
@@ -903,7 +903,15 @@ mistake turns an agent into a chat box.
 
 </details>
 
-## Status — v1.9.26
+## Status — v1.9.27
+
+[Version 1.9.27](docs/release-notes/v1.9.27.md), 17 October 2026, brings:
+
+- **Aetox Link for your phone**: a Mobile page in Settings sets up Tailscale HTTPS itself and shows a pairing QR, so Aetox Mobile can chat, talk and answer approvals with the agent on this PC.
+- **Install from the normal chat**: the assistant reads what is installed, searches, compares and places MCP servers and skills on cards in your chat; MCP tools can now hand back images and structured data.
+- **Clearer desks and a smoother start**: the start pages show what is waiting, web tabs wear their site icons, updates download in the background, and the engine starts before the window.
+
+### Previously — v1.9.26
 
 [Version 1.9.26](docs/release-notes/v1.9.26.md), 16 October 2026, brings:
 
