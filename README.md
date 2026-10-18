@@ -4,11 +4,28 @@
 
 <h1 align="center">Aetox Harness</h1>
 
-<h3 align="center">An AI agent that does real work on your Windows desktop.</h3>
+<p align="center"><sub>The Model Multiplier.</sub></p>
+
+<h3 align="center">The best harness for the AI you already use.</h3>
 
 <p align="center">
-  Work with files and websites. Build and test code.<br>
-  Watch the work, review the result, stay in control.
+  <strong>Don't change your model. Change the harness.</strong><br>
+  The AI you already use becomes an assistant that gets real work done, and the strongest Code mode on the same model.
+</p>
+
+<p align="center">
+  <strong>Assistant: real work, finished as files</strong><br>
+  Record a meeting, get a summary with times and tasks · a folder of receipts becomes an Excel table ·
+  a long video becomes short clips you can keep editing · data becomes a PowerPoint deck
+</p>
+
+<p align="center">
+  <strong>Code: the strongest on the same model</strong><br>
+  Secure code <strong>93.3%</strong> vs 68.9% · long multi-turn coding <strong>95.2%</strong> vs 92.8% ·
+  our own security skill puts it 20+ points ahead of other harnesses ·
+  <a href="#measured-results">results and where it loses</a><br>
+  <sub>Measured with GPT-6 Luna (budget) and GPT-5.6 Terra (large) driving, the same model on every harness.
+  Aetox isn't tied to either: it works with 31 providers.</sub>
 </p>
 
 <p align="center">
@@ -21,7 +38,7 @@
 </p>
 
 <p align="center">
-  Windows 10+ · x64 · Free to use · Built-in trial, no API key needed to try
+  Windows 10+ · x64 · Free to use · Bring your own model, or run one locally for free
 </p>
 
 <p align="center">
@@ -114,8 +131,9 @@ Hand a whole job to a team from Assistant or Code. Follow the head and specialis
 [Safety & data](#safety-and-your-data) · [Measured results](#measured-results) ·
 [Licence](#source-licence-and-who-makes-it) · [Community](https://www.facebook.com/share/g/1BnXC5EiWg/)
 
-> **Free to use, not unlimited free cloud inference.** The built-in trial lets you try the app without an API key;
-> your chosen cloud provider's pricing applies when you connect your own account. Local-first does not mean
+> **Free to use, not unlimited free cloud inference.** The built-in `aetox` provider shows the app and its guide,
+> but real work needs a model: an account or key you already have, or a local model. Your chosen cloud provider's
+> pricing applies when you connect your own account. Local-first does not mean
 > cloud requests stay on your machine: cloud models receive the requests you send them.
 > **Source-available, not open source:** this repository's source stops at v1.7.0; current releases still ship here
 > as binaries. [Read more](#source-licence-and-who-makes-it).
@@ -138,8 +156,8 @@ permissions, memory, and a verification loop so it can do real work rather than 
 
 Assistant and Code share one harness, keys, memory, settings and permissions; switch in the top bar at any time.
 Since [v1.9.21](docs/release-notes/v1.9.21.md), the separate Team door is closed: both main agents delegate to
-teams directly, and the old team rooms and chat history sit behind Assistant. It works with [28 external model providers](#which-models-it-works-with), cloud and local, plus a
-built-in trial provider, so you can start without an API key. The interface ships in Thai and English, with Thai
+teams directly, and the old team rooms and chat history sit behind Assistant. It works with [31 external model providers](#which-models-it-works-with), cloud and local; the
+built-in `aetox` provider only shows the app and its guide until you connect one. The interface ships in Thai and English, with Thai
 as the default. **[Install](#install)** from the Microsoft Store, the installer, or as Aetox CLI.
 
 ## System over model
@@ -177,10 +195,10 @@ Much of what people assume has to come from a bigger model is, in Aetox, the sys
    real files** — Thai and English OCR, offline speech-to-text, and the builders for `.xlsx` `.docx` `.pptx`,
    decks and video belong to the app → [Assistant door](#the-assistant-door)
 3. **A small local model does big work** — a 9B/35B model in LM Studio or Ollama gets the same tools as a
-   frontier one, and not a byte leaves your machine → [Which models it works with](#which-models-it-works-with)
+   frontier one, and your prompts never go to a model provider → [Which models it works with](#which-models-it-works-with)
 4. **Same model, different result** — on GPT-6 Luna (`gpt-6-luna`, through the same ChatGPT (Codex) account for
    every harness), code passing the security tests (CWEval func-sec@1): Aetox 93.3% · OpenCode 66.7% ·
-   Codex CLI 66.7% · omp 68.9% · pi 64.4%, over 593 runs judged by hidden tests (1.10.0). The lead comes from the
+   Codex CLI 66.7% · omp 68.9% · pi 64.4%, judged by hidden tests (11 tasks × 2 models × 3 rounds). The lead comes from the
    bundled security skill: with it off, Aetox lands in the same range as the others. The method and where Aetox
    loses are in [Measured results](#measured-results)
 5. **Many tools do not mean a full context** — an MCP server with 212 tools costs a 135-token index, and the
@@ -199,8 +217,10 @@ each request.
 ## The Assistant door
 
 *Use, remember, and create* — the assistant works across the whole machine when no project is focused, or
-inside a project folder plus the folders you add. Everything happens on the workbench beside the chat, which
-has four rooms: slides, browser, files and terminal. The agent does not work behind a curtain and hand you a
+inside a project folder plus the folders you add. Everything happens on the workbench beside the chat. Its start
+page leads with **Waiting for you** (meetings not yet turned into notes, drafts to keep), then **Work** and
+**Calendar**, then the rooms where work is made (**Slides**, **Cutting room**, **Artifacts**) and where it is
+opened or handed on (**Browser**, **Files**, **Workroom**). The agent does not work behind a curtain and hand you a
 file at the end; it opens a room, works in it, and you can reach in and change something yourself without
 waiting for the turn to finish. The assistant has files and a shell, so it does software work too, and it
 never hands a request back because it involves code.
@@ -320,6 +340,25 @@ and after the narrow test comes the project's full check.
 > - Keeps history already sent unchanged, so the provider's cache holds every round
 > - Snapshots files before every turn edits them with shadow-git, so any turn can be undone
 
+### The security skill: code that holds up to attacks
+
+Our own security skill makes AI write code that holds up to attacks, 20+ points ahead of other harnesses. Tested
+with the same GPT models on every harness: 93.3% vs 68.9%, and 97.8% vs 77.8% (CWEval func-sec@1). It ships
+switched on.
+
+Switch on this one skill and the same model writes 14.0 of 15 functions that both work and hold up, instead of
+10.2. On the same build, with only the skill switched (CWEval, 5 rounds per setting):
+
+| Functions that work and hold up, of 15 | Skill off | Skill on | Other harnesses |
+|---|---|---|---|
+| Budget GPT model (GPT-6 Luna) | 10.2 | **14.0** | 9.7–10.3 |
+| Large GPT model (GPT-5.6 Terra) | 11.6 | **14.4** | 11.0–11.7 |
+
+Holes that closed, runs out of 10 that worked but leaked: SSRF 4 → 0 · new lines in an HTTP header 7 → 0 ·
+new lines in a log 5 → 0 · a user's regex with unbounded cost 10 → 1. The code works just as well with the skill
+on. With it off, Aetox lands with the other harnesses: the lead is the knowledge in this skill.
+[The test](docs/reports/coding-harness-1.9.27/README.md#2-ชนะ-cweval-เพราะอะไร)
+
 ### Two modes: Agent · Editor
 
 The switch in the top bar changes mode at once. Each mode is a desk of its own with its own chat list, bound to
@@ -405,7 +444,7 @@ is out. This CLI is the build the coding benchmark measures.
 
 ### Coding results
 
-On the same models against OpenCode · Codex CLI · omp · pi (1.10.0, 593 runs), Aetox leads on secure code on both
+On the same models against OpenCode · Codex CLI · omp · pi (11 tasks × 2 models × 3 rounds), Aetox leads on secure code on both
 models (the lead comes from its bundled security skill) and has the highest share of tests passed in long
 multi-turn coding on both GPT-6 Luna and GPT-5.6 Terra; on hard tasks with GPT-6 Sol it ties Codex CLI (1.9.7). It
 trails on the single SWE-bench bug on Luna and on time with Terra, and the price is more tokens — see
@@ -503,12 +542,13 @@ provider, prompt, step ceiling and look.
 
 ## Which models it works with
 
-**28 external providers, and the window shows every one** — OpenAI · OpenAI-compatible (your own endpoint) ·
-Anthropic · Gemini · DeepSeek · Qwen · Z.ai · OpenRouter · Codex · Groq · Mistral · Kimi · MiniMax ·
+**31 external providers, and the window shows every one** — OpenAI · OpenAI-compatible (your own endpoint) ·
+Anthropic · Gemini · DeepSeek · Qwen · Z.ai · Z.ai Coding Plan · OpenRouter · Codex · Groq · Mistral · Kimi ·
+MiniMax · MiniMax M-Plan · Chutes ·
 Xiaomi MiMo · Xiaomi MiMo Token Plan · xAI · Meta · ThaiLLM · ModelScope · NVIDIA · GitHub Copilot · Kilo ·
 Ollama Cloud · OpenCode Zen · OpenCode Go · LM Studio · Ollama · 9Router (Xiaomi MiMo and its Token Plan count
-separately because they use different endpoints and keys). On top of those, the built-in `aetox` trial provider
-is not counted among the 28. ChatGPT (Codex), GitHub Copilot and OpenRouter sign in; the rest take an API key or
+separately because they use different endpoints and keys, as do the MiniMax and Z.ai plans). The built-in `aetox`
+provider is not counted among the 31: it shows the app and its guide, and does no work until a real model is connected. ChatGPT (Codex), GitHub Copilot and OpenRouter sign in; the rest take an API key or
 a local server address. An endpoint you add yourself chooses its API shape (openai · anthropic · responses).
 
 Local models are first-class: Aetox asks LM Studio and Ollama which model is *loaded*, streams both the answer
