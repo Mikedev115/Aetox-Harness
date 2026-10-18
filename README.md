@@ -179,8 +179,8 @@ Much of what people assume has to come from a bigger model is, in Aetox, the sys
 3. **A small local model does big work** — a 9B/35B model in LM Studio or Ollama gets the same tools as a
    frontier one, and not a byte leaves your machine → [Which models it works with](#which-models-it-works-with)
 4. **Same model, different result** — on GPT-6 Luna (`gpt-6-luna`, through the same ChatGPT (Codex) account for
-   every harness), code passing the security tests (CWEval func-sec@1): Aetox 91.1% · OpenCode 66.7% ·
-   Codex CLI 66.7% · omp 68.9% · pi 64.4%, over 527 runs judged by hidden tests (1.9.27). The lead comes from the
+   every harness), code passing the security tests (CWEval func-sec@1): Aetox 93.3% · OpenCode 66.7% ·
+   Codex CLI 66.7% · omp 68.9% · pi 64.4%, over 593 runs judged by hidden tests (1.10.0). The lead comes from the
    bundled security skill: with it off, Aetox lands in the same range as the others. The method and where Aetox
    loses are in [Measured results](#measured-results)
 5. **Many tools do not mean a full context** — an MCP server with 212 tools costs a 135-token index, and the
@@ -405,10 +405,10 @@ is out. This CLI is the build the coding benchmark measures.
 
 ### Coding results
 
-On the same models against OpenCode · Codex CLI · omp · pi (1.9.27, 527 runs), Aetox leads on secure code on both
+On the same models against OpenCode · Codex CLI · omp · pi (1.10.0, 593 runs), Aetox leads on secure code on both
 models (the lead comes from its bundled security skill) and has the highest share of tests passed in long
 multi-turn coding on both GPT-6 Luna and GPT-5.6 Terra; on hard tasks with GPT-6 Sol it ties Codex CLI (1.9.7). It
-trails on Web-Bench on Terra and on the single SWE-bench bug on Luna, and the price is more tokens — see
+trails on the single SWE-bench bug on Luna and on time with Terra, and the price is more tokens — see
 [Measured results](#measured-results).
 
 ## Teams from Assistant and Code
@@ -529,32 +529,34 @@ their overview shows separate model choices. Each chat keeps its own selected mo
 The rules are in [BENCHMARK.md](docs/reports/BENCHMARK.md), and the one rule it enforces is that a number that
 has not passed them does not appear here or on the website.
 
-**Coding, 1.9.27 (17 October 2026).** Same models and byte-identical tasks as OpenCode · Codex CLI · omp · pi:
+**Coding, 1.10.0.** Same models and byte-identical tasks as OpenCode · Codex CLI · omp · pi:
 11 tasks × 2 models (`gpt-6-luna`, `gpt-5.6-terra`, medium reasoning) × 3 rounds, every task judged by hidden
-tests, no user skills or settings anywhere. The other harnesses were measured on 27–28 September with the same
-account.
+tests, no user skills or settings anywhere, the same account for every harness.
 
-- **Secure code** — Aetox leads on both models: CWEval func-sec@1 91.1% against 68.9% for the next harness on
-  Luna, 93.3% against 77.8% on Terra. Switching parts off (5 rounds each) shows where it comes from: with only the
-  security skill off, Aetox secures 10.2 of 15 functions on Luna and 11.6 on Terra, the same range as the other
-  harnesses; with every skill off, 10.6 and 11.2. The lead is the knowledge in that skill, which ships switched on
-- **Long multi-turn coding** — the highest % tests passed on both models (Luna 92.4%, Terra 93.8%; OpenCode 90.8%
-  and 92.8%). Checkpoints fully passed: Luna 3.7 of 14, tied with OpenCode; Terra 6.0, behind OpenCode's 6.7
-- **Against 1.9.7** — Luna is better in nearly every column and about a third faster (SlopCodeBench 90.1 → 92.4%,
-  47 → 31 min); Terra is slightly better and faster on multi-turn work (92.0 → 93.8%, 76 → 70 min) but lost a
-  checkpoint and a Web-Bench task
+- **Answers in the task's language** — on the English tasks Luna answered in English 13 times in 63 on 1.9.27 and
+  63 in 63 on 1.10.0; Terra 47 → 63. Tasks written in Thai are still answered in Thai, 9 in 9. The engine now names
+  the reply language on each message instead of asking the model to work it out
+- **Secure code** — Aetox leads on both models: CWEval func-sec@1 93.3% against 68.9% for the next harness on
+  Luna, 97.8% against 77.8% on Terra. Switching parts off on 1.9.27 (5 rounds each) shows where it comes from: with
+  only the security skill off, Aetox secured 10.2 of 15 functions on Luna and 11.6 on Terra, the same range as the
+  other harnesses; with every skill off, 10.6 and 11.2. The lead is the knowledge in that skill, which ships
+  switched on
+- **Long multi-turn coding** — the highest % tests passed and checkpoints fully passed on both models (Terra 95.2%
+  and 7.0 of 14, Luna 91.6% and 4.0; OpenCode 92.8% and 6.7, 90.8% and 3.7)
+- **Against 1.9.27** — Terra is better in nearly every column and faster (SlopCodeBench 93.8 → 95.2%, Web-Bench
+  4.7 → 5.3 of 6, func-sec@1 93.3 → 97.8%, 70 → 63 min); Luna is faster again (31 → 26 min) and fixed the reported
+  bug in all 3 rounds (1 of 3 before), while its SlopCodeBench moved 92.4 → 91.6%, within the swing between rounds
 - **Hard tasks on GPT-6 Sol** (1.9.7) — DeepSWE 1.1 and Terminal-Bench 2.1 hard, 12 tasks at high reasoning:
   Aetox 7 · Codex CLI 7 · OpenCode 6
-- **The price** — more tokens than the others (Luna 6.1M against 0.8–4.5M, Terra 8.8M against 1.8–7.5M; about 90%
-  is cached input). Against 1.9.7 the total rose (Luna +27%, Terra +13%) from more tool calls, while the
-  full-price part barely moved; cost per round +16% on Luna, +10% on Terra. Time: Luna 31 min, close to Codex CLI
-  and pi; Terra 70 min against 46–71. The benchmark is
-  one-shot, so the main agent does nearly all of it (helpers called in 1 of 78 runs); in a real session helpers
+- **The price** — more tokens than the others (Luna 6.4M against 0.8–4.5M, Terra 8.3M against 1.8–7.5M; about 90%
+  is cached input). Against 1.9.27 the full-price part fell (uncached input −6% on Luna, −5% on Terra) and cost per
+  round fell 2% and 5%. Time: Luna 26 min, the fastest in the table; Terra 63 min against 46–71. The benchmark is
+  one-shot, so the main agent does nearly all of it; in a real session helpers
   kept the main context at 107k instead of 190k and cut cost by about 6% on OpenAI prices, 18–30% on other providers
   ([session report](docs/reports/LIVING-REALM-DELEGATION-TOKENS-20261004.md) ·
   [cost report](docs/reports/MODEL-COST-SIMULATION-LIVING-REALM-20261004.md))
-- **Where it trails** — Web-Bench on Terra (4.7 of 6, the lowest; in every round the last task left the planets
-  off their orbits) · the single SWE-bench bug on Luna (fixed in 1 of 3 rounds)
+- **Where it trails** — the single SWE-bench bug on Luna by the dataset's own tests (1 of 3 rounds; the other two
+  fixed `client_ip` as the report asks but not `remote_ip`) · time on Terra, behind pi (46 min) and Codex CLI (54)
 
 Rounds swing by 1.5–2.5 points on SlopCodeBench, so a gap of a few points reads as a tie. The tables, every
 round, the method and where Aetox loses are in the reports — start at [the reports page](docs/reports/README.md).
@@ -562,7 +564,8 @@ round, the method and where Aetox loses are in the reports — start at [the rep
 | Other reports | What they measure |
 |:---|:---|
 | [Reports page](docs/reports/README.md) | Every report, and the latest edition of each subject |
-| [coding-harness-1.9.27](docs/reports/coding-harness-1.9.27/README.md) | The 1.9.27 edition against the same four harnesses, with what makes Aetox lead on CWEval and a GPT-6 Sol run |
+| [coding-harness-1.10.0](docs/reports/coding-harness-1.10.0/README.md) | The 1.10.0 edition against the same four harnesses, with what changed since 1.9.27 and the language of the answers |
+| [coding-harness-1.9.27](docs/reports/coding-harness-1.9.27/README.md) | The 1.9.27 edition, with what makes Aetox lead on CWEval and a GPT-6 Sol run |
 | [coding-harness-1.9.7](docs/reports/coding-harness-1.9.7/README.md) | The 1.9.7 edition, with two sets of rounds and the swing between them |
 | [HARD-SOL-1.9.7](docs/reports/HARD-SOL-1.9.7-20261004.md) | Hard tasks on GPT-6 Sol: DeepSWE 1.1 and Terminal-Bench 2.1 hard, Aetox against Codex CLI and OpenCode |
 | [HARD5-1.9.7](docs/reports/HARD5-1.9.7-20261004.md) | Five mid-level tasks across releases 1.9.0 → 1.9.7 and three model sizes |
