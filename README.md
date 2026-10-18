@@ -49,9 +49,9 @@ because it is not code-signed yet; see [installation and safety notes](#install)
 **Choose one channel:** Store and installer builds keep separate settings, chats and keys.
 [Scoop, portable ZIP and CLI](#install) · [Update guide](docs/UPDATING.md)
 
-## Aetox Mobile 0.3.1 — Android
+## Aetox Mobile 0.3.2 — Android
 
-[**Download the Android APK**](https://github.com/Mikedev115/Aetox-Harness/releases/download/mobile-v0.3.1/Aetox-Mobile-Android-Test.apk) · [Release notes and setup requirements](https://github.com/Mikedev115/Aetox-Harness/releases/tag/mobile-v0.3.1)
+[**Download the Android APK**](https://github.com/Mikedev115/Aetox-Harness/releases/download/mobile-v0.3.2/Aetox-Mobile-Android-Test.apk) · [Release notes and setup requirements](https://github.com/Mikedev115/Aetox-Harness/releases/tag/mobile-v0.3.2)
 
 A phone chat for the Aetox on your PC: chats, models, files and the agent stay on **Windows**, the phone is the screen. Pick the model and thinking level, attach photos or files, answer approvals, and open delivered files. **Talk to it:** dictate into the box, or hold a voice conversation that is answered aloud sentence by sentence, using the speech engine and voice set in Aetox on Windows. Answers stream in as they are written, with each tool step shown; every chat on the PC is there, grouped by project; files the agent hands over open full screen (documents, images, video, pages and slides). The app tells you when the PC carries a newer version and updates in one tap. It wears the same themes as the desktop app. Android 10 or later; provider keys never leave the PC.
 
@@ -917,7 +917,15 @@ mistake turns an agent into a chat box.
 
 </details>
 
-## Status — v1.9.28
+## Status — v1.10.0
+
+[Version 1.10.0](docs/release-notes/v1.10.0.md), 18 October 2026, brings:
+
+- **The agent drives Windows programs**: every step comes back with a picture of the window, the agent is told whether the screen changed after each click, models that cannot see get a helper that describes the screen, and a Stop button sits on top of the screen while Aetox is in control.
+- **Answers in the language you asked in**: the engine names the reply language itself and everything the model reads is English; on English coding tasks GPT-6 Luna now answers in English 63 of 63 times, up from 13.
+- **Phone: pick a project and a team, and type while it works**: start a chat in a project or hand it to a team, send a message into a running turn, and Aetox Mobile 0.3.2 explains why it cannot connect in plain words.
+
+### Previously — v1.9.28
 
 [Version 1.9.28](docs/release-notes/v1.9.28.md), 17 October 2026, brings:
 
