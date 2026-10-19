@@ -974,7 +974,13 @@ mistake turns an agent into a chat box.
 
 </details>
 
-## Status — v1.10.3
+## Status — v1.10.4
+
+[Version 1.10.4](docs/release-notes/v1.10.4.md), 19 October 2026, brings:
+
+- **The Microsoft Store update can go through again**: since 1.9.11 the Store package asked Windows for a permission Microsoft grants only to partner games, so every Store update sat in certification and Store users stayed on 1.9.10. The package no longer asks for it, and the "open folder" buttons find a Store install's folders on their own. The skill install window also scrolls again: a repository with 169 skills used to be cut off, install button included.
+
+### Previously — v1.10.3
 
 [Version 1.10.3](docs/release-notes/v1.10.3.md), 19 October 2026, brings:
 
