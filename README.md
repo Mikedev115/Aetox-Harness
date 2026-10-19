@@ -974,7 +974,13 @@ mistake turns an agent into a chat box.
 
 </details>
 
-## Status — v1.10.2
+## Status — v1.10.3
+
+[Version 1.10.3](docs/release-notes/v1.10.3.md), 19 October 2026, brings:
+
+- **The external engine's menus keep your pick and show logos**: in a coding session on a CLI engine (OpenCode and the like), the provider filter went back to "All providers" every time the menu closed, and neither providers nor models had logos. Your pick now stays, each provider and each model wears its maker's mark, and the engine form's path field no longer shows a broken focus glow.
+
+### Previously — v1.10.2
 
 [Version 1.10.2](docs/release-notes/v1.10.2.md), 19 October 2026, brings:
 
