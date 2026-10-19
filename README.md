@@ -957,7 +957,13 @@ mistake turns an agent into a chat box.
 
 </details>
 
-## Status — v1.10.1
+## Status — v1.10.2
+
+[Version 1.10.2](docs/release-notes/v1.10.2.md), 19 October 2026, brings:
+
+- **The phone app finds its update again**: v1.10.1 carried Aetox Mobile 0.3.2 without the file that names its version, so every phone read "Up to date" and never offered it. This build carries both, and the release script now stops if either is missing.
+
+### Previously — v1.10.1
 
 [Version 1.10.1](docs/release-notes/v1.10.1.md), 19 October 2026, brings:
 
