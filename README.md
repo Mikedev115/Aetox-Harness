@@ -974,7 +974,13 @@ mistake turns an agent into a chat box.
 
 </details>
 
-## Status — v1.10.4
+## Status — v1.10.5
+
+[Version 1.10.5](docs/release-notes/v1.10.5.md), 19 October 2026, brings:
+
+- **A Listen button on the plan, and a tidier deliverables list**: the plan in the deliverables tab reads itself aloud a heading at a time, with a line saying which part is playing. Deliverable rows say what each file is and when it arrived instead of the session folder name, and the list folds to four rows. The "opened a new chat at …" line now stays in the turn that made it instead of following the chat to its last message.
+
+### Previously — v1.10.4
 
 [Version 1.10.4](docs/release-notes/v1.10.4.md), 19 October 2026, brings:
 
