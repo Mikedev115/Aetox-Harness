@@ -152,8 +152,8 @@ Hand a whole job to a team from Assistant or Code. Follow the head and specialis
 > but real work needs a model: an account or key you already have, or a local model. Your chosen cloud provider's
 > pricing applies when you connect your own account. Local-first does not mean
 > cloud requests stay on your machine: cloud models receive the requests you send them.
-> **Source-available, not open source:** this repository's source stops at v1.7.0; current releases still ship here
-> as binaries. [Read more](#source-licence-and-who-makes-it).
+> **Free to use, not open source:** Aetox is a one-person hobby project, and new releases ship as binaries to
+> protect that work. The source up to v1.7.0 stays readable here. [Why, and what you can still do](#source-licence-and-who-makes-it).
 
 **Jump to:** [Workspaces](#one-harness-two-workspaces) · [System over model](#system-over-model) ·
 [Assistant](#the-assistant-door) · [Code](#the-code-door) · [Teams](#teams-from-assistant-and-code) · [Models](#which-models-it-works-with) ·
@@ -1134,6 +1134,12 @@ Architecture notes, decision records and design standards are not in this reposi
 **Source.** The source in this repository stops at v1.7.0 (15 September 2026) and can be read and audited under
 the [LICENSE](LICENSE). Later releases ship here as binaries: installers, the portable zip, the Linux engine,
 checksums and release notes. Their source is not published.
+
+**Why the source closed.** Aetox is a one-person project, built as a hobby. The architecture is my own design, and
+every skill is tested against paid model APIs out of my own pocket. When AI can turn someone else's system into
+"your own" in an afternoon, publishing the source of every new release would mean giving that work away. So the
+app stays free to use, the extensions you build on it stay yours, and the source up to v1.7.0 stays here to read
+and audit.
 
 **Licence.** Aetox is free to use and is not open source. From v1.3.0 it is under a [proprietary licence](LICENSE):
 install it on as many machines as you like, use it for commercial work, and read and audit the source published in
