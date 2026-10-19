@@ -957,7 +957,15 @@ mistake turns an agent into a chat box.
 
 </details>
 
-## Status — v1.10.0
+## Status — v1.10.1
+
+[Version 1.10.1](docs/release-notes/v1.10.1.md), 19 October 2026, brings:
+
+- **A cutting room with real effects**: 14 sound effects, 12 colour looks, masks, green screen and blend modes, speed ramps and reverse, several voices reading a script onto the timeline, and a render that shows its progress and can be stopped. What plays in the room is what the render writes.
+- **An assistant that follows up**: it knows what you still have open when a chat starts, asks what a job needs to know about you once, sets reminders that come back in the chat (or to your paired bot when you are away), and closes a task only when you say it is done.
+- **One slip under every answer, and decks with real photos**: whatever the agent made, opened, ran or sent sits in one block with a View button, on the PC and on the phone; slides pick licensed photos from a sheet the agent can see and save them beside the deck with their credit.
+
+### Previously — v1.10.0
 
 [Version 1.10.0](docs/release-notes/v1.10.0.md), 18 October 2026, brings:
 
