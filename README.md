@@ -66,15 +66,32 @@ because it is not code-signed yet; see [installation and safety notes](#install)
 **Choose one channel:** Store and installer builds keep separate settings, chats and keys.
 [Scoop, portable ZIP and CLI](#install) · [Update guide](docs/UPDATING.md)
 
-## Aetox Mobile 0.3.2 — Android
+## Aetox Mobile — Android and iPhone
+
+A phone chat for the Aetox on your PC: chats, models, files and the agent stay on **Windows**, the phone is the screen. Pick the model and thinking level, attach photos or files, answer approvals, and open delivered files. **Talk to it:** dictate into the box, or hold a voice conversation that is answered aloud sentence by sentence, using the speech engine and voice set in Aetox on Windows. Answers stream in as they are written, with each tool step shown; every chat on the PC is there, grouped by project; files the agent hands over open full screen (documents, images, video, pages and slides). It wears the same themes as the desktop app. Provider keys never leave the PC.
+
+Both phones need Aetox for Windows **1.9.28 or later** (it includes **Aetox Link**) and Tailscale with HTTPS on the PC and the phone. Windows and Aetox must stay running. Start on the PC: **Settings › Mobile**, wait for the three Tailscale checks to turn green, press **Let my phone connect**, and a pairing QR appears.
+
+### Android — app 0.3.2
 
 [**Download the Android APK**](https://github.com/Mikedev115/Aetox-Harness/releases/download/mobile-v0.3.2/Aetox-Mobile-Android-Test.apk) · [Release notes and setup requirements](https://github.com/Mikedev115/Aetox-Harness/releases/tag/mobile-v0.3.2)
 
-A phone chat for the Aetox on your PC: chats, models, files and the agent stay on **Windows**, the phone is the screen. Pick the model and thinking level, attach photos or files, answer approvals, and open delivered files. **Talk to it:** dictate into the box, or hold a voice conversation that is answered aloud sentence by sentence, using the speech engine and voice set in Aetox on Windows. Answers stream in as they are written, with each tool step shown; every chat on the PC is there, grouped by project; files the agent hands over open full screen (documents, images, video, pages and slides). The app tells you when the PC carries a newer version and updates in one tap. It wears the same themes as the desktop app. Android 10 or later; provider keys never leave the PC.
+1. Install Tailscale on the phone and sign in to the same account as the PC.
+2. Download the APK above and open it. Android asks once to allow installs from your browser.
+3. Open Aetox Mobile and scan the QR on the PC, then press **Allow** on the PC.
 
-> **Preview, test-signed, not from the Play Store.** You need Aetox for Windows **1.9.28 or later** (it includes **Aetox Link**) and trusted Tailscale HTTPS. Windows and Aetox must stay running. Voice, camera and installation have not yet been checked on a physical phone.
+The app tells you when the PC carries a newer version (**Settings › Connection › App version**) and updates in one tap. Android 10 or later.
 
-**iPhone:** a removable full-screen Web Clip is supported, **not a native IPA**. Its profile is generated for your Windows HTTPS address; personal profiles are not published as universal public installers.
+### iPhone — web app, no App Store
+
+There is no IPA. The iPhone runs the same screen as a full-screen web app with its own icon.
+
+1. Install Tailscale from the App Store and sign in to the same account as the PC.
+2. Point the Camera at the QR on the PC. Safari opens your PC's address; press **Allow** on the PC.
+3. In the web app open **Settings › Install › Download iPhone Web Clip**, then iPhone **Settings › Profile Downloaded › Install**. The Aetox icon lands on the home screen.
+   Or skip the profile: Safari **Share › Add to Home Screen**.
+
+The profile only adds this one web app (no VPN, MDM or certificate) and can be removed in **Settings › General › VPN & Device Management**. It is made for your PC's address, so it is not published as a public installer. Updates arrive with Aetox for Windows; reload when the app says an update is ready.
 
 ## What will you get done?
 
