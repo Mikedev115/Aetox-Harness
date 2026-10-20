@@ -13,7 +13,7 @@
 | แต่ละรุ่นเปลี่ยนอะไร · What changed | [release-notes/](release-notes) |
 | รองรับระบบไหน · Platforms | [PLATFORM-SUPPORT.md](../PLATFORM-SUPPORT.md) |
 | กำลังทำอะไรต่อ · Roadmap | [ROADMAP.md](../ROADMAP.md) |
-| ความเป็นส่วนตัว · Privacy | [privacy.html](https://mikedev115.github.io/Aetox/privacy.html) |
+| ความเป็นส่วนตัว · Privacy | [privacy.html](https://mikedev115.github.io/Aetox-Harness/privacy.html) |
 | เว็บไซต์ · Website | [mikedev115.github.io/Aetox-landing](https://mikedev115.github.io/Aetox-landing/) |
 
 ## ผลวัด · Measurements

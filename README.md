@@ -6,13 +6,40 @@
 
 <p align="center"><sub>The Model Multiplier.</sub></p>
 
-<h3 align="center">Same model. Better work.</h3>
+<h3 align="center">Hand it over. We'll run it.</h3>
 
 <p align="center">
-  <strong>Don't change your model. Change the harness.</strong><br>
-  Aetox is the system around the AI you already use: the tools, the know-how and the checks before it hands work back.
-  Every number below compares the same model with and without Aetox.
+  Say what you want. Aetox lines up the team and the tools, and hands back finished work.
 </p>
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+**Assistant · Teams**
+
+### Build a company on your computer
+
+**You're the CEO. The rest is your team.** Set the goal and hand over the whole job. Heads split the work, teams
+do it, and the finished files come back in one chat; you approve what goes out. The Content team ships with the
+installer, so you start with a team, not an org chart.
+
+</td>
+<td width="50%" valign="top">
+
+**Code**
+
+### An ordinary model can do more than you think
+
+The difference is the system around the model. For code, Aetox tunes its skills and every layer of the system to
+work as one. Same model, and on some measures the results are clear: secure code **93.3%** vs 68.9% on GPT-6 Luna
+and **97.8%** vs 77.8% on GPT-5.6 Terra, against the next-best harness.
+
+</td>
+</tr>
+</table>
+
+Every number below compares the same model, with and without Aetox or against other harnesses:
 
 | Area | Aetox | Compared with | Condition |
 |:---|---:|:---|:---|
