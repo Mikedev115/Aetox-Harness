@@ -74,7 +74,7 @@ Both phones need Aetox for Windows **1.9.28 or later** (it includes **Aetox Link
 
 ### Android — app 0.3.2
 
-[**Download the Android APK**](https://github.com/Mikedev115/Aetox-Harness/releases/download/mobile-v0.3.2/Aetox-Mobile-Android-Test.apk) · [Release notes and setup requirements](https://github.com/Mikedev115/Aetox-Harness/releases/tag/mobile-v0.3.2)
+[**Download the Android APK**](https://github.com/Mikedev115/Aetox-Harness/releases/download/mobile-v0.3.4/Aetox-Mobile-Android-Test.apk) · [Release notes and setup requirements](https://github.com/Mikedev115/Aetox-Harness/releases/tag/mobile-v0.3.4)
 
 1. Install Tailscale on the phone and sign in to the same account as the PC.
 2. Download the APK above and open it. Android asks once to allow installs from your browser.

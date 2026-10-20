@@ -72,7 +72,7 @@ Scoop ไฟล์ zip พกพา และเรื่อง SmartScreen อ�
 
 ### Android — แอป 0.3.2
 
-[**ดาวน์โหลด APK สำหรับ Android**](https://github.com/Mikedev115/Aetox-Harness/releases/download/mobile-v0.3.2/Aetox-Mobile-Android-Test.apk) · [รายละเอียดรุ่นและสิ่งที่ต้องเตรียม](https://github.com/Mikedev115/Aetox-Harness/releases/tag/mobile-v0.3.2)
+[**ดาวน์โหลด APK สำหรับ Android**](https://github.com/Mikedev115/Aetox-Harness/releases/download/mobile-v0.3.4/Aetox-Mobile-Android-Test.apk) · [รายละเอียดรุ่นและสิ่งที่ต้องเตรียม](https://github.com/Mikedev115/Aetox-Harness/releases/tag/mobile-v0.3.4)
 
 1. ติดตั้ง Tailscale บนมือถือ แล้ว login บัญชีเดียวกับ PC
 2. ดาวน์โหลด APK ด้านบนแล้วเปิดไฟล์ Android จะถามครั้งเดียวให้อนุญาตติดตั้งจากเบราว์เซอร์
