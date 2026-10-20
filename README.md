@@ -617,11 +617,13 @@ tests, no user skills or settings anywhere, the same account for every harness.
 
 Rounds swing by 1.5–2.5 points on SlopCodeBench, so a gap of a few points reads as a tie. The tables, every
 round, the method and where Aetox loses are in the reports — start at [the reports page](docs/reports/README.md).
+The latest coding report is [in English](docs/reports/coding-harness-1.10.0/README.en.md), with every prompt, starting
+file and hidden test published so you can [run it yourself](docs/reports/coding-harness-1.10.0/README.en.md#7-reproduce-it).
 
 | Other reports | What they measure |
 |:---|:---|
 | [Reports page](docs/reports/README.md) | Every report, and the latest edition of each subject |
-| [coding-harness-1.10.0](docs/reports/coding-harness-1.10.0/README.md) | The 1.10.0 edition against the same four harnesses, with what changed since 1.9.27 and the language of the answers |
+| [coding-harness-1.10.0](docs/reports/coding-harness-1.10.0/README.en.md) | In English. The 1.10.0 edition against the same four harnesses, with what changed since 1.9.27 and the language of the answers |
 | [coding-harness-1.9.27](docs/reports/coding-harness-1.9.27/README.md) | The 1.9.27 edition, with what makes Aetox lead on CWEval and a GPT-6 Sol run |
 | [coding-harness-1.9.7](docs/reports/coding-harness-1.9.7/README.md) | The 1.9.7 edition, with two sets of rounds and the swing between them |
 | [HARD-SOL-1.9.7](docs/reports/HARD-SOL-1.9.7-20261004.md) | Hard tasks on GPT-6 Sol: DeepSWE 1.1 and Terminal-Bench 2.1 hard, Aetox against Codex CLI and OpenCode |
@@ -974,7 +976,15 @@ mistake turns an agent into a chat box.
 
 </details>
 
-## Status — v1.10.5
+## Status — v1.10.6
+
+[Version 1.10.6](docs/release-notes/v1.10.6.md), 20 October 2026, brings:
+
+- **A chat answered by Claude Code or OpenCode shows what the CLI knows**: the footer reads the whole chat's context, a cache countdown and the 5-hour and 7-day limit windows with their reset times; files the CLI edits show diffs and the changed-files card like Aetox's own writes. The mode chip and the model pick work while a turn runs (Claude Code switches at once), what you type mid-turn is queued by the CLI, and the "/" menu lists the CLI's own commands.
+- **Attach a clip and the assistant can cut it**: the assistant's desk holds the door to the cut room, so a video dropped into the chat no longer waits for you to open the room first.
+- **Antigravity uses Aetox's tools**: the chat's tools reach it as a plugin, Aetox helpers become its subagents, its questions come up as Aetox question cards, and Settings shows how it is paid for and offers an update button when a newer agy exists.
+
+### Previously — v1.10.5
 
 [Version 1.10.5](docs/release-notes/v1.10.5.md), 19 October 2026, brings:
 
