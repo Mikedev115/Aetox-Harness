@@ -637,18 +637,18 @@ file and hidden test published so you can [run it yourself](docs/reports/coding-
 | [PUBLISHED-NUMBERS.md](docs/reports/PUBLISHED-NUMBERS.md) | Where every published number appears, and where it was measured |
 
 <details>
-<summary>The app's own numbers — 1.9.27 package sizes and dated runtime figures</summary>
+<summary>The app's own numbers — 1.10.6 package sizes and dated runtime figures</summary>
 
-**1.9.27 packages, measured 17 October 2026.** Built locally; `relcheck` verified the release signature with the app's key and checked every uploaded artifact's digest. The app size was read from the published portable archive; the Store figure is the local package, not a completed Store submission. MiB is bytes / 1,048,576. Sizes are rounded separately; the total is calculated from bytes before rounding.
+**1.10.6 packages, measured 20 October 2026.** Built locally; the SHA-256 of the published portable archive and both executables inside it matched the release's `checksums.txt`. The app size was read from the published portable archive; the Store figure is the local package, not a completed Store submission. MiB is bytes / 1,048,576. Sizes are rounded separately; the total is calculated from bytes before rounding.
 See the [package measurement history](docs/reports/BENCHMARK.md#13-ประวัติการวัด).
 
 | Package | Size |
 |:---|---:|
-| App on disk, two executables | **114.6 MiB** (window 68.1 + engine 46.5) |
-| App installer | **46.0 MiB** |
-| Portable app | 45.2 MiB |
-| CLI installer / portable | 29.5 / 40.0 MiB |
-| Microsoft Store package | 46.6 MiB · version 1.9.27.0 · not submitted |
+| App on disk, two executables | **124.1 MiB** (window 76.6 + engine 47.5) |
+| App installer | **49.3 MiB** |
+| Portable app | 48.6 MiB |
+| CLI installer / portable | 30.1 / 40.8 MiB |
+| Microsoft Store package | 50.0 MiB · version 1.10.6.0 · not submitted |
 
 **Historical measurements below.**
 
