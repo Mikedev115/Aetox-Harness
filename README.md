@@ -33,7 +33,7 @@ installer, so you start with a team, not an org chart.
 
 The difference is the system around the model. For code, Aetox tunes its skills and every layer of the system to
 work as one. Same model, and on some measures the results are clear: secure code **93.3%** vs 68.9% on GPT-6 Luna
-and **97.8%** vs 77.8% on GPT-5.6 Terra, against the next-best harness.
+and **97.8%** vs 77.8% on GPT-5.6 Terra, against the next-best harness (omp on Luna; OpenCode, omp and pi tie on Terra).
 
 </td>
 </tr>
@@ -43,11 +43,11 @@ Every number below compares the same model, with and without Aetox or against ot
 
 | Area | Aetox | Compared with | Condition |
 |:---|---:|:---|:---|
-| Code · security | **93.3%** | 68.9%, the next harness | Secure code on CWEval · GPT-6 Luna · 3 rounds, hidden tests |
-| Code · long runs | **95.2%** | 92.8%, the next harness | Tests passed on SlopCodeBench · GPT-5.6 Terra · 3 rounds |
+| Code · security | **93.3%** | 68.9%, the next harness: [omp 18.3.4](docs/reports/coding-harness-1.10.0/README.en.md#gpt-6-luna--reasoning-medium) | Secure code on CWEval · GPT-6 Luna · 3 rounds, hidden tests |
+| Code · long runs | **95.2%** | 92.8%, the next harness: [OpenCode 1.18.32](docs/reports/coding-harness-1.10.0/README.en.md#gpt-56-terra--reasoning-medium) | Tests passed on SlopCodeBench · GPT-5.6 Terra · 3 rounds |
 | Slides | **98** | 49, the same app with skills off | Thai deck, automatic checks · GPT-6 Luna · 3 runs |
 | Thai tax invoice | **100** | 94, two other harnesses | 17 hidden tests · GPT-6 Luna |
-| Teams | **107k** | 190k, the same job without helpers | Main agent's context in one real session |
+| Teams | **107k** | 190k, the same job without helpers | Main agent's context only, in one real session; not a controlled test |
 | Video | **11.1 s** | 17.5 s, the raw take | Four silences folded, one filler cut, still editable |
 
 <p align="center">
@@ -109,7 +109,7 @@ The same harness drives all 31 providers, so the gain moves with you when you ch
 Coding: 11 tasks × 2 models (`gpt-6-luna`, `gpt-5.6-terra`, medium reasoning) × 3 rounds against four other
 harnesses, every task judged by hidden tests, the same account and no user settings on any harness.
 
-- **Secure code** — 93.3% against 68.9% for the next harness on Luna, 97.8% against 77.8% on Terra. The lead comes
+- **Secure code** — 93.3% against 68.9% for the next harness (omp) on Luna, 97.8% against 77.8% on Terra (OpenCode, omp and pi tie). The lead comes
   from the security skill that ships switched on: with it off, Aetox lands in the same range as the others.
 - **Long multi-turn coding** — the most tests passed on both models (Terra 95.2%, Luna 91.6%).
 - **Slides and Thai documents** — skills on against skills off on the same model: a Thai deck 98 against 49, a
@@ -172,7 +172,10 @@ update does not take: [the update guide](docs/UPDATING.md).
 Aetox is free to use and is not open source. Install it on as many machines as you like and use it for commercial
 work; do not modify, redistribute, rebrand or sell it ([LICENSE](LICENSE)). Skills, agents, prompts and MCP servers
 you write are yours, and selling them is permitted (§4). The source in this repository stops at v1.7.0 and stays
-here to read and audit; later releases ship as binaries.
+here to read and audit; later releases ship as binaries. Each release lists the SHA-256 of every file in
+`checksums.txt`, signed with the app's update key, and releases built after 21 Oct 2026 also carry `sbom.txt`: every Go module
+and web package built into it. The Go part can be checked against the binary itself with `go version -m aetox.exe`.
+The Microsoft Store build is signed by Microsoft.
 
 Aetox is written by one person. Questions and ideas: the [Facebook group](https://www.facebook.com/share/g/1BnXC5EiWg/).
 Bugs: [issues](https://github.com/Mikedev115/Aetox/issues) — **Settings** in the app prefills one with your
