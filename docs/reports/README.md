@@ -16,6 +16,7 @@
 | **ต้นทุนเมื่อเปลี่ยนโมเดล · ลูกมือลดค่าใช้จ่ายแค่ไหน** | [MODEL-COST-SIMULATION-LIVING-REALM-20261004.md](MODEL-COST-SIMULATION-LIVING-REALM-20261004.md) | 4 ต.ค. 2026 | งานจริงงานเดียว คิดราคาใหม่ด้วยโมเดลอื่น 8 ตัว · ลูกมือลดค่าใช้จ่ายราว 6% บนราคา OpenAI 18–30% บนค่ายอื่น |
 | **ลูกมือในงานจริง (ระบบทั้งก้อน)** | [LIVING-REALM-DELEGATION-TOKENS-20261004.md](LIVING-REALM-DELEGATION-TOKENS-20261004.md) | 4 ต.ค. 2026 | ตัวหลัก 40 รอบ ลูกมือ 17 รอบ · บริบทตัวหลักจบที่ 107k แทน 190k และเร็วขึ้นราว 8 นาที · benchmark งานโค้ดวัดตัวหลักเป็นส่วนใหญ่ ส่วนนี้วัดทั้งระบบ |
 | **สกิลช่วยงานแค่ไหน** | [SKILL-BENCH.md](SKILL-BENCH.md) | 25–26 ก.ย. 2026 | เปิดสกิลเทียบปิดบนโมเดลเดียวกัน รวมสิ่งที่ไม่ขยับ |
+| **Claude Code ผ่าน Aetox: cache แตกไหม** | [claude-code-cache-2026-10-21](claude-code-cache-2026-10-21/README.md) | 21 ต.ค. 2026 | ไม่แตก · argv เหมือนเดิมทุก turn · re-write ~14k ครั้งเดียวต่อ chat ตอน resume ครั้งแรก ซึ่ง `claude` เปล่าก็เป็น · 12 chats จริง 95 requests miss 1 |
 | **token ไปอยู่ตรงไหนในแต่ละคำขอ** | [TOKEN-AUDIT.md](TOKEN-AUDIT.md) | 20 ส.ค. 2026 | แยกส่วนของคำขอ และส่วนที่จ่ายแล้วไม่ได้อะไร |
 | **ความเร็ว แรม ขนาดแอป** | [BENCHMARK.md](BENCHMARK.md) | ต่อเนื่อง | กติกาการวัดและผลเทียบเครื่องมือ AI ตัวอื่นบนเครื่องเดียวกัน |
 | **ค้นคว้าและให้เหตุผล** | [aetox-research-reasoning-evaluation.md](aetox-research-reasoning-evaluation.md) | — | การค้นคว้า ตรวจหลักฐาน และสังเคราะห์ |
