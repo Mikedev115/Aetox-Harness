@@ -1,18 +1,21 @@
 Aetox End User Licence Agreement
-Version 1.0 · Effective 2026-08-19 · Applies to Aetox v1.3.0 and later
+Version 1.1 · Effective 2026-10-21 · Applies to Aetox v1.3.0 and later
 
 Copyright (c) 2026 Chayaphon Phromsawana (Mike). All rights reserved.
 
-Aetox is not open-source software. Its source code is published so that anyone
-can read it, audit it, and learn from it. It is not published for anyone to
-modify, build, repackage, rebrand, or redistribute.
+Aetox is not open-source software. The source code of versions up to v1.7.0
+is published so that anyone can read it, audit it, and learn from it. The
+source of later versions is not published; they ship as binaries only. No
+source is published for anyone to modify, build, repackage, rebrand, or
+redistribute.
 
 ===============================================================================
 สรุปเป็นภาษาไทย
 (สรุปเพื่อความเข้าใจเท่านั้น ไม่ใช่ตัวสัญญา ตัวสัญญาคือภาษาอังกฤษด้านล่าง)
 
   ใช้ได้        ติดตั้งและใช้ฟรี กี่เครื่องก็ได้ ใช้ทำงานหาเงินได้
-  อ่านได้       ซอร์สโค้ดเปิดให้อ่าน ตรวจสอบความปลอดภัย และเรียนรู้
+  อ่านได้       ซอร์สโค้ดถึง v1.7.0 เปิดให้อ่าน ตรวจสอบความปลอดภัย และเรียนรู้
+                รุ่นหลังจากนั้นไม่เปิดซอร์ส ส่งเป็นไฟล์ติดตั้งเท่านั้น
   ต่อยอดได้     เขียนสกิล เอเจนต์ พร้อมต์ ไฟล์ตั้งค่า และต่อเซิร์ฟเวอร์ MCP
                 ของคุณเองได้เต็มที่ ของพวกนั้นเป็นของคุณ ไม่ใช่ของผู้เขียน
   ห้าม          แก้ไขตัวโปรแกรม ทำเวอร์ชันของตัวเอง แจกจ่ายต่อ ขายต่อ
@@ -50,8 +53,10 @@ modify, build, repackage, rebrand, or redistribute.
 
 3. SOURCE CODE: WHAT YOU MAY DO WITH IT
 
-   The Licensor publishes the source code so that the Software can be
-   inspected rather than trusted blindly. Accordingly You may:
+   The Licensor has published the source code of versions up to v1.7.0 so
+   that those versions can be inspected rather than trusted blindly. The
+   source of later versions is not published. For the published source You
+   may:
 
    a) read, study, and search the source code;
    b) audit it for security, privacy, or correctness, and publish what you

@@ -46,7 +46,7 @@ Every number below compares the same model, with and without Aetox or against ot
 | Code · security | **93.3%** | 68.9%, the next harness: [omp 18.3.4](docs/reports/coding-harness-1.10.0/README.en.md#gpt-6-luna--reasoning-medium) | Secure code on CWEval · GPT-6 Luna · 3 rounds, hidden tests |
 | Code · long runs | **95.2%** | 92.8%, the next harness: [OpenCode 1.18.32](docs/reports/coding-harness-1.10.0/README.en.md#gpt-56-terra--reasoning-medium) | Tests passed on SlopCodeBench · GPT-5.6 Terra · 3 rounds |
 | Slides | **98** | 49, the same app with skills off | Thai deck, automatic checks · GPT-6 Luna · 3 runs |
-| Thai tax invoice | **100** | 94, two other harnesses | 17 hidden tests · GPT-6 Luna |
+| Thai tax invoice | **100** | 94, two other harnesses | [17 hidden tests, written by us](docs/reports/coding-harness-2026-09-27/tasks/F2-thai-invoice/hidden-tests) · GPT-6 Luna |
 | Teams | **107k** | 190k, the same job without helpers | Main agent's context only, in one real session; not a controlled test |
 | Video | **11.1 s** | 17.5 s, the raw take | Four silences folded, one filler cut, still editable |
 
@@ -106,7 +106,7 @@ The same harness drives all 31 providers, so the gain moves with you when you ch
 
 ## Measured results
 
-Coding: 11 tasks × 2 models (`gpt-6-luna`, `gpt-5.6-terra`, medium reasoning) × 3 rounds against four other
+Coding: 11 tasks × 2 public OpenAI models ([`gpt-6-luna`](https://developers.openai.com/api/docs/models/gpt-6-luna), [`gpt-5.6-terra`](https://developers.openai.com/api/docs/models/gpt-5.6-terra), medium reasoning) × 3 rounds against four other
 harnesses, every task judged by hidden tests, the same account and no user settings on any harness.
 
 - **Secure code** — 93.3% against 68.9% for the next harness (omp) on Luna, 97.8% against 77.8% on Terra (OpenCode, omp and pi tie). The lead comes
@@ -164,6 +164,8 @@ update does not take: [the update guide](docs/UPDATING.md).
   programs by name are asked about at every level.
 - **Secret files are refused** — `.ssh`, `.aws`, Windows credential stores, browser profiles and Aetox's own key
   files cannot be opened by any tool.
+- **What enforces it** — these rules are checks inside Aetox's own code, not an operating-system sandbox. For a
+  machine with data you cannot lose, give Aetox an API key of its own and run it in a VM or Windows Sandbox.
 
 [Safety in detail](https://mikedev115.github.io/Aetox-landing/safety/)
 
@@ -172,7 +174,8 @@ update does not take: [the update guide](docs/UPDATING.md).
 Aetox is free to use and is not open source. Install it on as many machines as you like and use it for commercial
 work; do not modify, redistribute, rebrand or sell it ([LICENSE](LICENSE)). Skills, agents, prompts and MCP servers
 you write are yours, and selling them is permitted (§4). The source in this repository stops at v1.7.0 and stays
-here to read and audit; later releases ship as binaries. Each release lists the SHA-256 of every file in
+here to read and audit. Later releases ship as binaries only, so the version you run has no source to read; [what
+you can check without it](#safety-and-your-data). Each release lists the SHA-256 of every file in
 `checksums.txt`, signed with the app's update key, and releases built after 21 Oct 2026 also carry `sbom.txt`: every Go module
 and web package built into it. The Go part can be checked against the binary itself with `go version -m aetox.exe`.
 The Microsoft Store build is signed by Microsoft.
