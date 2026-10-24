@@ -139,6 +139,9 @@ a local server address. LM Studio and Ollama get the same tools as a frontier mo
 whole context comes along. Model lists are asked of the provider at run time, so a new model shows up without a
 new Aetox. [Every provider](https://mikedev115.github.io/Aetox-landing/features/#models)
 
+Pictures can stay on your machine too: point Aetox at ComfyUI or Stable Diffusion WebUI (Forge Neo, Forge or
+A1111) and it draws on your own GPU, FLUX.2 klein included. [Local pictures](docs/LOCAL-IMAGES.md)
+
 > **Free to use, not free cloud inference.** Real work needs a model: an account or key you already have, or a
 > local model. Your provider's pricing applies.
 
