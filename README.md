@@ -35,7 +35,7 @@ deeper context than a general assistant, without carrying all of it in every req
 </td>
 <td width="50%" valign="top">
 
-**Code**
+**Developer**
 
 ### Code that runs — and it remembers what this project decided
 
@@ -218,7 +218,7 @@ the job.
 
 | | What it does | More |
 |:---|:---|:---|
-| **Code** | Agent mode works through your project; Editor mode lets you write while it helps. Language servers, Git, a real terminal | [Code](https://mikedev115.github.io/Aetox-landing/features/#code) |
+| **Developer** | Agent mode works through your project; Editor mode lets you write while it helps. Language servers, Git, a real terminal | [Code](https://mikedev115.github.io/Aetox-landing/features/#code) |
 | **Assistant** | Meetings, receipts, research and data become files that open: summaries, Excel, Word, PowerPoint | [Assistant](https://mikedev115.github.io/Aetox-landing/features/#assistant) |
 | **Teams** | Hand a whole job to a ready-made team; see who did what, what each handed over and what it cost | [Teams](https://mikedev115.github.io/Aetox-landing/features/#teams) |
 | **Studio** | A long video becomes short clips with subtitles you keep editing | [Studio](https://mikedev115.github.io/Aetox-landing/features/#studio) |

@@ -32,7 +32,7 @@ Aetox Harness คือสภาพแวดล้อมการทำงาน
 </td>
 <td width="50%" valign="top">
 
-**โค้ด**
+**นักพัฒนา**
 
 ### เขียนโค้ดที่รันได้ — และจำได้ว่าโปรเจกต์นี้ตัดสินอะไรไว้
 
@@ -199,7 +199,7 @@ Luna 0.64 ล้าน เทียบ 0.30–0.57 ล้าน · Terra 0.93 �
 
 | | ทำอะไร | ดูต่อ |
 |:---|:---|:---|
-| **โค้ด** | โหมด Agent ทำงานทั้งโปรเจกต์ให้ โหมด Editor ให้คุณเขียนเองโดยมีตัวช่วย มี language server, Git และเทอร์มินัลจริง | [โค้ด](https://mikedev115.github.io/Aetox-landing/th/features/#code) |
+| **นักพัฒนา** | โหมด Agent ทำงานทั้งโปรเจกต์ให้ โหมด Editor ให้คุณเขียนเองโดยมีตัวช่วย มี language server, Git และเทอร์มินัลจริง | [โค้ด](https://mikedev115.github.io/Aetox-landing/th/features/#code) |
 | **ผู้ช่วย** | ประชุม ใบเสร็จ งานค้นข้อมูล และข้อมูลดิบ กลายเป็นไฟล์ที่เปิดใช้ได้ ทั้งสรุป Excel Word และ PowerPoint | [ผู้ช่วย](https://mikedev115.github.io/Aetox-landing/th/features/#assistant) |
 | **ทีม** | ส่งงานทั้งก้อนให้ทีมสำเร็จรูป เห็นว่าใครทำอะไร ส่งอะไรกลับมา และใช้เงินไปเท่าไร | [ทีม](https://mikedev115.github.io/Aetox-landing/th/features/#teams) |
 | **สตูดิโอ** | วิดีโอยาวกลายเป็นคลิปสั้นพร้อมซับ แล้วตัดต่อต่อเองได้ | [สตูดิโอ](https://mikedev115.github.io/Aetox-landing/th/features/#studio) |

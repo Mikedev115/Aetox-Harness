@@ -34,7 +34,7 @@ Aetox Harness 是运行在你电脑上的 AI 工作环境 —— 把模型、技
 </td>
 <td width="50%" valign="top">
 
-**代码**
+**开发者**
 
 ### 写出能跑的代码 —— 并记住这个项目定过什么
 
@@ -200,7 +200,7 @@ Luna 0.64M 对比 0.30–0.57M · Terra 0.93M 对比 0.50–0.81M。
 
 | | 做什么 | 更多 |
 |:---|:---|:---|
-| **代码** | Agent 模式替你推进整个项目；Editor 模式让你自己写、它在旁边帮。语言服务器、Git、真实终端 | [代码](https://mikedev115.github.io/Aetox-landing/features/#code) |
+| **开发者** | Agent 模式替你推进整个项目；Editor 模式让你自己写、它在旁边帮。语言服务器、Git、真实终端 | [代码](https://mikedev115.github.io/Aetox-landing/features/#code) |
 | **助手** | 会议、收据、资料检索和原始数据，变成能打开的文件：摘要、Excel、Word、PowerPoint | [助手](https://mikedev115.github.io/Aetox-landing/features/#assistant) |
 | **团队** | 把整件事交给现成的团队，看见谁做了什么、交回了什么、花了多少 | [团队](https://mikedev115.github.io/Aetox-landing/features/#teams) |
 | **剪辑室** | 长视频变短片，带字幕，之后还能继续剪 | [剪辑室](https://mikedev115.github.io/Aetox-landing/features/#studio) |
