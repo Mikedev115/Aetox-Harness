@@ -199,10 +199,25 @@ Aetox has no magic that makes a model smarter — it squeezes the model's capabi
 to build a large system on a small model comes from that, and because of it **choosing the right model for the job
 matters just as much**.
 
-**More tokens is the price we pay for squeezing that out.** We give complete context and manage it systematically, so
-the job finishes in one turn. Total input runs 1.1–8.5× the other harnesses, but about **91% of it is cached input**,
-which costs several times less. **The real burden is uncached input plus output, and that differs by only 1.1–2.1×**:
-Luna 0.64M against 0.30–0.57M · Terra 0.93M against 0.50–0.81M.
+Our context architecture does not start from the question "how do we save tokens", but from "what does the model
+actually need to know this round". What the system knows is mapped into a structure of its own — grouped into
+categories, held as nodes linked to each other — and a run sends only the points a job touches. The prompt is
+assembled per job, never handed over whole at the start, and nothing is processed that the job does not need: your
+profile does not ride along on unrelated requests. Memory, skills and MCP all sit under that one architecture.
+
+A skill's body and a tool's schema are never sent up front. The model sees a shelf of names and pays for a body only
+when it opens one, so fifty skills cost what five cost, and adding an MCP server adds names, not a whole set of
+schemas. Every agent can take its own skills and servers, separately.
+
+Where a job needs the whole picture we do not make the model ask for it a slice at a time — the breadth is handed
+over once, up front, and the job finishes in one turn. That is where the tokens go: total input runs 1.1–8.5× the
+other harnesses, but about **91% of it is cached input**, which costs several times less. **The real burden is
+uncached input plus output, and that differs by only 1.1–2.1×**: Luna 0.64M against 0.30–0.57M · Terra 0.93M against
+0.50–0.81M.
+
+So the extra tokens on some coding jobs are not waste but the side effect of squeezing the model's capability out in
+exchange for better work, and they do not happen on ordinary jobs — following an instruction, adding an MCP server or
+installing a batch of skills is handled by the same mechanism, and in real use it comes out surprisingly cheap.
 
 **This is the trade worth making**, not something to fear. If you want to cut it, cut it by choosing a model that fits
 the job.
