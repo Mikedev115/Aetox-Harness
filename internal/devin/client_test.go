@@ -70,12 +70,13 @@ func TestPermissionRequiresExplicitApproval(t *testing.T) {
 }
 
 func TestTurnStreamsToolsAndUsesServerSessionID(t *testing.T) {
-	c, out := fixture(`{"id":1,"result":{"sessionId":"real-session"}}
+	c, out := fixture(`{"id":1,"result":{"sessionId":"real-session","modes":{"currentModeId":"smart","availableModes":[{"id":"smart"},{"id":"ask"},{"id":"plan"},{"id":"accept-edits"},{"id":"bypass"}]}}}
+{"id":2,"result":{}}
 {"method":"session/update","params":{"sessionId":"real-session","update":{"sessionUpdate":"agent_message_chunk","content":{"type":"text","text":"Before "}}}}
 {"method":"session/update","params":{"sessionId":"real-session","update":{"sessionUpdate":"tool_call","toolCallId":"t1","title":"read_file"}}}
 {"method":"session/update","params":{"sessionId":"real-session","update":{"sessionUpdate":"tool_call_update","toolCallId":"t1","status":"completed"}}}
 {"method":"session/update","params":{"sessionId":"real-session","update":{"sessionUpdate":"agent_message_chunk","content":{"type":"text","text":"After"}}}}
-{"id":2,"result":{"stopReason":"end_turn"}}
+{"id":3,"result":{"stopReason":"end_turn"}}
 `)
 	var events []cliagent.Event
 	res, err := runTurn(c, cliagent.Turn{Dir: t.TempDir(), Text: "hello", SystemNote: "Aetox context"}, func(e cliagent.Event) { events = append(events, e) })
@@ -94,9 +95,10 @@ func TestTurnStreamsToolsAndUsesServerSessionID(t *testing.T) {
 }
 
 func TestResumeUsesModelConfigAndDoesNotReplayHistory(t *testing.T) {
-	c, out := fixture(`{"id":1,"result":{"configOptions":[{"id":"model-select","category":"model","options":[]}]}}
+	c, out := fixture(`{"id":1,"result":{"configOptions":[{"id":"model-select","category":"model","options":[]}],"modes":{"currentModeId":"smart","availableModes":[{"id":"smart"},{"id":"ask"},{"id":"plan"},{"id":"accept-edits"},{"id":"bypass"}]}}}
 {"id":2,"result":{}}
-{"id":3,"result":{"stopReason":"end_turn"}}
+{"id":3,"result":{}}
+{"id":4,"result":{"stopReason":"end_turn"}}
 `)
 	c.init.AgentCapabilities.LoadSession = true
 	_, err := runTurn(c, cliagent.Turn{Dir: t.TempDir(), SessionID: "saved", Resume: true, Model: "chosen-model", Text: "next", SystemNote: "never replay"}, nil)
@@ -243,6 +245,7 @@ func TestInstalledCLIRoundTrip(t *testing.T) {
 	res, err = Engine{}.Run(ctx, cliagent.Turn{
 		Dir:       t.TempDir(),
 		Text:      "In one sentence, what would you inspect first in an empty project?",
+		Model:     "default",
 		Stance:    "plan",
 		SessionID: res.SessionID,
 		Resume:    true,

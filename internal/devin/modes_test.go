@@ -24,9 +24,10 @@ func TestSessionModeFollowsAetoxDials(t *testing.T) {
 	}
 }
 
-const permissionThenEnd = `{"id":1,"result":{"sessionId":"s"}}
+const permissionThenEnd = `{"id":1,"result":{"sessionId":"s","modes":{"currentModeId":"smart","availableModes":[{"id":"smart"},{"id":"ask"},{"id":"plan"},{"id":"accept-edits"},{"id":"bypass"}]}}}
+{"id":2,"result":{}}
 {"jsonrpc":"2.0","id":"p1","method":"session/request_permission","params":{"toolCall":{"title":"edit file"},"options":[{"optionId":"yes","kind":"allow_once"},{"optionId":"no","kind":"reject_once"}]}}
-{"id":2,"result":{"stopReason":"end_turn"}}
+{"id":3,"result":{"stopReason":"end_turn"}}
 `
 
 func TestPlanStanceDeniesWritesAndSaysSo(t *testing.T) {
@@ -134,9 +135,10 @@ func TestRefusedModeStopsBeforePrompt(t *testing.T) {
 	}
 }
 func TestEffortUsesAdvertisedConfigID(t *testing.T) {
-	c, out := fixture(`{"id":1,"result":{"sessionId":"s","configOptions":[{"id":"depth","category":"thought_level","options":[{"value":"extra-high"}]}]}}
-{"id":2,"result":{"configOptions":[{"id":"depth","category":"thought_level","currentValue":"extra-high"}]}}
-{"id":3,"result":{"stopReason":"end_turn"}}
+	c, out := fixture(`{"id":1,"result":{"sessionId":"s","configOptions":[{"id":"depth","category":"thought_level","options":[{"value":"extra-high"}]}],"modes":{"currentModeId":"smart","availableModes":[{"id":"smart"},{"id":"ask"},{"id":"plan"},{"id":"accept-edits"},{"id":"bypass"}]}}}
+{"id":2,"result":{}}
+{"id":3,"result":{"configOptions":[{"id":"depth","category":"thought_level","currentValue":"extra-high"}]}}
+{"id":4,"result":{"stopReason":"end_turn"}}
 `)
 	_, err := runTurn(c, cliagent.Turn{Dir: t.TempDir(), Effort: "extra-high"}, nil)
 	if err != nil || !strings.Contains(out.String(), `"configId":"depth"`) {
@@ -144,9 +146,28 @@ func TestEffortUsesAdvertisedConfigID(t *testing.T) {
 	}
 }
 func TestConfigMismatchRejected(t *testing.T) {
-	c, _ := fixture(`{"id":1,"result":{"configOptions":[{"id":"mode","currentValue":"bypass"}]}}
+	c, _ := fixture(`{"id":1,"result":{"configOptions":[{"id":"mode","currentValue":"bypass"}],"modes":{"currentModeId":"smart","availableModes":[{"id":"smart"},{"id":"ask"},{"id":"plan"},{"id":"accept-edits"},{"id":"bypass"}]}}}
+{"id":2,"result":{}}
 `)
 	if err := setConfig(c, &session{ID: "s"}, "mode", "smart"); err == nil {
 		t.Fatal("accepted wrong mode")
+	}
+}
+
+func TestMissingModeAdvertisementStopsBeforePrompt(t *testing.T) {
+	for _, resume := range []bool{false, true} {
+		c, out := fixture(`{"id":1,"result":{"sessionId":"s"}}
+`)
+		c.init.AgentCapabilities.LoadSession = true
+		_, err := runTurn(c, cliagent.Turn{Dir: t.TempDir(), SessionID: "s", Resume: resume, Approval: "ask"}, nil)
+		if err == nil || strings.Contains(out.String(), "session/prompt") {
+			t.Fatal("prompted without establishing policy")
+		}
+	}
+}
+func TestUnsupportedEffortIsNotSilentlyIgnored(t *testing.T) {
+	c, _ := fixture("")
+	if syncEffort(c, &session{}, "xhigh") == nil {
+		t.Fatal("ignored unsupported effort")
 	}
 }

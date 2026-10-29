@@ -79,6 +79,9 @@ type Status struct {
 
 // Turn is one exchange's parameters.
 type Turn struct {
+	// Permission asks the host before an external agent performs a gated tool call.
+	// A missing callback denies the request.
+	Permission func(title, detail string) (bool, error)
 	// Text is what the user said.
 	Text string
 	// Dir is the folder the engine's file tools should work in — the project
@@ -101,6 +104,15 @@ type Turn struct {
 	// terminal behind it, and which desk the user opened. Never a replacement —
 	// an engine's own prompt is what makes its own tools work.
 	SystemNote string
+	// Stance is the composer's work dial for this turn, in Aetox's spelling:
+	// "" (act — do the work), "plan" (look, change nothing) or "consult"
+	// (answer only). It is re-sent every turn because the user moves it
+	// mid-conversation, and an engine that has its own modes maps onto them.
+	Stance string
+	// Approval is the user's approval level, in safety.ApprovalMode spelling:
+	// "ask", "unsafe-only" or "full-access". An engine with its own permission
+	// modes maps it onto them; the Permission callback already honours it.
+	Approval string
 	// Env is added to the child's environment as "KEY=value". It exists so a
 	// credential the user typed into Aetox can reach a program that reads one
 	// from the environment, for the length of one child process and no longer.

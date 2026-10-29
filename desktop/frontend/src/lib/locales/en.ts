@@ -12,7 +12,7 @@ export const en: Record<keyof typeof th, string> = {
   'devin.scope': 'Devin runs its own agent and tools in your project. Aetox shows the chat, tool activity and approval prompts. Aetox-native tools, agent teams and automatic memory injection are not available to this agent.',
   'devin.billing': 'Sign in opens a terminal running the Devin CLI’s own login — choose “Log in with browser” there. Available models and usage billing follow your Devin plan and organization permissions. Remaining quota is not shown here. Signing out also signs out the local Devin CLI.',
   'devin.setup': 'Devin CLI setup and documentation',
-  'devin.modes': 'Act uses the selected approval policy: Ask = Devin Smart (or Ask), Unsafe Only = Accept Edits, Full Access = Bypass. Plan uses Devin Plan; Consult uses Devin Ask and denies tool actions.',
+  'devin.modes': 'Act uses the selected approval policy: Ask = Devin Smart (or Ask), Unsafe Only = Accept Edits, Full Access = Bypass. Plan uses Devin Plan; Consult uses Devin Ask and denies tool actions. Changes to approval or stance apply to the next message.',
   'topbar.openFolder': 'Open Folder',
   'topbar.loaded': 'Loaded',
   'topbar.showPanel': 'Show panel',

@@ -15,10 +15,12 @@ import (
 	"os/exec"
 	"path/filepath"
 	"runtime"
+	"strconv"
 	"strings"
 	"time"
 
 	"github.com/Mikedev115/Aetox/internal/cliagent"
+	"github.com/Mikedev115/Aetox/internal/version"
 )
 
 const Note = "Devin runs its own agent and tools in your project. Aetox displays the conversation and approval requests; Aetox-native tools, agent teams and automatic memory injection are not available to this agent. Models and billing follow your Devin plan and organization permissions. Remaining quota is not reported here."
@@ -153,7 +155,7 @@ func open(ctx context.Context, model string, interactive bool) (*client, error) 
 	c := &client{ctx: ctx, in: in, scan: bufio.NewScanner(out)}
 	c.scan.Buffer(make([]byte, 4096), 16*1024*1024)
 	c.close = func() { cancel(); in.Close(); _ = cmd.Wait() }
-	err = c.call("initialize", map[string]any{"protocolVersion": 1, "clientCapabilities": map[string]any{}, "clientInfo": map[string]string{"name": "aetox", "version": "1.10.27"}}, &c.init)
+	err = c.call("initialize", map[string]any{"protocolVersion": 1, "clientCapabilities": map[string]any{}, "clientInfo": map[string]string{"name": "aetox", "version": version.Current}}, &c.init)
 	if err != nil {
 		c.close()
 		return nil, err
@@ -280,9 +282,6 @@ func Login(ctx context.Context) error {
 	if err != nil {
 		return err
 	}
-	if key, _ := credentials(); key != "" {
-		return nil
-	}
 	cmd := loginConsole(ctx, p)
 	if cmd == nil {
 		return errors.New("no terminal available — run `devin auth login` in one to connect Devin")
@@ -301,6 +300,31 @@ func Login(ctx context.Context) error {
 			return fmt.Errorf("Devin sign-in did not finish: %w", err)
 		}
 	}
+	if runtime.GOOS != "windows" {
+		// Terminal launchers may exit while their interactive login is still running.
+		ticker := time.NewTicker(time.Second)
+		defer ticker.Stop()
+		for {
+			// A successful login need not rotate the API key. Verify readiness
+			// rather than treating a launcher exit or changed key as success.
+			if key, _ := credentials(); key != "" {
+				probeCtx, cancel := context.WithTimeout(ctx, 10*time.Second)
+				client, err := open(probeCtx, "", false)
+				if err == nil {
+					client.close()
+				}
+				cancel()
+				if err == nil {
+					break
+				}
+			}
+			select {
+			case <-ctx.Done():
+				return ctx.Err()
+			case <-ticker.C:
+			}
+		}
+	}
 	if key, _ := credentials(); key == "" {
 		return errors.New("Devin sign-in did not finish — run `devin auth login` in a terminal")
 	}
@@ -317,7 +341,7 @@ func loginConsole(ctx context.Context, devinPath string) *exec.Cmd {
 		return exec.CommandContext(ctx, devinPath, "auth", "login")
 	case "darwin":
 		return exec.CommandContext(ctx, "osascript", "-e",
-			`tell application "Terminal" to do script "`+devinPath+` auth login"`)
+			`tell application "Terminal" to do script `+strconv.Quote("'"+strings.ReplaceAll(devinPath, "'", "'\\''")+"' auth login"))
 	default:
 		for _, t := range []string{"x-terminal-emulator", "gnome-terminal", "konsole", "xterm"} {
 			if bin, err := exec.LookPath(t); err == nil {
@@ -418,6 +442,21 @@ func Models(ctx context.Context) ([]string, error) {
 }
 
 func (Engine) Run(ctx context.Context, t cliagent.Turn, emit func(cliagent.Event)) (cliagent.Result, error) {
+	if t.Resume && t.Model == "default" {
+		defaults, err := discover(ctx, "")
+		if err != nil {
+			return cliagent.Result{}, err
+		}
+		for _, opt := range defaults.ConfigOptions {
+			if opt.Category == "model" {
+				t.Model = opt.CurrentValue
+				break
+			}
+		}
+		if t.Model == "default" || t.Model == "" {
+			return cliagent.Result{}, errors.New("Devin did not report its default model")
+		}
+	}
 	c, err := open(ctx, t.Model, false)
 	if err != nil {
 		return cliagent.Result{}, err
@@ -475,20 +514,20 @@ func syncMode(c *client, s *session, stance, approval string) error {
 				ids = append(ids, n.Value)
 			}
 		}
-		id := chooseMode(ids, opt.CurrentValue, want)
+		id := chooseMode(ids, want)
 		if id == "" {
 			return fmt.Errorf("Devin does not advertise mode %q", want)
 		}
 		return setConfig(c, s, opt.ID, id)
 	}
 	if len(s.Modes.Available) == 0 {
-		return nil
+		return errors.New("Devin did not advertise session modes; refusing to prompt without an approval policy")
 	}
 	var ids []string
 	for _, m := range s.Modes.Available {
 		ids = append(ids, m.ID)
 	}
-	id := chooseMode(ids, s.Modes.Current, want)
+	id := chooseMode(ids, want)
 	if id == "" {
 		return fmt.Errorf("Devin does not advertise mode %q", want)
 	}
@@ -499,7 +538,7 @@ func syncMode(c *client, s *session, stance, approval string) error {
 	return nil
 }
 
-func chooseMode(ids []string, current, want string) string {
+func chooseMode(ids []string, want string) string {
 	candidates := []string{want}
 	if want == "smart" {
 		candidates = append(candidates, "ask")
@@ -558,7 +597,7 @@ func syncEffort(c *client, s *session, effort string) error {
 		}
 		return fmt.Errorf("Devin does not advertise effort %q", effort)
 	}
-	return nil
+	return errors.New("Devin does not advertise an effort option for this model")
 }
 
 func runTurn(c *client, t cliagent.Turn, emit func(cliagent.Event)) (cliagent.Result, error) {
@@ -675,7 +714,8 @@ func runTurn(c *client, t cliagent.Turn, emit func(cliagent.Event)) (cliagent.Re
 			}
 		}
 	}
-	prompt := t.Text
+	// Composer files remain workspace files; name the external agent's own tools.
+	prompt := strings.NewReplacer("[attachment: user-attached file — read it with pdf_read]", "[attachment: user-attached file — inspect with your own file tools]", "[attachment: user-attached image — read it with image_ocr]", "[attachment: user-attached image — inspect with your own image tools]").Replace(t.Text)
 	if d := stanceDirective(t.Stance); d != "" {
 		prompt = d + "\n\n" + prompt
 	}

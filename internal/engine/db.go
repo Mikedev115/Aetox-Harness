@@ -933,6 +933,17 @@ CREATE TABLE IF NOT EXISTS project_folders (
 			return nil
 		},
 	},
+	{
+		version: 30,
+		name:    "external_agent_sessions",
+		apply: func(tx *sql.Tx) error {
+			_, err := tx.Exec(`CREATE TABLE IF NOT EXISTS external_agent_sessions (
+			 session_id TEXT NOT NULL, provider TEXT NOT NULL,
+			 project_key TEXT NOT NULL, external_id TEXT NOT NULL,
+			 PRIMARY KEY(session_id, provider, project_key))`)
+			return err
+		},
+	},
 }
 
 // preTeamRowsJoinTheSeed puts every main chat that says no team on its

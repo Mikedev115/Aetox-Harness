@@ -1526,6 +1526,9 @@ func (a *Engine) DeleteSession(id string) error {
 	if _, err := tx.Exec(`DELETE FROM jobs WHERE session_id = ?`, id); err != nil {
 		return err
 	}
+	if _, err := tx.Exec(`DELETE FROM external_agent_sessions WHERE session_id = ?`, id); err != nil {
+		return err
+	}
 	if _, err := tx.Exec(`DELETE FROM sessions WHERE id = ?`, id); err != nil {
 		return err
 	}

@@ -171,7 +171,8 @@ type conversation struct {
 	// that first turn. The history under it is the program's own and lives
 	// wherever it keeps one, which is why the id and not the transcript is
 	// what this side holds.
-	cliSession string
+	cliSession    string
+	cliSessionKey string // provider and project that own the external session
 
 	// lastSnapshot is the tree as it stood before THIS chat's last turn — what
 	// its undo goes back to. "" when there is nothing to go back to.

@@ -126,6 +126,7 @@
     return `${h > 0 ? h + ':' : ''}${mm}:${String(s).padStart(2, '0')}`
   }
   let thinkLevels = $state<string[]>([])
+  let thinkLevelsFor = $state('')
   let models = $state<string[]>([])
   // Whether the list above is "not fetched yet" or "fetched and empty". The row
   // draws differently for each, and without this flag every menu open flashed
@@ -928,8 +929,9 @@
   async function refreshThinkLevels() {
     try {
       const provider = model.provider, name = model.modelName
+      if (thinkLevelsFor !== `${provider}/${name}`) thinkLevels = []
       const levels = await SupportedThinkLevels()
-      if (model.provider === provider && model.modelName === name) thinkLevels = levels
+      if (model.provider === provider && model.modelName === name) { thinkLevels = levels; thinkLevelsFor = `${provider}/${name}` }
     } catch {
       /* backend not ready — next menu open retries */
     }
