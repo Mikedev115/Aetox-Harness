@@ -185,6 +185,10 @@ func SupportsThinkingLevel(provider, modelName, level string) bool {
 }
 
 func NormalizeThinkingLevel(provider, modelName, requested string) string {
+	// Devin validates the live ACP option before prompting; its local CLI owns availability.
+	if NormalizeProvider(provider) == "devin" {
+		return strings.TrimSpace(requested)
+	}
 	caps := ResolveThinkingCapabilities(provider, modelName)
 	if !caps.Supported {
 		return ""

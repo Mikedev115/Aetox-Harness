@@ -42,9 +42,10 @@ func registerFake(t *testing.T, f *fakeEngine) {
 }
 
 func TestNothingIsRegisteredInThisBuild(t *testing.T) {
-	// The state the turn path relies on: every lookup misses, so runTurn
-	// takes the road it always took.
-	if names := cliagent.Providers(); len(names) != 0 {
+	// internal/model links Devin's engine into every build that carries it,
+	// so "nothing" now means exactly that one — and every other lookup still
+	// misses, so runTurn takes the road it always took for them.
+	if names := cliagent.Providers(); len(names) != 1 || names[0] != "devin" {
 		t.Fatalf("engines registered at rest: %v", names)
 	}
 	if _, ok := cliEngineFor("anthropic"); ok {

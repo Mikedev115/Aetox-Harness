@@ -19,6 +19,7 @@
   import Logo from './Logo.svelte'
   import Icon from './Icon.svelte'
   import ProviderMark from './ProviderMark.svelte'
+  import DevinNotice from './DevinNotice.svelte'
   import {
     SupportedProviders, RequiresAPIKey, AcceptsAPIKey, HasAPIKey,
     ProviderAPIKeyURL, SignInMethods, StartSignIn, CancelSignIn,
@@ -176,7 +177,7 @@
   const isSignIn = (p: ProviderRow) => signInNames.has(p.name) || (p.requiresKey && !p.acceptsKey)
   const signInRows = $derived(providers.filter(isSignIn))
   const keyRows = $derived(providers.filter((p) => !isSignIn(p) && p.requiresKey && p.acceptsKey))
-  const localRows = $derived(providers.filter((p) => !p.requiresKey && p.name !== 'aetox'))
+  const localRows = $derived(providers.filter((p) => !p.requiresKey && !isSignIn(p) && p.name !== 'aetox'))
   const shownThemes = $derived(allThemes ? THEMES : THEMES.slice(0, 8))
 
   // The three answers, in the order of how little setup each one costs someone
@@ -438,6 +439,7 @@
             {/each}
           </div>
 
+          {#if intent === 'account' && picked === 'devin'}<DevinNotice />{/if}
           {#if intent === 'key' && picked}
             <div class="ob-drawer">
               <div class="ob-keyrow">

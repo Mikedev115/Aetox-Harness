@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { devinLabel } from "./devinModels"
+  import DevinNotice from './DevinNotice.svelte'
   import { onMount, tick } from 'svelte'
   import { theme, applyTheme, THEMES, type ThemeName } from './theme.svelte'
   import { editorFont, applyEditorFontSize } from './editorFont.svelte'
@@ -319,7 +321,7 @@
   const visibleModels = $derived.by(() => {
     const needle = modelFilter.trim().toLowerCase()
     const rows = models.filter((m) => {
-      if (needle && !m.toLowerCase().includes(needle)) return false
+      if (needle && !`${m} ${selected === 'devin' ? devinLabel(m, isActiveProvider && cockpit.model.modelName === m ? cockpit.model.thinkLevel : '') : ''}`.toLowerCase().includes(needle)) return false
       if (freeOnly && !priced[m]?.free) return false
       return true
     })
@@ -6110,6 +6112,7 @@
               <button class="ctrl" disabled={busy !== ''} onclick={() => (customDraftOpen = false)}>{t('settings.cancel')}</button>
             </div>
           {:else if selectedRow}
+            {#if selected === 'devin'}<DevinNotice />{/if}
             <div class="mset-head">
               <ProviderMark name={selected} size={22} />
               <span class="mset-name">{selected}</span>
@@ -6142,6 +6145,7 @@
               </div>
             {/if}
 
+            {#if selected !== 'devin'}
             <div class="mset-field">
               <div class="eyebrow">{t('settings.baseUrl')}</div>
               <div class="muted set-hint">{t('settings.baseUrlDesc')}</div>
@@ -6168,6 +6172,7 @@
               {/if}
             </div>
 
+            {/if}
             {#if wireFormats.length > 1}
               <div class="mset-field">
                 <div class="eyebrow">{t('settings.wireFormat')}</div>
@@ -6227,9 +6232,9 @@
                     {:else}
                       <div class="muted">{t('settings.signInWaiting')}</div>
                       <div class="mset-keyrow">
-                        <button class="ctrl" onclick={() => BrowserOpenURL(prompt.url)}>
+                        {#if prompt.url}<button class="ctrl" onclick={() => BrowserOpenURL(prompt.url)}>
                           {t('settings.signInOpenPage')}
-                        </button>
+                        </button>{/if}
                         <button class="ctrl" onclick={abortSignIn}>{t('settings.signInCancel')}</button>
                       </div>
                     {/if}
@@ -6245,7 +6250,7 @@
                       </button>
                     {/if}
                   </div>
-                  <div class="muted">{signInMethod.note}</div>
+                  {#if selected !== 'devin'}<div class="muted">{signInMethod.note}</div>{/if}
                   {#if signInMethod.risk === 'restricted'}
                     <div class="signin-warn">{t('settings.signInRestricted')}</div>
                   {/if}
@@ -6318,7 +6323,7 @@
                 {/if}
                 {#each visibleModels as m}
                   <div class="mrow">
-                    <span class="mname">{m}</span>
+                    <span class="mname">{selected === 'devin' ? devinLabel(m, isActiveProvider && cockpit.model.modelName === m ? cockpit.model.thinkLevel : '') : m}{#if selected === 'devin'}<small class="devin-model-id">{m}</small>{/if}</span>
                     <!-- What the row costs, or a dash. Never a zero: on a list
                          this long a zero reads as "free" and the user would
                          act on it, and 84% coverage means the other 16% are

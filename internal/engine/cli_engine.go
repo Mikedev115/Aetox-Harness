@@ -2,6 +2,7 @@ package engine
 
 import (
 	"context"
+	"database/sql"
 	"errors"
 	"fmt"
 	"strings"
@@ -10,6 +11,7 @@ import (
 	"github.com/Mikedev115/Aetox/internal/cliagent"
 	"github.com/Mikedev115/Aetox/internal/debuglog"
 	"github.com/Mikedev115/Aetox/internal/model"
+	"github.com/Mikedev115/Aetox/internal/safety"
 	"github.com/Mikedev115/Aetox/internal/turn"
 )
 
@@ -50,6 +52,21 @@ func (a *Engine) runCLIEngineTurn(conv *conversation, ctx context.Context, engin
 	now := time.Now().Format("15:04")
 	user := SessionMessage{Role: "user", Text: text, Time: now}
 	agent := SessionMessage{Role: "agent", Time: now}
+	key := engine.Provider() + "\x00" + projectKey(conv.cfg.SandboxRoot)
+	if conv.cliSessionKey != "" && conv.cliSessionKey != key {
+		conv.cliSession = ""
+	}
+	conv.cliSessionKey = key
+	if engine.Provider() == "devin" && conv.cliSession == "" {
+		db, err := a.database()
+		if err != nil {
+			return user, agent, err
+		}
+		err = db.QueryRow(`SELECT external_id FROM external_agent_sessions WHERE session_id=? AND provider=? AND project_key=?`, conv.id, engine.Provider(), projectKey(conv.cfg.SandboxRoot)).Scan(&conv.cliSession)
+		if err != nil && !errors.Is(err, sql.ErrNoRows) {
+			return user, agent, err
+		}
+	}
 
 	if st := engine.Probe(ctx); !st.Ready {
 		if st.Detail != "" {
@@ -64,6 +81,9 @@ func (a *Engine) runCLIEngineTurn(conv *conversation, ctx context.Context, engin
 		conv.cliSession = cliagent.NewSessionID()
 	}
 	t := cliagent.Turn{
+		Permission: func(title, detail string) (bool, error) {
+			return a.approveToolCall(conv, ctx, title, "Devin: "+detail)
+		},
 		Text:       text,
 		Dir:        conv.cfg.SandboxRoot,
 		SessionID:  conv.cliSession,
@@ -71,6 +91,8 @@ func (a *Engine) runCLIEngineTurn(conv *conversation, ctx context.Context, engin
 		Model:      strings.TrimSpace(conv.cfg.ModelName),
 		Effort:     strings.TrimSpace(conv.cfg.ThinkLevel),
 		SystemNote: cliSystemNote(conv),
+		Stance:     conv.stance.String(),
+		Approval:   string(safety.NormalizeApprovalMode(conv.cfg.ApprovalMode)),
 	}
 
 	col := &cliCollector{app: a, conv: conv, names: map[string]string{}}
@@ -80,6 +102,19 @@ func (a *Engine) runCLIEngineTurn(conv *conversation, ctx context.Context, engin
 
 	if res.SessionID != "" {
 		conv.cliSession = res.SessionID
+		if engine.Provider() == "devin" {
+			db, dbErr := a.database()
+			if dbErr == nil {
+				_, dbErr = db.Exec(`INSERT INTO external_agent_sessions(session_id,provider,project_key,external_id) VALUES(?,?,?,?) ON CONFLICT(session_id,provider,project_key) DO UPDATE SET external_id=excluded.external_id`, conv.id, engine.Provider(), projectKey(conv.cfg.SandboxRoot), res.SessionID)
+			}
+			if dbErr != nil && err == nil {
+				err = fmt.Errorf("could not save Devin session continuity: %w", dbErr)
+			}
+		}
+	} else if !resume {
+		// A failed initial connection must not attempt to resume a UUID that
+		// the external agent never created.
+		conv.cliSession = ""
 	}
 	agent.Text = col.answer(res)
 	agent.Reasoning = strings.TrimSpace(col.reasoning.String())
@@ -120,7 +155,7 @@ func (a *Engine) runCLIEngineTurn(conv *conversation, ctx context.Context, engin
 // have.
 func cliSystemNote(conv *conversation) string {
 	var b strings.Builder
-	b.WriteString("You are answering inside Aetox, a desktop app that shows your reply and your tool calls in its own window; there is no terminal and nobody can answer a prompt from you. ")
+	b.WriteString("You are answering inside Aetox, a desktop app that shows your reply, tool calls and permission requests in its own window. There is no interactive terminal. ")
 	b.WriteString("Reply in the language the user writes in.")
 	if conv.desk != nil && conv.desk.Name != "" {
 		fmt.Fprintf(&b, " The user opened you at the %q desk.", conv.desk.Name)

@@ -6,6 +6,7 @@ import (
 	"fmt"
 
 	"github.com/Mikedev115/Aetox/internal/cliagent"
+	_ "github.com/Mikedev115/Aetox/internal/devin"
 )
 
 // ExternalCLIProvider stands in the engine for a provider whose turns are

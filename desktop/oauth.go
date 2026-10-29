@@ -3,8 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/Mikedev115/Aetox/internal/devin"
 	"strings"
 	"sync"
+	"time"
 
 	"github.com/Mikedev115/Aetox/internal/engine"
 	"github.com/Mikedev115/Aetox/internal/model"
@@ -28,6 +30,7 @@ var pendingSignIns = struct {
 }{byProvider: map[string]*pendingSignIn{}}
 
 type pendingSignIn struct {
+	devin   bool
 	pending *oauth.Pending
 	// ctx spans both calls: CompleteSignIn blocks on it, so CancelSignIn's
 	// cancel is what actually unblocks a user who changed their mind while a
@@ -39,12 +42,15 @@ type pendingSignIn struct {
 // SignInMethods lists every provider Aetox can sign into, with the risk note
 // the UI must show before the user commits.
 func (a *App) SignInMethods() []oauth.Method {
-	return oauth.Methods()
+	return append(oauth.Methods(), oauth.Method{Provider: "devin", Label: "Devin", Kind: "terminal", Risk: oauth.RiskOpen, Note: devin.Note})
 }
 
 // SignInStatus reports whether one provider is signed in, and as whom. It
 // never returns a token.
 func (a *App) SignInStatus(providerName string) oauth.Status {
+	if model.NormalizeProvider(providerName) == "devin" {
+		return oauth.Status{Provider: "devin", Label: "Devin CLI account", SignedIn: devin.Engine{}.Probe(context.Background()).Ready}
+	}
 	return oauth.StatusFor(providerName)
 }
 
@@ -52,6 +58,20 @@ func (a *App) SignInStatus(providerName string) oauth.Status {
 // stored until CompleteSignIn succeeds.
 func (a *App) StartSignIn(providerName string) (engine.SignInPrompt, error) {
 	canonical := model.NormalizeProvider(providerName)
+	if canonical == "devin" {
+		if a.EngineStatus().Mode == "remote" || a.EngineStatus().Mode == "attach" {
+			return engine.SignInPrompt{}, fmt.Errorf("Devin account connection requires the local Aetox engine")
+		}
+		if _, err := devin.Path(); err != nil {
+			return engine.SignInPrompt{}, err
+		}
+		a.CancelSignIn(canonical)
+		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
+		pendingSignIns.Lock()
+		pendingSignIns.byProvider[canonical] = &pendingSignIn{devin: true, ctx: ctx, cancel: cancel}
+		pendingSignIns.Unlock()
+		return engine.SignInPrompt{Provider: canonical, Kind: "terminal"}, nil
+	}
 	method, ok := oauth.MethodFor(canonical)
 	if !ok {
 		return engine.SignInPrompt{}, fmt.Errorf("%s has no sign-in — add an API key instead", canonical)
@@ -100,13 +120,22 @@ func (a *App) CompleteSignIn(providerName, pasted string) (engine.ModelInfo, err
 		return engine.ModelInfo{}, fmt.Errorf("no %s sign-in in progress", canonical)
 	}
 
-	err := oauth.Finish(entry.ctx, entry.pending, strings.TrimSpace(pasted))
+	var err error
+	if entry.devin {
+		err = devin.Login(entry.ctx)
+	} else {
+		err = oauth.Finish(entry.ctx, entry.pending, strings.TrimSpace(pasted))
+	}
 
 	pendingSignIns.Lock()
-	delete(pendingSignIns.byProvider, canonical)
+	if pendingSignIns.byProvider[canonical] == entry {
+		delete(pendingSignIns.byProvider, canonical)
+	}
 	pendingSignIns.Unlock()
 	entry.cancel()
-	entry.pending.Cancel()
+	if entry.pending != nil {
+		entry.pending.Cancel()
+	}
 
 	if err != nil {
 		return engine.ModelInfo{}, err
@@ -126,7 +155,9 @@ func (a *App) CancelSignIn(providerName string) {
 
 	if entry != nil {
 		entry.cancel()
-		entry.pending.Cancel()
+		if entry.pending != nil {
+			entry.pending.Cancel()
+		}
 	}
 }
 
@@ -180,6 +211,14 @@ func (a *App) ImportSignIn(providerName string) (engine.ModelInfo, error) {
 func (a *App) SignOut(providerName string) (engine.ModelInfo, error) {
 	canonical := model.NormalizeProvider(providerName)
 	a.CancelSignIn(canonical)
+	if canonical == "devin" {
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
+		if err := devin.Logout(ctx); err != nil {
+			return engine.ModelInfo{}, err
+		}
+		return a.api.ProviderCredentialChanged(canonical)
+	}
 	if err := oauth.Logout(canonical); err != nil {
 		return engine.ModelInfo{}, err
 	}

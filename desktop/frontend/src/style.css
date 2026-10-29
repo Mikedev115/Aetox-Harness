@@ -10325,3 +10325,13 @@ button.ctrl, label.ctrl { display:inline-flex; align-items:center; justify-conte
   .tour .ctrl.primary:disabled { opacity:.3; cursor:default; }
   .tour .ob-big.primary { justify-content:center; background:var(--accent); color:var(--surface-app); border-color:transparent; }
 
+
+/* Model search is a full-width header; billing IDs sit below the display name. */
+.updrop-list.model-list { width:min(380px, calc(100cqi - 32px)); max-width:min(380px, calc(100cqi - 32px)); scroll-padding-top:52px; }
+.model-search { position:sticky; top:-6px; z-index:1; display:flex; align-items:center; gap:10px; padding:10px 8px; background:var(--surface-panel); border-bottom:1px solid var(--border-subtle); color:var(--text-dim); }
+.model-search input { flex:1; width:0; min-width:0; border:0; outline:0; background:transparent; color:var(--text-primary); font:inherit; }
+.model-search:focus-within { border-bottom-color:var(--accent-bright); }
+.updrop-list.model-list .updrop-opt.rich { display:grid; grid-template-columns:minmax(0, 1fr) auto; gap:3px 8px; padding:9px 10px; }
+.updrop-list.model-list .updrop-opt.rich .t { grid-column:1; grid-row:1; overflow:hidden; text-overflow:ellipsis; }
+.updrop-list.model-list .updrop-opt.rich .d { grid-column:1 / -1; grid-row:2; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.devin-model-id { display:block; margin-top:4px; color:var(--text-dim); font-size:var(--fs-xs); font-weight:400; overflow:hidden; text-overflow:ellipsis; }

@@ -2,6 +2,16 @@
 // typed against this object's keys, so a missing translation is a compile
 // error rather than a silent English/Thai mix.
 export const th = {
+  'chat.searchModels': 'ค้นหาโมเดลด้วยชื่อหรือ ID',
+  'chat.modelLevel': 'ระดับโมเดล',
+  'chat.level.medium': 'ปานกลาง',
+  'chat.level.high': 'สูง',
+  'chat.level.max': 'สูงสุด',
+  'devin.agent': 'เอเจนต์ผ่าน CLI ทางการ',
+  'devin.scope': 'Devin ใช้เอเจนต์และเครื่องมือของตนเองในโปรเจกต์ของคุณ Aetox แสดงแชต การใช้เครื่องมือ และคำขออนุมัติ เอเจนต์นี้ยังไม่รองรับเครื่องมือเฉพาะของ Aetox ทีมเอเจนต์ และการส่งความจำให้อัตโนมัติ',
+  'devin.modes': 'โหมดทำงานใช้สิทธิ์ที่เลือก: ถาม = Devin Smart (หรือ Ask), เฉพาะที่ไม่ปลอดภัย = Accept Edits, สิทธิ์เต็ม = Bypass ส่วนวางแผนใช้ Devin Plan และปรึกษาใช้ Devin Ask พร้อมปฏิเสธการใช้เครื่องมือ',
+  'devin.billing': 'การเข้าสู่ระบบเปิดเทอร์มินัลที่รันคำสั่งเข้าสู่ระบบของ Devin CLI — เลือก “Log in with browser” ในนั้น รุ่นโมเดลและการคิดค่าใช้งานขึ้นอยู่กับแผน Devin และสิทธิ์ขององค์กร หน้านี้ไม่แสดงโควตาคงเหลือ การออกจากระบบจะออกจาก Devin CLI บนเครื่องด้วย',
+  'devin.setup': 'ติดตั้ง Devin CLI และอ่านคู่มือ',
   'topbar.openFolder': 'เปิดโฟลเดอร์',
   'topbar.loaded': 'โหลดแล้ว',
   'topbar.showPanel': 'แสดงแผง',

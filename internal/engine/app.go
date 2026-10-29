@@ -1849,6 +1849,9 @@ type PendingModel struct {
 var desktopProviders = []string{
 	// Signed into, not keyed in (internal/oauth).
 	"codex", "openrouter", "github-copilot",
+	// Answered by the official Devin CLI over ACP (internal/devin): signed
+	// into through the CLI's own browser flow, never keyed in.
+	"devin",
 	// API key or a local server.
 	"anthropic", "ollama", "lmstudio", "deepseek", "gemini", "openai", "openai-compatible", "alibaba", "zai", "kilo",
 	// Same runtime as the row above (OpenAI-compatible, base URL, key), kept off
@@ -2605,6 +2608,11 @@ func (a *Engine) runTurn(conv *conversation, text, to string) (SessionMessage, S
 	// Before anything runs, so an undo has somewhere to go back to. The message
 	// labels the point, which is what makes a list of them choosable.
 	a.captureSnapshot(conv, text)
+	// External agents own their workflow; native team routing must not
+	// intercept a turn after the user has selected an external provider.
+	if engine, ok := cliEngineFor(conv.cfg.ModelProvider); ok {
+		return a.runCLIEngineTurn(conv, ctx, engine, text)
+	}
 	// A message addressed to a worker goes to that worker, in the words it was
 	// written in. This is the same act the model performs with `task`, and the
 	// user gets to perform it directly (owner, 12 ส.ค.: one address for both) —
@@ -2625,14 +2633,6 @@ func (a *Engine) runTurn(conv *conversation, text, to string) (SessionMessage, S
 	// again costs the whole run.
 	if conv.pendingTask != "" {
 		return a.runAnswer(conv, ctx, text)
-	}
-	// A chat whose provider is served by a program on this machine is handed
-	// to that program here (cli_engine.go) — before the executor, because the
-	// program runs a loop of its own, and after the snapshot above, so undo
-	// covers the files it edits like anyone else's. Nothing is registered in
-	// this build, so the lookup misses and the turn goes on as it always has.
-	if engine, ok := cliEngineFor(conv.cfg.ModelProvider); ok {
-		return a.runCLIEngineTurn(conv, ctx, engine, text)
 	}
 	sent, images := a.visionAttachments(text)
 	sent, documents := a.documentAttachments(sent)
@@ -3980,6 +3980,10 @@ func (a *Engine) SwitchModel(modelName string) (ModelInfo, error) {
 	// running turn is finishing on, so applyConfig parks it and endTurn applies
 	// it at the boundary (§232) — the switch is accepted now and taken then.
 	next := a.dialBase(a.cur())
+	if model.NormalizeProvider(next.ModelProvider) == "devin" && next.ModelName != strings.TrimSpace(modelName) {
+		// A new base model chooses its own default effort, not the previous model's override.
+		next.ThinkLevel = ""
+	}
 	next.ModelName = strings.TrimSpace(modelName)
 	if next.ModelName == "" {
 		next.ModelName = a.defaultModel(next.ModelProvider, next.ModelBaseURL)

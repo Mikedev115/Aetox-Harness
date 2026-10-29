@@ -155,6 +155,7 @@ type Spec struct {
 	EnvKeys       []string
 	ModelDefaults ModelDefaults
 	Capabilities  Capabilities
+	EffortLevels  []string // Legal provider effort values; live model discovery narrows availability.
 	BalanceKind   BalanceKind
 	QuotaSource   QuotaSource
 	// APIKeyURL is the page on the provider's own site where a user creates the
@@ -197,6 +198,7 @@ type entry struct {
 	envKeys        []string
 	modelDefaults  ModelDefaults
 	capabilities   Capabilities
+	effortLevels   []string
 	balanceKind    BalanceKind
 	quotaSource    QuotaSource
 	apiKeyURL      string
@@ -211,6 +213,15 @@ type entry struct {
 // only — they are not guaranteed to be live, available, or appropriate
 // for every model behind the provider.
 var catalog = map[string]*entry{
+	"devin": {
+		canonical:     "devin",
+		effortLevels:  []string{"medium", "high", "max"},
+		aliases:       []string{"devin", "devin-cli"},
+		runtime:       RuntimeExternalCLI,
+		signInOnly:    true,
+		balanceKind:   BalanceSubscription,
+		modelDefaults: ModelDefaults{FallbackModel: "default", RecommendedModels: []string{"default"}},
+	},
 	"aetox": {
 		canonical:   "aetox",
 		balanceKind: BalanceFree,
@@ -306,14 +317,14 @@ var catalog = map[string]*entry{
 		// Someone pointing this row at a third-party OpenAI-compatible endpoint
 		// switches back in Settings, which is what the alt is for. Same host
 		// either way, so the URL does not change with the format.
-		runtime:        RuntimeResponses,
-		baseURL:        "https://api.openai.com/v1",
-		altRuntime:     RuntimeOpenAICompatible,
-		altBaseURL:     "https://api.openai.com/v1",
-		envKeys:        []string{"OPENAI_API_KEY", "OPENAI_TOKEN"},
-		apiKeyURL:      "https://platform.openai.com/api-keys",
-		modelDefaults:  ModelDefaults{FallbackModel: "gpt-4o-mini"},
-		capabilities:   Capabilities{ToolCalling: true, Reasoning: true},
+		runtime:       RuntimeResponses,
+		baseURL:       "https://api.openai.com/v1",
+		altRuntime:    RuntimeOpenAICompatible,
+		altBaseURL:    "https://api.openai.com/v1",
+		envKeys:       []string{"OPENAI_API_KEY", "OPENAI_TOKEN"},
+		apiKeyURL:     "https://platform.openai.com/api-keys",
+		modelDefaults: ModelDefaults{FallbackModel: "gpt-4o-mini"},
+		capabilities:  Capabilities{ToolCalling: true, Reasoning: true},
 	},
 	// openai-compatible provides a generic endpoint for any provider, gateway,
 	// or self-hosted service implementing the standard OpenAI chat completions
@@ -576,7 +587,7 @@ var catalog = map[string]*entry{
 		// through to the conservative K2 answer, which is correct for what is
 		// served, so they are dead rather than wrong. Updating them needs
 		// Moonshot docs for k2.6/k2.7 that nobody has read yet.
-		modelDefaults:  ModelDefaults{FallbackModel: "kimi-k2.6"},
+		modelDefaults: ModelDefaults{FallbackModel: "kimi-k2.6"},
 		// Reasoning is a real dial here (reasoning_effort: low/high/max) but it
 		// has no off position — K3 always thinks. See
 		// resolveKimiThinkingCapabilities for what that costs the picker.
@@ -638,8 +649,8 @@ var catalog = map[string]*entry{
 		// gpt-oss-120b is the one Groq serves that does what Aetox needs on
 		// the first turn: tools, and a reasoning dial thinking_capabilities.go
 		// already recognises by its openai/gpt-oss- prefix.
-		modelDefaults:  ModelDefaults{FallbackModel: "openai/gpt-oss-120b"},
-		capabilities:   Capabilities{ToolCalling: true, Reasoning: true},
+		modelDefaults: ModelDefaults{FallbackModel: "openai/gpt-oss-120b"},
+		capabilities:  Capabilities{ToolCalling: true, Reasoning: true},
 	},
 	"mistral": {
 		canonical:      "mistral",
@@ -654,8 +665,8 @@ var catalog = map[string]*entry{
 		// "mistral-small" with no suffix is not an id Mistral serves; the
 		// self-updating alias is. Same intent, and it cannot rot the way a
 		// pinned date can.
-		modelDefaults:  ModelDefaults{FallbackModel: "mistral-small-latest"},
-		capabilities:   Capabilities{ToolCalling: true},
+		modelDefaults: ModelDefaults{FallbackModel: "mistral-small-latest"},
+		capabilities:  Capabilities{ToolCalling: true},
 	},
 	"lmstudio": {
 		canonical:      "lmstudio",
@@ -1085,6 +1096,7 @@ func Lookup(name string) (Spec, bool) {
 		EnvKeys:        append([]string{}, e.envKeys...),
 		ModelDefaults:  e.modelDefaults,
 		Capabilities:   e.capabilities,
+		EffortLevels:   append([]string{}, e.effortLevels...),
 		BalanceKind:    e.balanceKind,
 		QuotaSource:    e.quotaSource,
 		AcceptsAPIKey:  !e.signInOnly,

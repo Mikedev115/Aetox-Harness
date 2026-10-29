@@ -3,6 +3,16 @@
 import type { th } from './th'
 
 export const en: Record<keyof typeof th, string> = {
+  'chat.searchModels': 'Search models by name or ID',
+  'chat.modelLevel': 'Model level',
+  'chat.level.medium': 'Medium',
+  'chat.level.high': 'High',
+  'chat.level.max': 'Max',
+  'devin.agent': 'Official CLI agent',
+  'devin.scope': 'Devin runs its own agent and tools in your project. Aetox shows the chat, tool activity and approval prompts. Aetox-native tools, agent teams and automatic memory injection are not available to this agent.',
+  'devin.billing': 'Sign in opens a terminal running the Devin CLI’s own login — choose “Log in with browser” there. Available models and usage billing follow your Devin plan and organization permissions. Remaining quota is not shown here. Signing out also signs out the local Devin CLI.',
+  'devin.setup': 'Devin CLI setup and documentation',
+  'devin.modes': 'Act uses the selected approval policy: Ask = Devin Smart (or Ask), Unsafe Only = Accept Edits, Full Access = Bypass. Plan uses Devin Plan; Consult uses Devin Ask and denies tool actions.',
   'topbar.openFolder': 'Open Folder',
   'topbar.loaded': 'Loaded',
   'topbar.showPanel': 'Show panel',

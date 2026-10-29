@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { devinFamily, devinLabel, devinChoices } from "./devinModels"
   import type { BackgroundTask, ChatMessage, TaskState, ModelStatus, ToolStep, TimelineNode, ContextBreakdown, ModelLoading, LimitWait, TurnSpend, Plan } from './types'
   import { groupSteps, isDelegation } from './types'
   import { phasesOf, type TurnPhase } from './turnPhases'
@@ -926,7 +927,9 @@
   // named refresh, retried every time the model menu opens.
   async function refreshThinkLevels() {
     try {
-      thinkLevels = await SupportedThinkLevels()
+      const provider = model.provider, name = model.modelName
+      const levels = await SupportedThinkLevels()
+      if (model.provider === provider && model.modelName === name) thinkLevels = levels
     } catch {
       /* backend not ready — next menu open retries */
     }
@@ -982,7 +985,10 @@
   async function handleThinkChange(value: string) {
     switchError = ''
     try {
-      await onSwitchThinkLevel(value)
+      if (model.provider === 'devin' && thinkLevels.length === 0 && family) {
+        const id = familyModels.find(id => devinFamily(id)?.[2] === value)
+        if (id) await onSwitchModel(id)
+      } else await onSwitchThinkLevel(value)
     } catch (err) {
       switchError = String(err)
     }
@@ -1069,6 +1075,12 @@
       // Nothing to do and nothing worth saying: the draft is still on screen.
     }
   })
+  let modelSearch = $state('')
+  const modelOptions = $derived(model.provider === 'devin' ? devinChoices(models, model.modelName, model.thinkLevel) : models.map(m => ({ value: m, label: m, desc: '' })))
+  const family = $derived(model.provider === 'devin' ? devinFamily(model.modelName) : null)
+  const familyModels = $derived(family ? models.filter(id => devinFamily(id)?.[1] === family[1]) : [])
+  const effortLevels = $derived(model.provider === 'devin' && thinkLevels.length === 0 ? familyModels.map(id => devinFamily(id)![2]) : thinkLevels)
+  const selectedEffort = $derived(model.thinkLevel || (model.provider === 'devin' ? model.modelName.match(/-(medium|high|max|low|none)$/)?.[1] ?? '' : ''))
   let modelMenuOpen = $state(false)
   let focusMenuOpen = $state(false)
   // The rewind list and the point the user is being asked about. Local rather
@@ -3384,7 +3396,7 @@
     <button
       type="button"
       class="ctrl updrop-trigger"
-      onclick={(e) => { e.stopPropagation(); openDropdown = openDropdown === id ? '' : id }}
+      onclick={(e) => { e.stopPropagation(); openDropdown = openDropdown === id ? '' : id; if (id === 'model') modelSearch = '' }}
     >
       {#if active?.mark}
         <span class="ic"><ProviderMark name={active.mark} size={13} /></span>
@@ -3395,8 +3407,12 @@
       <span class="caret"><Icon name={openDropdown === id ? 'chevronUp' : 'chevronDown'} size={12} /></span>
     </button>
     {#if openDropdown === id}
-      <div class="updrop-list" use:revealSelected>
-        {#each options as opt}
+        {@const filtered = options.filter(opt => id !== 'model' || `${opt.label} ${opt.value} ${opt.desc ?? ''}`.toLowerCase().replace(/[-\s]+/g, ' ').includes(modelSearch.toLowerCase().replace(/[-\s]+/g, ' ')))}
+      <div class="updrop-list" class:model-list={id === 'model'} use:revealSelected>
+        {#if id === 'model'}
+          <div class="model-search"><Icon name="search" size={15} /><input aria-label={t('chat.searchModels')} placeholder={t('chat.searchModels')} bind:value={modelSearch} /></div>
+        {/if}
+        {#each filtered as opt}
           <button
             type="button"
             class="updrop-opt"
@@ -3414,6 +3430,7 @@
             {#if opt.desc}<span class="d">{opt.desc}</span>{/if}
           </button>
         {/each}
+        {#if id === 'model' && filtered.length === 0}<div class="updrop-foot">{t('settings.noModelsMatch')}</div>{/if}
         {#if footer}<div class="updrop-foot">{footer}</div>{/if}
       </div>
     {/if}
@@ -6169,16 +6186,16 @@
                 <div class="mm-row">
                   <span class="lbl">{t('chat.model')}</span>
                   {#if models && models.length > 0}
-                    {@render upSelect('model', models.map((m) => ({
-                      value: m, label: m,
+                    {@render upSelect('model', modelOptions.map((choice) => ({
+                      ...choice,
                       // Never a zero: on a list this long a zero reads as
                       // "free" and gets acted on, while the rows the catalog
                       // has no price for are genuinely unknown, not cheap.
                       // Those get nothing at all — the name alone, as before.
-                      tag: priced[m]?.free
+                      tag: priced[choice.value]?.free
                         ? t('settings.priceFree')
-                        : priced[m]?.priced ? `$${priced[m].input} / $${priced[m].output}` : '',
-                      tagFree: !!priced[m]?.free,
+                        : priced[choice.value]?.priced ? `$${priced[choice.value].input} / $${priced[choice.value].output}` : '',
+                      tagFree: !!priced[choice.value]?.free,
                     })), model.modelName, handleModelChange, priceSourceLine)}
                   {:else if modelsLoading}
                     <span class="mm-static">{t('settings.loadingModels')}</span>
@@ -6222,10 +6239,10 @@
                      this row asked for one, so a model with exactly one real
                      level — gpt-5-pro, MiniMax M2.x, which cannot stop thinking
                      — drew a dropdown that did nothing when opened. -->
-                {#if thinkLevels.length > 1}
+                {#if effortLevels.length > 1}
                   <div class="mm-row">
                     <span class="lbl">{t('chat.thinkLevel')}</span>
-                    {@render upSelect('thinkLevel', thinkLevels.map((lvl) => ({ value: lvl, label: lvl })), model.thinkLevel, handleThinkChange)}
+                    {@render upSelect('thinkLevel', effortLevels.map((lvl) => ({ value: lvl, label: lvl.charAt(0).toUpperCase() + lvl.slice(1) })), selectedEffort, handleThinkChange)}
                   </div>
                 {/if}
               </div>
@@ -6249,11 +6266,11 @@
               onclick={(e) => { e.stopPropagation(); const open = !modelMenuOpen; closeComposerMenus(); modelMenuOpen = open; if (open) { refreshThinkLevels(); EnabledProviders().then((p) => (providers = p)) } }}
             >
               <span class="pv"><ProviderMark name={model.provider} size={14} /></span>
-              {#if model.modelName}<span class="t">{shortModelName(model.modelName)}</span>{/if}
+              {#if model.modelName}<span class="t">{model.provider === 'devin' ? devinLabel(model.modelName, model.thinkLevel) : shortModelName(model.modelName)}</span>{/if}
               <!-- Same test as the menu row below, on purpose. Keyed off
                    model.thinkLevel instead, a model with exactly one real level
                    drew a badge for a setting the menu offers no way to change. -->
-              {#if thinkLevels.length > 1 && model.thinkLevel}<span class="lvl">{model.thinkLevel}</span>{/if}
+              {#if model.provider !== 'devin' && thinkLevels.length > 1 && model.thinkLevel}<span class="lvl">{model.thinkLevel}</span>{/if}
               <!-- A switch is waiting. Said with a mark and not with the name:
                    this chip's one job is to say what is answering RIGHT NOW,
                    and another model's name sitting on it would read as that. -->

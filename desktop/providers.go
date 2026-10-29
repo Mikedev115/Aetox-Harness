@@ -14,6 +14,7 @@ import (
 
 	"github.com/Mikedev115/Aetox/internal/cliagent"
 	"github.com/Mikedev115/Aetox/internal/credentials"
+	"github.com/Mikedev115/Aetox/internal/devin"
 	"github.com/Mikedev115/Aetox/internal/engine"
 	"github.com/Mikedev115/Aetox/internal/model"
 	"github.com/Mikedev115/Aetox/internal/oauth"
@@ -102,6 +103,12 @@ func (a *App) RemoveCustomProvider(id string) ([]string, error) {
 // endpoint today.
 func (a *App) ListModelsForProvider(providerName string) []string {
 	canonical := model.NormalizeProvider(providerName)
+	if canonical == "devin" {
+		if choices, err := devin.Models(context.Background()); err == nil {
+			return choices
+		}
+		return []string{"default"}
+	}
 	baseURL := a.api.ProviderBaseURL(canonical)
 	apiKey := resolveAPIKeyForProvider(canonical)
 	if choices, err := model.ModelChoicesWithEndpointAndAPIKey(canonical, baseURL, apiKey); err == nil && len(choices) > 0 {
@@ -195,6 +202,9 @@ func (a *App) TestProviderConnection(providerName, modelName string) (string, er
 // providers that don't need any.
 func (a *App) HasAPIKey(providerName string) bool {
 	canonical := model.NormalizeProvider(providerName)
+	if canonical == "devin" {
+		return devin.Engine{}.Probe(context.Background()).Ready
+	}
 	if !model.RequiresAPIKey(canonical) {
 		return true
 	}
@@ -292,4 +302,19 @@ func (a *App) SetAPIKey(providerName, apiKey string) (engine.ModelInfo, error) {
 		return engine.ModelInfo{}, err
 	}
 	return a.api.ProviderCredentialChanged(canonical)
+}
+
+// Devin's choices belong to the local authenticated CLI, like its model list.
+func (a *App) SupportedThinkLevels() []string {
+	info := a.api.GetModelInfo()
+	return a.SupportedThinkLevelsFor(info.Provider, info.ModelName)
+}
+func (a *App) SupportedThinkLevelsFor(providerName, modelName string) []string {
+	if model.NormalizeProvider(providerName) == "devin" {
+		if levels, err := devin.EffortLevels(context.Background(), modelName); err == nil {
+			return levels
+		}
+		return []string{}
+	}
+	return a.api.SupportedThinkLevelsFor(providerName, modelName)
 }
