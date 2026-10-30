@@ -258,7 +258,7 @@ Luna 0.64 ล้าน เทียบ 0.30–0.57 ล้าน · Terra 0.93 �
 - **อะไรเป็นตัวกัน** กฎพวกนี้เป็นการเช็กในโค้ดของ Aetox เอง ไม่ใช่ sandbox ของระบบปฏิบัติการ ถ้าเครื่องมีข้อมูลที่เสียไม่ได้
   ให้ใช้ API key แยกเฉพาะ Aetox และรันใน VM หรือ Windows Sandbox
 
-[รายละเอียดความปลอดภัย](https://mikedev115.github.io/Aetox-landing/th/safety/)
+[รายละเอียดความปลอดภัย](https://mikedev115.github.io/Aetox-landing/th/safety/) · เจอช่องโหว่? [SECURITY.md](SECURITY.md) บอกวิธีแจ้งแบบส่วนตัว
 
 ## ซอร์ส สัญญาอนุญาต และคนทำ
 

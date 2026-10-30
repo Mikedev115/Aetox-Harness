@@ -279,7 +279,7 @@ update does not take: [the update guide](docs/UPDATING.md).
 - **What enforces it** — these rules are checks inside Aetox's own code, not an operating-system sandbox. For a
   machine with data you cannot lose, give Aetox an API key of its own and run it in a VM or Windows Sandbox.
 
-[Safety in detail](https://mikedev115.github.io/Aetox-landing/safety/)
+[Safety in detail](https://mikedev115.github.io/Aetox-landing/safety/) · Found a security problem? [SECURITY.md](SECURITY.md) says how to report it privately.
 
 ## Source, licence and who makes it
 

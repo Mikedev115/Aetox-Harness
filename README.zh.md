@@ -255,7 +255,7 @@ token 就是花在这里：总输入是其他 harness 的 1.1–8.5 倍，但其
 - **靠什么保证** —— 这些是 Aetox 自己代码里的检查，不是操作系统的沙箱。如果机器上有不能丢的数据，
   给 Aetox 单独的 API key，并放在虚拟机或 Windows Sandbox 里跑。
 
-[安全细节](https://mikedev115.github.io/Aetox-landing/safety/)
+[安全细节](https://mikedev115.github.io/Aetox-landing/safety/) · 发现安全问题？[SECURITY.md](SECURITY.md) 说明如何私下报告
 
 ## 源码、许可与作者
 
