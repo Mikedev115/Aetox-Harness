@@ -1,5 +1,7 @@
 # Contributing to Aetox
 
+English · [ภาษาไทย](CONTRIBUTING.th.md)
+
 Aetox is built by one person who uses it for real work every day. Bug reports and sharp questions are
 what move it forward fastest. Here is what helps, and what happens to what you send.
 
