@@ -1,9 +1,9 @@
 {
-    "version": "1.10.31",
+    "version": "1.10.32",
     "description": "Aetox — AI agent desktop: architecture that expands any model's capability (image/video OCR, offline speech transcription, agent-driven browser)",
     "homepage": "https://github.com/Mikedev115/Aetox",
     "license": "Proprietary",
-    "url": "https://github.com/Mikedev115/Aetox/releases/download/v1.10.31/aetox-windows-amd64-portable.zip",
+    "url": "https://github.com/Mikedev115/Aetox/releases/download/v1.10.32/aetox-windows-amd64-portable.zip",
     "hash": "D49FB5769646A426B8089D90458AB0268687F6FC3151D9E59001E0E1766DF9A5",
     "shortcuts": [
         ["aetox.exe", "Aetox"]
