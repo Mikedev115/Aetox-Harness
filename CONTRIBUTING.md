@@ -1,6 +1,6 @@
 # Contributing to Aetox
 
-English · [ภาษาไทย](CONTRIBUTING.th.md)
+English · [ภาษาไทย](CONTRIBUTING.th.md) · [中文](CONTRIBUTING.zh.md)
 
 Aetox is built by one person who uses it for real work every day. Bug reports and sharp questions are
 what move it forward fastest. Here is what helps, and what happens to what you send.
@@ -13,8 +13,7 @@ manifests and the built installers.
 
 So a pull request that changes source code **cannot be merged here directly** — there is no source here to
 merge into. It is still read, and it still counts: send the failing test, the patch, or the reproduction,
-and it is ported into the source of record with your name in the release notes. A few PRs have landed that
-way.
+and it is ported into the source of record with your name in the release notes.
 
 ## A bug, reported so it can be fixed
 
