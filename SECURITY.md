@@ -1,5 +1,7 @@
 # Security policy
 
+English · [ภาษาไทย](SECURITY.th.md)
+
 Aetox runs on your computer and acts with your permissions: it reads your files, runs commands, drives a
 browser and writes documents. That is the point of it, and it is also where a bug can cost you something.
 This page says how to tell us about one, and what we will do about it.
