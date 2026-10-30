@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security report
+    url: https://github.com/Mikedev115/Aetox-Harness/security/advisories/new
+    about: Report a vulnerability privately. Never in a public issue.
+  - name: Questions, ideas, and what you made
+    url: https://github.com/Mikedev115/Aetox-Harness/discussions
+    about: Ask anything, or show a job Aetox finished for you.
+  - name: Roadmap and what has been decided against
+    url: https://github.com/Mikedev115/Aetox-Harness/blob/main/ROADMAP.md
+    about: Read this before asking for a feature. The reason it is not there may be written down.
