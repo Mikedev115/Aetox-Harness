@@ -34,3 +34,4 @@
 | สนับสนุนโปรเจกต์ · Support | [SPONSOR.md](../SPONSOR.md) |
 | แจ้งบั๊ก · Bug reports | ในแอป: ตั้งค่า › เกี่ยวกับ กรอกเวอร์ชันกับ log ให้เอง · หรือ [issues](https://github.com/Mikedev115/Aetox/issues) |
 | ชุมชน · Community | [กลุ่ม Facebook](https://www.facebook.com/share/g/1BnXC5EiWg/) |
+| ข่าวและประกาศรุ่น · News | [Discussions](https://github.com/Mikedev115/Aetox/discussions) · [Releases](https://github.com/Mikedev115/Aetox/releases) |

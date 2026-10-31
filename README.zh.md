@@ -266,7 +266,7 @@ Aetox 免费使用，但不是开源软件。可以装在任何数量的机器�
 用应用的更新密钥签名，2026 年 10 月 21 日之后构建的版本还带 `sbom.txt`：编进程序的每个 Go module 和 web 包。
 Go 部分可以用 `go version -m aetox.exe` 直接和二进制对照。Microsoft Store 版由 Microsoft 签名。
 
-Aetox 由一个人写成。问题和想法：[Facebook 群组](https://www.facebook.com/share/g/1BnXC5EiWg/)。
+Aetox 由一个人写成。社区在 [Facebook 群组](https://www.facebook.com/share/g/1BnXC5EiWg/)——问题和想法都在那里。新闻和版本发布公告在 [Discussions](https://github.com/Mikedev115/Aetox/discussions) 和 [Releases](https://github.com/Mikedev115/Aetox/releases)。
 Bug：[issues](https://github.com/Mikedev115/Aetox/issues) —— 应用里的 **设置** 会自动带上你的版本号，
 以及已经去掉机密内容的日志。❤️ [支持这个项目](SPONSOR.md)
 

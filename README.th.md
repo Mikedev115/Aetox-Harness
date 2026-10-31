@@ -270,7 +270,7 @@ Aetox ใช้ฟรี และไม่ใช่โอเพนซอร์�
 บอกทุก Go module และ web package ที่ build เข้าไป ส่วนที่เป็น Go เทียบกับตัวไฟล์ได้เองด้วย `go version -m aetox.exe`
 ส่วนตัวที่ลงจาก Microsoft Store นั้น Microsoft เป็นคน sign ให้
 
-Aetox เขียนโดยคนคนเดียว ถามและเสนอไอเดียได้ที่[กลุ่ม Facebook](https://www.facebook.com/share/g/1BnXC5EiWg/)
+Aetox เขียนโดยคนคนเดียว ชุมชนหลักอยู่ที่[กลุ่ม Facebook](https://www.facebook.com/share/g/1BnXC5EiWg/) — ถามและเสนอไอเดียได้ที่นั่น ส่วนข่าวและประกาศรุ่นออกที่ [Discussions](https://github.com/Mikedev115/Aetox/discussions) และ [Releases](https://github.com/Mikedev115/Aetox/releases)
 แจ้งบั๊กที่ [issues](https://github.com/Mikedev115/Aetox/issues) โดย **ตั้งค่า** ในแอปจะกรอกเวอร์ชันและ log
 ที่ตัดข้อมูลลับออกแล้วให้ ❤️ [สนับสนุนโปรเจกต์](SPONSOR.md)
 
