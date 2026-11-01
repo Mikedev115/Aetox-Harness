@@ -273,5 +273,5 @@ Bug：[issues](https://github.com/Mikedev115/Aetox/issues) —— 应用里的 *
 ---
 
 <p align="center">
-  © 2026 Chayaphon Phromsawana · All rights reserved · <a href="LICENSE">Licence</a> · <a href="THIRD-PARTY-NOTICES.md">Third-party notices</a>
+  © 2026 Chayapol Promsavana · All rights reserved · <a href="LICENSE">Licence</a> · <a href="THIRD-PARTY-NOTICES.md">Third-party notices</a>
 </p>

@@ -277,5 +277,5 @@ Aetox เขียนโดยคนคนเดียว ชุมชนหล�
 ---
 
 <p align="center">
-  © 2026 Chayaphon Phromsawana · All rights reserved · <a href="LICENSE">Licence</a> · <a href="THIRD-PARTY-NOTICES.md">Third-party notices</a>
+  © 2026 Chayapol Promsavana · All rights reserved · <a href="LICENSE">Licence</a> · <a href="THIRD-PARTY-NOTICES.md">Third-party notices</a>
 </p>
