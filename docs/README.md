@@ -7,7 +7,7 @@
 
 | | |
 |---|---|
-| ดาวน์โหลด · Download | [รุ่นล่าสุด · Latest release](https://github.com/Mikedev115/Aetox/releases/latest) · [Microsoft Store](https://apps.microsoft.com/detail/9N4KKBRRSCZZ) |
+| ดาวน์โหลด · Download | [รุ่นล่าสุด · Latest release](https://github.com/Mikedev115/Aetox-Harness/releases/latest) · [Microsoft Store](https://apps.microsoft.com/detail/9N4KKBRRSCZZ) |
 | วิธีติดตั้ง · Install | [README › Install](../README.md#install) · [ภาษาไทย](../README.th.md#ติดตั้ง) |
 | **อัปเดตเป็นรุ่นใหม่ · Updating** | [UPDATING.md](UPDATING.md) — ทีละช่องทาง และอัปแล้วไม่ขึ้นต้องทำอะไร |
 | สร้างภาพในเครื่อง · Local pictures | [LOCAL-IMAGES.md](LOCAL-IMAGES.md) — ComfyUI, Forge Neo / A1111, FLUX.2 klein |
@@ -32,6 +32,6 @@
 |---|---|
 | สัญญาอนุญาต · Licence | [LICENSE](../LICENSE) · [THIRD-PARTY-NOTICES.md](../THIRD-PARTY-NOTICES.md) |
 | สนับสนุนโปรเจกต์ · Support | [SPONSOR.md](../SPONSOR.md) |
-| แจ้งบั๊ก · Bug reports | ในแอป: ตั้งค่า › เกี่ยวกับ กรอกเวอร์ชันกับ log ให้เอง · หรือ [issues](https://github.com/Mikedev115/Aetox/issues) |
+| แจ้งบั๊ก · Bug reports | ในแอป: ตั้งค่า › เกี่ยวกับ กรอกเวอร์ชันกับ log ให้เอง · หรือ [issues](https://github.com/Mikedev115/Aetox-Harness/issues) |
 | ชุมชน · Community | [กลุ่ม Facebook](https://www.facebook.com/share/g/1BnXC5EiWg/) |
-| ข่าวและประกาศรุ่น · News | [Discussions](https://github.com/Mikedev115/Aetox/discussions) · [Releases](https://github.com/Mikedev115/Aetox/releases) |
+| ข่าวและประกาศรุ่น · News | [Discussions](https://github.com/Mikedev115/Aetox-Harness/discussions) · [Releases](https://github.com/Mikedev115/Aetox-Harness/releases) |

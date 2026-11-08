@@ -1,9 +1,9 @@
 {
-    "version": "1.10.46",
+    "version": "1.11.0",
     "description": "Aetox — AI agent desktop: architecture that expands any model's capability (image/video OCR, offline speech transcription, agent-driven browser)",
-    "homepage": "https://github.com/Mikedev115/Aetox",
+    "homepage": "https://github.com/Mikedev115/Aetox-Harness",
     "license": "Proprietary",
-    "url": "https://github.com/Mikedev115/Aetox/releases/download/v1.10.46/aetox-windows-amd64-portable.zip",
+    "url": "https://github.com/Mikedev115/Aetox-Harness/releases/download/v1.11.0/aetox-windows-amd64-portable.zip",
     "hash": "57B49FD95CBC02F78B07E4DDDA3E817CB3EA78F9A742CE0C9CD8802EDACFA469",
     "shortcuts": [
         ["aetox.exe", "Aetox"]
@@ -11,6 +11,6 @@
     "notes": "Portable build: WebView2 runtime is preinstalled on Windows 11. Tesseract, poppler, ffmpeg and whisper.cpp are not bundled with either channel; Aetox downloads them itself, only for a capability you tick (image_ocr, video_ocr, pdf_read, audio_transcribe), each pinned to an immutable tag and SHA256-verified. Speech transcription also needs a ggml model file, fetched the same way. Nothing is fetched without asking.",
     "checkver": "github",
     "autoupdate": {
-        "url": "https://github.com/Mikedev115/Aetox/releases/download/v$version/aetox-windows-amd64-portable.zip"
+        "url": "https://github.com/Mikedev115/Aetox-Harness/releases/download/v$version/aetox-windows-amd64-portable.zip"
     }
 }

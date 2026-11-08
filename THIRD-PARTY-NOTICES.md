@@ -71,6 +71,12 @@ module cache under `$(go env GOMODCACHE)`.
 | github.com/wailsapp/go-webview2 | v1.0.22 | MIT |
 | github.com/wailsapp/wails/v2 | v2.13.0 | MIT |
 | github.com/xo/terminfo | v0.0.0-20220910002029 | MIT |
+| github.com/xuri/excelize/v2 | v2.10.1 | BSD-3-Clause |
+| github.com/xuri/efp | v0.0.1 | BSD-3-Clause |
+| github.com/xuri/nfp | v0.0.2-0.20250530014748-2ddeb826f9a9 | BSD-3-Clause |
+| github.com/richardlehane/mscfb | v1.0.6 | Apache-2.0 |
+| github.com/richardlehane/msoleps | v1.0.6 | Apache-2.0 |
+| github.com/tiendc/go-deepcopy | v1.7.2 | MIT |
 | github.com/yosida95/uritemplate/v3 | v3.0.2 | BSD-3-Clause |
 | github.com/yuin/goldmark | v1.7.8 | MIT |
 | github.com/yuin/goldmark-emoji | v1.0.5 | MIT |
@@ -212,6 +218,7 @@ originals are unmodified in their own repositories.
 | `aetox-gl-recon` (agent `sheet`) | gl-recon | Anthropic, PBC | Apache-2.0 |
 | `aetox-break-trace` (agent `sheet`) | break-trace | Anthropic, PBC | Apache-2.0 |
 | `aetox-contract-standards` (agent `doc`) | Standard Agreements | Common Paper | CC BY 4.0 |
+| `aetox-video-teardown` | skills/rea-video | JuneYaooo | Apache-2.0 |
 
 `aetox-contract-standards` is different in kind from the rest of this table: it
 carries **the licensed work itself**, not instructions adapted from one. The

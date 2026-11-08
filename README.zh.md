@@ -67,8 +67,8 @@ Aetox Harness 是运行在你电脑上的 AI 工作环境 —— 把模型、技
 </p>
 
 <p align="center">
-  <strong><a href="https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-amd64-installer.exe">下载 Windows 安装程序（.exe）</a></strong>
-  · <a href="https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-cli-setup.exe">Aetox CLI</a>
+  <strong><a href="https://github.com/Mikedev115/Aetox-Harness/releases/latest/download/aetox-amd64-installer.exe">下载 Windows 安装程序（.exe）</a></strong>
+  · <a href="https://github.com/Mikedev115/Aetox-Harness/releases/latest/download/aetox-cli-setup.exe">Aetox CLI</a>
   · <a href="#安装">Scoop 与便携版</a><br>
   Windows 10 及以上 · x64 · 免费使用 · 用你已有的模型，或在本地免费跑一个
 </p>
@@ -127,6 +127,24 @@ Aetox Harness 是运行在你电脑上的 AI 工作环境 —— 把模型、技
 - **模型不可能知道的事** 技能里存着：幻灯片 1280×720 的画幅、攻击者怎么绕过路径检查、泰国发票怎么进位 ——
   以及你的工作方式
 - **交回之前先检查** 跑测试、打开自己做出来的文件看一遍，并如实说出哪些它证明不了
+
+## 打造你自己的环境
+
+- **自己加 Tool** 让 Agent 按需要造一个新工具
+- **自己造工作间** 右边那块 3D 空间随你设计
+- **系统的样子由你定** 背景换成你自己的风格
+
+## 由 Aetox Harness 驱动
+
+一套管理上下文的架构：让 Agent 扩大自己的能力，而不必时时刻刻背着每一个细节。
+
+- 专用 Tool 以索引保存，真正的内容只在调用时才加载
+- 单个 Tool 的 token 消耗最多降低 10 倍
+- 可以自由添加 Tool，而不让 Context 膨胀
+- Skill 和专用指令：系统列出名字，Agent 遇到那类工作时自己打开
+- 记忆按类别和细节分开，Agent 直接取到需要的部分，不必一次全部加载
+
+**结果：Agent 拿得到它需要的每一个工具和每一点知识，只用当时需要的上下文 —— 省 token，也不背没用上的东西。**
 
 ## 它会学会你的工作方式
 
@@ -236,9 +254,9 @@ token 就是花在这里：总输入是其他 harness 的 1.1–8.5 倍，但其
 | 渠道 | 安装 | 更新 |
 |:---|:---|:---|
 | **Microsoft Store** | [Store 页面](https://apps.microsoft.com/detail/9N4KKBRRSCZZ) 或 `winget install --id=9N4KKBRRSCZZ --source=msstore` | Windows 负责更新 |
-| **安装程序** | [aetox-amd64-installer.exe](https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-amd64-installer.exe) | 应用内：**下载更新 → 重启以更新** |
-| **Aetox CLI** | [aetox-cli-setup.exe](https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-cli-setup.exe) | 装在用户目录，不需要管理员权限，自动加入 PATH |
-| **Scoop** | `scoop install https://raw.githubusercontent.com/Mikedev115/Aetox/main/scoop/aetox.json` | `scoop update aetox` |
+| **安装程序** | [aetox-amd64-installer.exe](https://github.com/Mikedev115/Aetox-Harness/releases/latest/download/aetox-amd64-installer.exe) | 应用内：**下载更新 → 重启以更新** |
+| **Aetox CLI** | [aetox-cli-setup.exe](https://github.com/Mikedev115/Aetox-Harness/releases/latest/download/aetox-cli-setup.exe) | 装在用户目录，不需要管理员权限，自动加入 PATH |
+| **Scoop** | `scoop install https://raw.githubusercontent.com/Mikedev115/Aetox-Harness/main/scoop/aetox.json` | `scoop update aetox` |
 
 安装程序还没有代码签名，所以 Windows 可能提示 **"Windows protected your PC"**：选 **More info → Run anyway**，
 或使用 Microsoft 签名的 Store 版。便携版 zip、杀毒软件相关说明，以及更新没生效时怎么办：
@@ -266,8 +284,8 @@ Aetox 免费使用，但不是开源软件。可以装在任何数量的机器�
 用应用的更新密钥签名，2026 年 10 月 21 日之后构建的版本还带 `sbom.txt`：编进程序的每个 Go module 和 web 包。
 Go 部分可以用 `go version -m aetox.exe` 直接和二进制对照。Microsoft Store 版由 Microsoft 签名。
 
-Aetox 由一个人写成。社区在 [Facebook 群组](https://www.facebook.com/share/g/1BnXC5EiWg/)——问题和想法都在那里。新闻和版本发布公告在 [Discussions](https://github.com/Mikedev115/Aetox/discussions) 和 [Releases](https://github.com/Mikedev115/Aetox/releases)。
-Bug：[issues](https://github.com/Mikedev115/Aetox/issues) —— 应用里的 **设置** 会自动带上你的版本号，
+Aetox 由一个人写成。社区在 [Facebook 群组](https://www.facebook.com/share/g/1BnXC5EiWg/)——问题和想法都在那里。新闻和版本发布公告在 [Discussions](https://github.com/Mikedev115/Aetox-Harness/discussions) 和 [Releases](https://github.com/Mikedev115/Aetox-Harness/releases)。
+Bug：[issues](https://github.com/Mikedev115/Aetox-Harness/issues) —— 应用里的 **设置** 会自动带上你的版本号，
 以及已经去掉机密内容的日志。❤️ [支持这个项目](SPONSOR.md)
 
 ---

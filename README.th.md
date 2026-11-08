@@ -67,8 +67,8 @@ Aetox Harness คือสภาพแวดล้อมการทำงาน
 </p>
 
 <p align="center">
-  <strong><a href="https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-amd64-installer.exe">ดาวน์โหลดตัวติดตั้ง Windows (.exe)</a></strong>
-  · <a href="https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-cli-setup.exe">Aetox CLI</a>
+  <strong><a href="https://github.com/Mikedev115/Aetox-Harness/releases/latest/download/aetox-amd64-installer.exe">ดาวน์โหลดตัวติดตั้ง Windows (.exe)</a></strong>
+  · <a href="https://github.com/Mikedev115/Aetox-Harness/releases/latest/download/aetox-cli-setup.exe">Aetox CLI</a>
   · <a href="#ติดตั้ง">Scoop และ zip พกพา</a><br>
   Windows 10 ขึ้นไป · x64 · ใช้ฟรี · ใช้โมเดลที่คุณมี หรือรันโมเดลในเครื่องฟรี
 </p>
@@ -129,6 +129,24 @@ Aetox Harness คือสภาพแวดล้อมการทำงาน
 - **ความรู้ที่โมเดลไม่มี** สกิลเก็บไว้: ขนาดจอ 1280×720 ของห้องนำเสนอ วิธีที่คนร้ายเจาะการเช็ค path
   การปัดเศษในใบกำกับภาษีไทย — และวิธีทำงานของคุณเอง
 - **ตรวจก่อนส่ง** รันเทสต์ เปิดไฟล์ที่ทำเสร็จดูเอง และบอกตรง ๆ ว่าส่วนไหนยังพิสูจน์ไม่ได้
+
+## สร้างสภาพแวดล้อมในแบบของคุณเอง
+
+- **เพิ่ม Tool ได้เอง** — ให้ Agent สร้างเครื่องมือใหม่ตามต้องการ
+- **สร้างห้องทำงานได้เอง** — ออกแบบพื้นที่ 3D ด้านขวาได้อย่างอิสระ
+- **ปรับแต่งหน้าตาระบบได้** — เปลี่ยนพื้นหลังให้เป็นสไตล์ของคุณ
+
+## ขับเคลื่อนด้วย Aetox Harness
+
+สถาปัตยกรรมจัดการบริบทที่ทำให้ Agent ขยายความสามารถได้ โดยไม่ต้องแบกรายละเอียดทุกอย่างไว้ตลอดเวลา
+
+- Tool เฉพาะทางจะถูกจัดเก็บเป็นดัชนี โหลดรายละเอียดจริงเฉพาะเมื่อเรียกใช้
+- ลดการใช้โทเค็นของ Tool ได้ถึง 10 เท่า
+- รองรับการเพิ่ม Tool ได้อย่างอิสระ โดยไม่ทำให้ Context บวม
+- Skill และคำสั่งเฉพาะทาง ระบบชี้ชื่อไว้ Agent เปิดเองเมื่อเจองานนั้น
+- ระบบความจำแยกหมวดหมู่และรายละเอียด Agent เข้าถึงข้อมูลที่จำเป็นได้โดยไม่ต้องโหลดทั้งหมดพร้อมกัน
+
+**ผลลัพธ์: Agent เข้าถึงเครื่องมือและความรู้ได้ครบถ้วน โดยใช้บริบทเท่าที่จำเป็น ประหยัดโทเค็น และไม่แบกสิ่งที่ไม่ได้ใช้งาน**
 
 ## มันเรียนวิธีทำงานของคุณ
 
@@ -238,9 +256,9 @@ Luna 0.64 ล้าน เทียบ 0.30–0.57 ล้าน · Terra 0.93 �
 | ช่องทาง | ติดตั้ง | อัปเดต |
 |:---|:---|:---|
 | **Microsoft Store** | [หน้า Store](https://apps.microsoft.com/detail/9N4KKBRRSCZZ) หรือ `winget install --id=9N4KKBRRSCZZ --source=msstore` | Windows อัปเดตให้ |
-| **ตัวติดตั้ง** | [aetox-amd64-installer.exe](https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-amd64-installer.exe) | ในแอป: **ดาวน์โหลดอัปเดต → รีสตาร์ตเพื่ออัปเดต** |
-| **Aetox CLI** | [aetox-cli-setup.exe](https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-cli-setup.exe) | ลงในโฟลเดอร์ผู้ใช้ ไม่ต้องใช้สิทธิ์แอดมิน เพิ่มตัวเองเข้า PATH |
-| **Scoop** | `scoop install https://raw.githubusercontent.com/Mikedev115/Aetox/main/scoop/aetox.json` | `scoop update aetox` |
+| **ตัวติดตั้ง** | [aetox-amd64-installer.exe](https://github.com/Mikedev115/Aetox-Harness/releases/latest/download/aetox-amd64-installer.exe) | ในแอป: **ดาวน์โหลดอัปเดต → รีสตาร์ตเพื่ออัปเดต** |
+| **Aetox CLI** | [aetox-cli-setup.exe](https://github.com/Mikedev115/Aetox-Harness/releases/latest/download/aetox-cli-setup.exe) | ลงในโฟลเดอร์ผู้ใช้ ไม่ต้องใช้สิทธิ์แอดมิน เพิ่มตัวเองเข้า PATH |
+| **Scoop** | `scoop install https://raw.githubusercontent.com/Mikedev115/Aetox-Harness/main/scoop/aetox.json` | `scoop update aetox` |
 
 ตัวติดตั้งยังไม่ได้เซ็นโค้ด Windows จึงอาจขึ้น **"Windows protected your PC"** ให้กด **More info → Run anyway**
 หรือใช้ตัวจาก Store ที่ Microsoft เซ็นให้ zip พกพา เรื่องแอนตี้ไวรัส และวิธีแก้เมื่ออัปเดตไม่ติด:
@@ -270,8 +288,8 @@ Aetox ใช้ฟรี และไม่ใช่โอเพนซอร์�
 บอกทุก Go module และ web package ที่ build เข้าไป ส่วนที่เป็น Go เทียบกับตัวไฟล์ได้เองด้วย `go version -m aetox.exe`
 ส่วนตัวที่ลงจาก Microsoft Store นั้น Microsoft เป็นคน sign ให้
 
-Aetox เขียนโดยคนคนเดียว ชุมชนหลักอยู่ที่[กลุ่ม Facebook](https://www.facebook.com/share/g/1BnXC5EiWg/) — ถามและเสนอไอเดียได้ที่นั่น ส่วนข่าวและประกาศรุ่นออกที่ [Discussions](https://github.com/Mikedev115/Aetox/discussions) และ [Releases](https://github.com/Mikedev115/Aetox/releases)
-แจ้งบั๊กที่ [issues](https://github.com/Mikedev115/Aetox/issues) โดย **ตั้งค่า** ในแอปจะกรอกเวอร์ชันและ log
+Aetox เขียนโดยคนคนเดียว ชุมชนหลักอยู่ที่[กลุ่ม Facebook](https://www.facebook.com/share/g/1BnXC5EiWg/) — ถามและเสนอไอเดียได้ที่นั่น ส่วนข่าวและประกาศรุ่นออกที่ [Discussions](https://github.com/Mikedev115/Aetox-Harness/discussions) และ [Releases](https://github.com/Mikedev115/Aetox-Harness/releases)
+แจ้งบั๊กที่ [issues](https://github.com/Mikedev115/Aetox-Harness/issues) โดย **ตั้งค่า** ในแอปจะกรอกเวอร์ชันและ log
 ที่ตัดข้อมูลลับออกแล้วให้ ❤️ [สนับสนุนโปรเจกต์](SPONSOR.md)
 
 ---

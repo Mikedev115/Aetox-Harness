@@ -71,7 +71,9 @@ Being closed is not a judgement of the person who sent it.
 ## Licence of what you send
 
 You keep the copyright in what you send. By sending it you allow it to be used in Aetox under the
-project's licence — see [LICENSE](LICENSE). There is no CLA to sign.
+project's licence — see [LICENSE](LICENSE), and section 8 there for the exact grant. There is no CLA to
+sign: opening a pull request, attaching a patch to an issue, or posting code is how you accept those
+terms.
 
 ## Writing to the maintainer
 

@@ -10,7 +10,7 @@
 - **เวอร์ชันที่ติดตั้ง** เช่น `v1.9.9`
 - **ช่องทาง** หนึ่งในสี่แบบ: *ติดตั้งด้วยตัวติดตั้ง* · *แบบพกพา แตกจากไฟล์ zip* · *ติดตั้งจาก Microsoft Store* · *ติดตั้งผ่าน Scoop*
 
-วิธีอัปเดตขึ้นกับช่องทาง ไม่ใช่กับรุ่น รุ่นล่าสุดดูได้ที่ [หน้า Releases](https://github.com/Mikedev115/Aetox/releases/latest)
+วิธีอัปเดตขึ้นกับช่องทาง ไม่ใช่กับรุ่น รุ่นล่าสุดดูได้ที่ [หน้า Releases](https://github.com/Mikedev115/Aetox-Harness/releases/latest)
 
 ## แอปบอกเองเมื่อมีรุ่นใหม่
 
@@ -35,7 +35,7 @@
 **พร้อมแล้ว** ให้กดรีสตาร์ทได้ทันทีโดยไม่ต้องโหลดใหม่ ถ้าระหว่างนั้นมีรุ่นที่ใหม่กว่าออกมาอีก แอปจะทิ้งไฟล์เก่าแล้วเสนอรุ่นล่าสุดแทน
 
 **ทางมือ** (ใช้ได้เสมอ): ปิด Aetox ให้หมด แล้วรัน
-[aetox-amd64-installer.exe รุ่นล่าสุด](https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-amd64-installer.exe)
+[aetox-amd64-installer.exe รุ่นล่าสุด](https://github.com/Mikedev115/Aetox-Harness/releases/latest/download/aetox-amd64-installer.exe)
 ทับของเดิม
 
 ### แบบพกพา (zip)
@@ -44,7 +44,7 @@
 2. กดรีสตาร์ท หรือปิดแอปตามปกติแล้วเปิดใหม่ทีหลัง ตอนเปิดครั้งถัดไปจะเป็นรุ่นใหม่ ไม่ต้องใช้สิทธิ์ผู้ดูแล
 
 **ทางมือ:** ปิด Aetox โหลด
-[zip รุ่นล่าสุด](https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-windows-amd64-portable.zip)
+[zip รุ่นล่าสุด](https://github.com/Mikedev115/Aetox-Harness/releases/latest/download/aetox-windows-amd64-portable.zip)
 แล้วแตกทับโฟลเดอร์เดิม ต้องได้**ทั้งสองไฟล์** จากรุ่นเดียวกัน เอาแค่ `aetox.exe` ไฟล์เดียวไม่ได้ ตัวหน้าต่างกับ engine
 ต่างรุ่นกันคุยกันไม่รู้เรื่อง
 
@@ -78,7 +78,7 @@ manifest ของ Scoop ตามหลังหน้า Releases ไม่ก
 | **ไม่ได้รับข้อมูลเลยนาน 60 วินาที** | เน็ตหลุดระหว่างโหลด | กด **ลองอีกครั้ง** โหลดใหม่ตั้งแต่ต้น ไม่มีอะไรเสียหาย |
 | **อัปเดตไม่สำเร็จ** อื่น ๆ | ข้อความต่อท้ายบอกเหตุ | รุ่นที่ใช้อยู่ยังครบ ใช้ต่อได้ ลองอีกครั้ง หรือใช้ทางมือ |
 | ไม่มีการ์ดเลยทั้งที่มีรุ่นใหม่ | ตรวจไม่สำเร็จ (แอปเงียบไว้) หรือปิดการตรวจไว้ด้วย `AETOX_DISABLE_UPDATE_CHECK` | กด **ตรวจหาการอัปเดต** ในหน้าเกี่ยวกับ Aetox จะเห็นเหตุผล |
-| Windows Defender กักไฟล์หลังอัปเดต | คำตัดสินผิดของ Defender กับไฟล์ใหม่ | ทำตามย่อหน้า Windows Defender ใน [README › ติดตั้ง](../README.th.md#ติดตั้ง) แล้ว[แจ้งปัญหา](https://github.com/Mikedev115/Aetox/issues) |
+| Windows Defender กักไฟล์หลังอัปเดต | คำตัดสินผิดของ Defender กับไฟล์ใหม่ | ทำตามย่อหน้า Windows Defender ใน [README › ติดตั้ง](../README.th.md#ติดตั้ง) แล้ว[แจ้งปัญหา](https://github.com/Mikedev115/Aetox-Harness/issues) |
 
 ยังไม่หาย: **การตั้งค่า › เกี่ยวกับ Aetox › แจ้งปัญหา** แอปกรอกรุ่น ระบบ และบันทึกล่าสุดให้ คุณเห็นทุกบรรทัดก่อนส่ง
 
@@ -92,7 +92,7 @@ signature- and hash-checked before use.
 
 - **Installer:** *Download* → *Restart to update* → press **Yes** at the Windows admin prompt; the app reopens on
   the new build. Manual way: close Aetox and run the
-  [latest installer](https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-amd64-installer.exe) over it.
+  [latest installer](https://github.com/Mikedev115/Aetox-Harness/releases/latest/download/aetox-amd64-installer.exe) over it.
 - **Portable zip:** *Download* swaps both exes in place; the next launch is the new build. Manually, extract the
   latest zip over the folder — both files, always from the same release.
 - **Microsoft Store:** Windows updates it (Store › Library › Get updates).

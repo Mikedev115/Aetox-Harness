@@ -71,8 +71,8 @@ brilliance. The model is yours; whichever one you have.
 </p>
 
 <p align="center">
-  <strong><a href="https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-amd64-installer.exe">Download the Windows installer (.exe)</a></strong>
-  · <a href="https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-cli-setup.exe">Aetox CLI</a>
+  <strong><a href="https://github.com/Mikedev115/Aetox-Harness/releases/latest/download/aetox-amd64-installer.exe">Download the Windows installer (.exe)</a></strong>
+  · <a href="https://github.com/Mikedev115/Aetox-Harness/releases/latest/download/aetox-cli-setup.exe">Aetox CLI</a>
   · <a href="#install">Scoop and portable zip</a><br>
   Windows 10+ · x64 · Free to use · Bring your own model, or run one locally for free
 </p>
@@ -138,6 +138,24 @@ The model thinks. The environment does the rest — with real parts, not simulat
   check, how a Thai tax invoice rounds — and how you work.
 - **A check before it hands back.** It runs the tests, opens the file it made, and says plainly what it could not
   prove.
+
+## Build an environment of your own
+
+- **Add your own tools** — have the agent build a new one to your need
+- **Build your own work room** — design the 3D space on the right as you like
+- **Make the system look like yours** — set the background to your own style
+
+## Powered by Aetox Harness
+
+A context-management architecture that lets the agent extend what it can do, without carrying every detail all the time.
+
+- A specialised tool is kept as an index; the real detail loads only when it is called
+- A tool's token cost drops by up to 10×
+- Tools can be added freely, without swelling the context
+- Skills and specialised commands: the system names them, and the agent opens the one the job needs
+- Memory is split by category and by detail, so the agent reaches what it needs without loading all of it at once
+
+**The result: the agent reaches every tool and every piece of knowledge it needs, using only the context that requires it — saving tokens, and carrying nothing it is not using.**
 
 ## It learns how you work
 
@@ -259,9 +277,9 @@ and it draws on your own GPU, FLUX.2 klein included. [Local pictures](docs/LOCAL
 | Channel | Install | Updates |
 |:---|:---|:---|
 | **Microsoft Store** | [Store page](https://apps.microsoft.com/detail/9N4KKBRRSCZZ) or `winget install --id=9N4KKBRRSCZZ --source=msstore` | Windows updates it |
-| **Installer** | [aetox-amd64-installer.exe](https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-amd64-installer.exe) | In the app: **Download the update → Restart to update** |
-| **Aetox CLI** | [aetox-cli-setup.exe](https://github.com/Mikedev115/Aetox/releases/latest/download/aetox-cli-setup.exe) | Per user, no admin rights, adds itself to PATH |
-| **Scoop** | `scoop install https://raw.githubusercontent.com/Mikedev115/Aetox/main/scoop/aetox.json` | `scoop update aetox` |
+| **Installer** | [aetox-amd64-installer.exe](https://github.com/Mikedev115/Aetox-Harness/releases/latest/download/aetox-amd64-installer.exe) | In the app: **Download the update → Restart to update** |
+| **Aetox CLI** | [aetox-cli-setup.exe](https://github.com/Mikedev115/Aetox-Harness/releases/latest/download/aetox-cli-setup.exe) | Per user, no admin rights, adds itself to PATH |
+| **Scoop** | `scoop install https://raw.githubusercontent.com/Mikedev115/Aetox-Harness/main/scoop/aetox.json` | `scoop update aetox` |
 
 The installer is not code-signed yet, so Windows may show **"Windows protected your PC"**: choose **More info →
 Run anyway**, or use the Store build, which Microsoft signs. Portable zip, antivirus notes and what to do when an
@@ -292,8 +310,8 @@ the app's update key, and releases built after 21 Oct 2026 also carry `sbom.txt`
 built into it. The Go part can be checked against the binary itself with `go version -m aetox.exe`. The Microsoft
 Store build is signed by Microsoft.
 
-Aetox is written by one person. The community lives in the [Facebook group](https://www.facebook.com/share/g/1BnXC5EiWg/) — questions and ideas go there. News and release announcements go to [Discussions](https://github.com/Mikedev115/Aetox/discussions) and [Releases](https://github.com/Mikedev115/Aetox/releases).
-Bugs: [issues](https://github.com/Mikedev115/Aetox/issues) — **Settings** in the app prefills one with your
+Aetox is written by one person. The community lives in the [Facebook group](https://www.facebook.com/share/g/1BnXC5EiWg/) — questions and ideas go there. News and release announcements go to [Discussions](https://github.com/Mikedev115/Aetox-Harness/discussions) and [Releases](https://github.com/Mikedev115/Aetox-Harness/releases).
+Bugs: [issues](https://github.com/Mikedev115/Aetox-Harness/issues) — **Settings** in the app prefills one with your
 version and a log with secrets already stripped. ❤️ [Support the project](SPONSOR.md)
 
 ---
