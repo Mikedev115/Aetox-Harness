@@ -1,0 +1,10 @@
+{
+  "api": 1,
+  "kind": "room",
+  "id": "example-hospital",
+  "name": "Ward",
+  "description": "An example room: a hospital ward painted from look.json, with no page of its own.",
+  "tier": "data",
+  "levels": ["company", "dept", "team"],
+  "contract": 1
+}

@@ -1,0 +1,12 @@
+{
+  "contract": 1,
+  "palette": {
+    "ground": "#e8eef0",
+    "slab": "#eef4f5",
+    "wallIn": "#f7fbfc",
+    "wallOut": "#dfe8ea",
+    "wood": "#c9b79a",
+    "cyan": "#3fa9c9",
+    "green": "#5aa87a"
+  }
+}

@@ -11,6 +11,7 @@
 | วิธีติดตั้ง · Install | [README › Install](../README.md#install) · [ภาษาไทย](../README.th.md#ติดตั้ง) |
 | **อัปเดตเป็นรุ่นใหม่ · Updating** | [UPDATING.md](UPDATING.md) — ทีละช่องทาง และอัปแล้วไม่ขึ้นต้องทำอะไร |
 | สร้างภาพในเครื่อง · Local pictures | [LOCAL-IMAGES.md](LOCAL-IMAGES.md) — ComfyUI, Forge Neo / A1111, FLUX.2 klein |
+| สร้างห้องเอง · Room packs | [rooms/](rooms/README.md) — ห้องคือโฟลเดอร์เดียว ตรวจได้ด้วย `aetox room check` |
 | แต่ละรุ่นเปลี่ยนอะไร · What changed | [release-notes/](release-notes) |
 | รองรับระบบไหน · Platforms | [PLATFORM-SUPPORT.md](../PLATFORM-SUPPORT.md) |
 | กำลังทำอะไรต่อ · Roadmap | [ROADMAP.md](../ROADMAP.md) |

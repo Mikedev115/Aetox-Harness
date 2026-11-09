@@ -37,8 +37,8 @@ redistribute.
 
    "Your Content" means anything You author for use with the Software:
    skills, agents, prompts, configuration files, memory files, MCP server
-   definitions, scripts You ask the Software to run, and the files the
-   Software produces on Your instruction.
+   definitions, room packs, theme packs, scripts You ask the Software to
+   run, and the files the Software produces on Your instruction.
 
 2. LICENCE GRANTED
 
@@ -73,13 +73,14 @@ redistribute.
 4. YOUR OWN EXTENSIONS ARE YOURS
 
    Nothing in this Licence restricts Your Content. Writing skills, agents,
-   prompts, configuration, and MCP servers for the Software, and distributing
-   or selling them, is expressly permitted; that is what the Software is for.
-   Your Content is Yours. The Licensor claims no ownership in it and no
-   licence to it.
+   prompts, configuration, MCP servers, room packs and theme packs for the
+   Software, and distributing or selling them, is expressly permitted; that
+   is what the Software is for. Your Content is Yours. The Licensor claims
+   no ownership in it and no licence to it.
 
    This permission covers material that runs alongside or on top of the
-   Software through the extension points the Software provides. It does not
+   Software through the extension points the Software provides, including a
+   room pack's own page that the Software serves and sandboxes. It does not
    permit distributing any part of the Software itself.
 
 5. RESTRICTIONS
