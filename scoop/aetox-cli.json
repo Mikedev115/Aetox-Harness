@@ -1,9 +1,9 @@
 {
-    "version": "1.11.4",
+    "version": "1.12.0",
     "description": "Aetox in the terminal — the coding desk as a full-screen console (`aetox`), or one turn with the answer on stdout (`aetox chat \"goal\"`)",
     "homepage": "https://github.com/Mikedev115/Aetox-Harness",
     "license": "Proprietary",
-    "url": "https://github.com/Mikedev115/Aetox-Harness/releases/download/v1.11.4/aetox-cli-windows-amd64.zip",
+    "url": "https://github.com/Mikedev115/Aetox-Harness/releases/download/v1.12.0/aetox-cli-windows-amd64.zip",
     "hash": "32725B8883EFB0D1A436753D5FE37273E31833D7BB929278F1A0C88171E46003",
     "bin": "aetox.exe",
     "notes": "Uses the engine of the Aetox app when the app is installed on this machine (one engine per data folder), else the engine that comes with this package. Keys, sessions and memory are the app's (%APPDATA%\\aetox). First run with no model chosen asks for a provider; `aetox login codex` signs in instead of a key.",
