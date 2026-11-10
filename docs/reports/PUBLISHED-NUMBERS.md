@@ -90,9 +90,9 @@
 กับ `KPI_VALUES`) — **แก้แล้วบ่ายวันเดียวกัน** (`aetox-landing` ab95a0f: 80.8 สองไฟล์ · 33.6 · 3,371/1,747 ·
 35 tools · 24 providers + dialog เพิ่ม codex/opencode zen/opencode go) และ deploy ผ่าน push ของรีโปนั้นเอง
 
-**อัปเดต 11 พ.ย. 2026 (v1.12.0)** — วัดจาก artifact ที่เผยแพร่จริง (zip ที่โหลดจาก release มี SHA-256 ตรง `checksums.txt` 765BD7C2…):
+**อัปเดต 11 พ.ย. 2026 (v1.11.5)** — วัดจาก artifact ที่เผยแพร่จริง (zip ที่โหลดจาก release มี SHA-256 ตรง `checksums.txt` FBF50CC1…):
 ตัวติดตั้ง **51.1 MiB** · portable **50.4 MiB** · ในเครื่อง **129.85 MiB สองไฟล์** (`aetox.exe` 79.74 + `aetox-engine.exe` 50.11) ·
-Store **51.8 MiB / 1.12.0.0** (ยังไม่ส่ง) — ค่าอยู่ที่ [BENCHMARK.md](BENCHMARK.md) ข้อ 4 กับข้อ 13 ไม่มีสำเนาที่นี่ ·
+Store **51.8 MiB / 1.11.5.0** (ยังไม่ส่ง) — ค่าอยู่ที่ [BENCHMARK.md](BENCHMARK.md) ข้อ 4 กับข้อ 13 ไม่มีสำเนาที่นี่ ·
 ตัวคูณ “เล็กกว่า X เท่า” หารใหม่ทั้ง 13 รายการแล้วค่าจำนวนเต็มเท่าเดิม · README ทั้งสองยังไม่มีเลขขนาดในเนื้อหา ·
 APK ที่ติดไปกับ build คือ **0.3.6** ตัวเดิม (โค้ด Android ไม่เปลี่ยนตั้งแต่ `mobile-v0.3.6`)
 
