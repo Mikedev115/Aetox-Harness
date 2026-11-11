@@ -4,7 +4,7 @@
     "homepage": "https://github.com/Mikedev115/Aetox-Harness",
     "license": "Proprietary",
     "url": "https://github.com/Mikedev115/Aetox-Harness/releases/download/v1.11.8/aetox-windows-amd64-portable.zip",
-    "hash": "92481F7B153C13136C95B26C9E69D358848A61052B2745ABEF934D43B2A2B41C",
+    "hash": "6BEFE4E8EC706384FA2D1FC893B668169CDBE5C0B8BB3768B571097D0EF2399A",
     "shortcuts": [
         ["aetox.exe", "Aetox"]
     ],
