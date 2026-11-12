@@ -228,17 +228,16 @@ when it opens one, so fifty skills cost what five cost, and adding an MCP server
 schemas. Every agent can take its own skills and servers, separately.
 
 Where a job needs the whole picture we do not make the model ask for it a slice at a time — the breadth is handed
-over once, up front, and the job finishes in one turn. That is where the tokens go: total input runs 1.1–8.5× the
-other harnesses, but about **91% of it is cached input**, which costs several times less. **The real burden is
-uncached input plus output, and that differs by only 1.1–2.1×**: Luna 0.64M against 0.30–0.57M · Terra 0.93M against
-0.50–0.81M.
+over once, up front, and the job finishes in one turn. What rides on every round is capped instead: the tool block is
+held under an **8,600-token** ceiling by a test, and a fresh install measures **26 tools / ~7,238 tokens** inside it.
+The schemas of tools the job has not reached for stay on the shelf behind `tool_view` — withholding 11 of them took
+the block from 12,400 to **8,600 tokens** in 1.11.0.
 
-So the extra tokens on some coding jobs are not waste but the side effect of squeezing the model's capability out in
-exchange for better work, and they do not happen on ordinary jobs — following an instruction, adding an MCP server or
-installing a batch of skills is handled by the same mechanism, and in real use it comes out surprisingly cheap.
+Work that keeps checking itself still sends its conversation again each round, and most of that is cached input at a
+fraction of the price. The [1.10.0 report](docs/reports/coding-harness-1.10.0/README.en.md) is the last full
+measurement of that split; it is not re-run on every release.
 
-**This is the trade worth making**, not something to fear. If you want to cut it, cut it by choosing a model that fits
-the job.
+**The lever that decides the bill is the model, not the harness.**
 
 - **Jobs that read a whole project, or run long** → the large model has the edge
 - **Routine jobs you repeat** → the small model is enough, and the system makes up the difference

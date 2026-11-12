@@ -10,6 +10,8 @@
 >
 > Every cell is 3 runs. The large number is the mean; the small line under it is the best run and which run it was.
 > Same task set as the [1.9.0 report](../coding-harness-2026-09-27). Other harnesses' results come from that measurement round.
+>
+> **The token figures here are 1.10.0's.** Since 1.11.0 a tool's schema is withheld until it is called: withholding 11 tools took the block from 12,400 to 8,600 tokens, and a test holds it under that ceiling (`TestTheToolBlockStaysWithinItsBudget`). No coding-harness run has measured 1.11.x yet, so every token column in this report is a figure for the build that was tested, not for today's.
 
 ---
 
@@ -38,7 +40,7 @@ A gap of a few points in this report reads as "about the same". The conclusions 
 
 - **Official SWE-bench on Luna.** 1 of 3 runs. The other two fixed `client_ip` as the bug report asked, but not `remote_ip`, which the dataset's tests also check. Other harnesses on Luna scored 33–67%.
 - **Time on Terra.** 63 min, equal to OpenCode but slower than pi (46) and Codex CLI (54).
-- **Tokens are still higher than the others.** Luna 6.4 M (others 0.8–4.5) · Terra 8.3 M (others 1.8–7.5). About 90% of that is cached input.
+- **Total tokens, measured on 1.10.0.** Luna 6.4 M (others 0.8–4.5) · Terra 8.3 M (others 1.8–7.5), about 90% of it cached input. The tool layer changed after this edition — see the note under the title.
 
 ### Who Luna and Terra are
 
@@ -131,7 +133,7 @@ Counted from the letters of each answer, excluding code and file names · SEC1 w
 
 ---
 
-## 3. The price paid: why Aetox uses more tokens and time
+## 3. The price paid: the checks, the rounds, and what they cost
 
 Aetox is built to prove work before it says the work is done: run the project's tests or checks, write tests itself when the project has none, then fix until they pass.
 Every check is another round that sends the whole conversation to the model again, which costs tokens and time.
@@ -164,7 +166,7 @@ The numbers that reflect the real load are **uncached (miss)** and **output**. E
 | omp 18.3.4 | 4.45 M | 0.50 M | 0.07 M | 7.40 M | 0.67 M | 0.14 M |
 | pi 0.87.1 | 0.74 M | 0.25 M | 0.05 M | 1.66 M | 0.40 M | 0.10 M |
 
-The full split, including cache-hit rates and Aetox 1.9.7, is in the [Thai report, section 3](README.md#3-ราคาที่จ่าย-ทำไม-aetox-ใช้-token-และเวลามากกว่า).
+The full split, including cache-hit rates and Aetox 1.9.7, is in the [Thai report, section 3](README.md#3-ราคาที่จ่าย-การตรวจ-กี่รอบ-และมันกินอะไร).
 
 ### What benchmark numbers measure, and what they do not
 
