@@ -126,6 +126,64 @@ any of them.
 
 **A job too big for one worker** — handed to a team, back as the finished set, with who did what.
 
+## The file that leaves is the work
+
+Two jobs people hand over every week — a document that goes out under their name, and a workbook someone else
+will keep using. Neither comes back as text in a chat box.
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+**Documents**
+
+### A page in the reader's language — Thai, English, Chinese
+
+Ask for *"a quotation for the website job"* and it picks the page standard that language has, not a generic web page:
+
+**Thai** — TH Sarabun New at the size the printing standard names, A4 with a 30 mm binding edge, a สารบัญ with the
+หน้า column, พ.ศ. dates, 7% VAT, withholding tax stated rather than silently deducted, the total repeated in words.
+
+**English** — A4 or Letter with one-inch margins, decimal-numbered sections, a contents page in Roman numerals, the
+block letter.
+
+**Chinese** — the GB/T 9704-2012 page: its margins, 三号仿宋 on a fixed 28 pt line, the 公文 heading levels
+一、（一）1．, the parts of a 函 — and it says so when the typeface the standard names is not on the machine.
+
+Two shapes cover nearly all of it: a report — cover, contents, sections, annexes — and a one-sheet: quotation,
+letter, notice.
+
+Then it prints the page and reads the printed file back: the fonts really embedded, no table row clipped at a page
+edge, the contents page numbers read off the print instead of guessed. What comes back is the file, and nothing on
+it says it was made by Aetox — it goes out under your name.
+
+<img src="docs/assets/readme-doc-th-20261116.png" alt="A Thai quotation printed on one A4 page: item lines with right-aligned amounts, 7% VAT, and the total repeated in baht words" width="160"> <img src="docs/assets/readme-doc-en-20261116.png" alt="The cover page of an English report: title, abstract and the facts table with the date, version and project value" width="160"> <img src="docs/assets/readme-doc-zh-20261116.png" alt="A Chinese 函 printed on one A4 page: 發文字號, 主送機關, the body and 成文日期 in the GB/T 9704-2012 layout" width="160">
+
+</td>
+<td width="50%" valign="top">
+
+**Spreadsheets**
+
+### A workbook someone else can keep using
+
+Numbers go in as numbers, so `SUM` returns a total and dates sort instead of sitting there as text; a value that
+starts with `=` becomes a live formula; a chart is drawn from the table; a tab prints landscape, fits one page wide
+and repeats its header row on every printed page.
+
+The half that matters more: when the workbook already exists, it opens **that file** and works on it — a cell, a
+styled range, rows inserted, deleted or sorted, a new tab, a dropdown or a number rule on a range, a highlight
+painted by value, the formulas the file really holds — and leaves every part you did not ask about alone, instead of
+rebuilding the sheet from what it happened to read and handing back a photograph of it.
+
+<img src="docs/assets/readme-sheet-20261116.png" alt="The workbook open in Excel: item lines, a SUM total and a VAT row computed by formula" width="380">
+
+</td>
+</tr>
+</table>
+
+<sub>The quotation, the 函 and the workbook are this repo's own template and writer, filled and printed; the English
+report page follows the same path.</sub>
+
 ## Why the same model does better
 
 The model thinks. The environment does the rest — with real parts, not simulations.
@@ -135,7 +193,7 @@ The model thinks. The environment does the rest — with real parts, not simulat
 - **Eyes.** OCR and document readers that read a scanned page instead of asking a vision model to guess, and a page
   captured as it was instead of remembered.
 - **What the model cannot know.** Skills keep it: the 1280×720 frame of a slide room, how an attacker breaks a path
-  check, how a Thai tax invoice rounds — and how you work.
+  check, how a Thai tax invoice rounds, the page standard each language prints to — and how you work.
 - **A check before it hands back.** It runs the tests, opens the file it made, and says plainly what it could not
   prove.
 
