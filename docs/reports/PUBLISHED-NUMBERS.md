@@ -90,6 +90,12 @@
 กับ `KPI_VALUES`) — **แก้แล้วบ่ายวันเดียวกัน** (`aetox-landing` ab95a0f: 80.8 สองไฟล์ · 33.6 · 3,371/1,747 ·
 35 tools · 24 providers + dialog เพิ่ม codex/opencode zen/opencode go) และ deploy ผ่าน push ของรีโปนั้นเอง
 
+**อัปเดต 18 พ.ย. 2026 (v1.11.24)** — วัดจาก artifact ที่เผยแพร่จริง (zip ที่โหลดจาก release มี SHA-256 ตรง `checksums.txt` 65BB877F…):
+ตัวติดตั้ง **52.2 MiB** · portable **51.6 MiB** · ในเครื่อง **132.93 MiB สองไฟล์** (`aetox.exe` 80.70 + `aetox-engine.exe` 52.24) ·
+CLI **32.2 / 43.7 MiB** · Store **53.0 MiB / 1.11.24.0** (ยังไม่ส่ง) — ค่าอยู่ที่ [BENCHMARK.md](BENCHMARK.md) ข้อ 4 กับข้อ 13 ไม่มีสำเนาที่นี่ ·
+ขนาดในตารางข้อ 4 ขยับขึ้น 2.6 MiB (130.3 → 132.9) ตัวคูณ “เล็กกว่า X เท่า” เปลี่ยนสามรายการ: Qwen 4× → **3×** · Codex ตัวติดตั้งเนทีฟ 9× → **8×** · Ollama 22× → **21×** · README ทั้งสองยังไม่มีเลขขนาดในเนื้อหา ·
+APK **0.3.11** (SHA 54a5769c…) ออกเป็น release mobile-v0.3.11 และติดไปกับ build ของรุ่นนี้
+
 **อัปเดต 13 พ.ย. 2026 (v1.11.12)** — วัดจาก artifact ที่เผยแพร่จริง (zip ที่โหลดจาก release มี SHA-256 ตรง `checksums.txt` D0EB51A7…):
 ตัวติดตั้ง **51.4 MiB** · portable **50.7 MiB** · ในเครื่อง **130.6 MiB สองไฟล์** (`aetox.exe` 80.04 + `aetox-engine.exe` 50.54) ·
 CLI **31.4 / 42.6 MiB** · Store **52.1 MiB / 1.11.12.0** (ยังไม่ส่ง) — ค่าอยู่ที่ [BENCHMARK.md](BENCHMARK.md) ข้อ 4 กับข้อ 13 ไม่มีสำเนาที่นี่ ·
