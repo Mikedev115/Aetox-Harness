@@ -10,35 +10,25 @@
 
 | เรื่อง | ฉบับล่าสุด | วัดเมื่อ | สรุปหนึ่งบรรทัด |
 |---|---|---|---|
+| **ผลที่ชนะ รวมทุกชุด** | [WINS.md](WINS.md) | — | ตารางเดียว: รุ่น ชุด โมเดล ผลของเรา และคู่แข่งที่ดีที่สุด — งานโค้ด · สกิลเปิด/ปิด · งานจริงทั้งระบบ |
 | **งานโค้ดจริง เทียบตัวครอบอื่น** | [coding-harness-1.10.0](coding-harness-1.10.0/README.md) | — | 11 โจทย์ × Luna / Terra × 3 รอบ เทียบ OpenCode · Codex CLI · omp · pi · งานหลายเทิร์นและ CWEval สูงสุดในตารางทั้งสองโมเดล · ตอบเป็นภาษาของโจทย์ครบทุกคำตอบ · Terra ดีขึ้นแทบทุกคอลัมน์ · ตัวเลข token ในฉบับนี้เป็นของ 1.10.0 (1.11.0 withhold เครื่องมือ บล็อก 12,400 → 8,600 token) |
-| **โจทย์ยาก บนโมเดลใหญ่** | [HARD-SOL-1.9.7-20261004.md](HARD-SOL-1.9.7-20261004.md) | 4 ต.ค. 2026 | DeepSWE 1.1 + Terminal-Bench 2.1 ข้อยาก 12 ข้อ บน GPT-6 Sol · Aetox 7/12 · Codex CLI 7/12 · OpenCode 6/12 |
-| **5 โจทย์ระดับกลาง ข้ามรุ่นและขนาดโมเดล** | [HARD5-1.9.7-20261004.md](HARD5-1.9.7-20261004.md) | 4 ต.ค. 2026 | Luna / Terra / Sol บน Aetox 1.9.0 → 1.9.7 · แยกโมเดลเล็กกับกลางได้ แยก Sol กับ Terra ไม่ได้ |
-| **ต้นทุนเมื่อเปลี่ยนโมเดล · ลูกมือลดค่าใช้จ่ายแค่ไหน** | [MODEL-COST-SIMULATION-LIVING-REALM-20261004.md](MODEL-COST-SIMULATION-LIVING-REALM-20261004.md) | 4 ต.ค. 2026 | งานจริงงานเดียว คิดราคาใหม่ด้วยโมเดลอื่น 8 ตัว · ลูกมือลดค่าใช้จ่ายราว 6% บนราคา OpenAI 18–30% บนค่ายอื่น |
-| **ลูกมือในงานจริง (ระบบทั้งก้อน)** | [LIVING-REALM-DELEGATION-TOKENS-20261004.md](LIVING-REALM-DELEGATION-TOKENS-20261004.md) | 4 ต.ค. 2026 | ตัวหลัก 40 รอบ ลูกมือ 17 รอบ · บริบทตัวหลักจบที่ 107k แทน 190k และเร็วขึ้นราว 8 นาที · benchmark งานโค้ดวัดตัวหลักเป็นส่วนใหญ่ ส่วนนี้วัดทั้งระบบ |
 | **สกิลช่วยงานแค่ไหน** | [SKILL-BENCH.md](SKILL-BENCH.md) | 25–26 ก.ย. 2026 | เปิดสกิลเทียบปิดบนโมเดลเดียวกัน รวมสิ่งที่ไม่ขยับ |
-| **Claude Code ผ่าน Aetox: cache แตกไหม** | [claude-code-cache-2026-10-21](claude-code-cache-2026-10-21/README.md) | 21 ต.ค. 2026 | ไม่แตก · argv เหมือนเดิมทุก turn · re-write ~14k ครั้งเดียวต่อ chat ตอน resume ครั้งแรก ซึ่ง `claude` เปล่าก็เป็น · 12 chats จริง 95 requests miss 1 |
 | **token ไปอยู่ตรงไหนในแต่ละคำขอ** | [TOKEN-AUDIT.md](TOKEN-AUDIT.md) | 20 ส.ค. 2026 | แยกส่วนของคำขอ และส่วนที่จ่ายแล้วไม่ได้อะไร |
 | **ความเร็ว แรม ขนาดแอป** | [BENCHMARK.md](BENCHMARK.md) | ต่อเนื่อง | กติกาการวัดและผลเทียบเครื่องมือ AI ตัวอื่นบนเครื่องเดียวกัน |
-| **ค้นคว้าและให้เหตุผล** | [aetox-research-reasoning-evaluation.md](aetox-research-reasoning-evaluation.md) | — | การค้นคว้า ตรวจหลักฐาน และสังเคราะห์ |
 | **เทสต์รายโมดูล** | [TEST-REPORT.md](TEST-REPORT.md) | — | เทสต์ของแต่ละโมดูล และสิ่งที่เทสต์ไม่ได้ตรวจ |
-| **ตรวจการปล่อยรุ่น** | [release-1.9.10-verification.md](release-1.9.10-verification.md) | 6 ต.ค. 2026 | ตรวจแพ็กเกจและด่านปล่อยของรุ่น |
 
 ## ฉบับก่อนหน้า (ถูกแทนแล้ว เก็บไว้ดูย้อนหลัง)
 
 | ฉบับ | แทนด้วย | หมายเหตุ |
 |---|---|---|
 | [coding-harness-1.9.27](coding-harness-1.9.27/README.md) | coding-harness-1.10.0 | ผลของ Aetox รุ่นเก่าและตัวครอบอื่นในฉบับ 1.10.0 มาจากฉบับนี้ · การทดลองตัดทีละส่วนของ CWEval และผลบน GPT-6 Sol อยู่ที่นี่ |
-| [coding-harness-1.9.7](coding-harness-1.9.7/README.md) | coding-harness-1.9.27 | ผลของตัวครอบอื่นในฉบับ 1.9.27 มาจากฉบับนี้ (รอบวัดเดียวกับ 1.9.3) |
-| [coding-harness-1.9.3](coding-harness-1.9.3/README.md) | coding-harness-1.9.7 | ผลของตัวครอบอื่นในฉบับ 1.9.7 มาจากรอบวัดนี้ |
-| [coding-harness-2026-09-27](coding-harness-2026-09-27/README.md) | coding-harness-1.9.7 | ฉบับ 1.9.0 · มีโจทย์ ต้นทาง และสัญญาอนุญาตของทุกโจทย์ ซึ่งฉบับหลังอ้างถึง |
-| [release-1.9.5-verification.md](release-1.9.5-verification.md) | release-1.9.10-verification | |
-| [release-1.9.4-verification.md](release-1.9.4-verification.md) | release-1.9.5-verification | |
+| [coding-harness-2026-09-27](coding-harness-2026-09-27/README.md) | coding-harness-1.9.27 | ฉบับ 1.9.0 · มีโจทย์ ต้นทาง และสัญญาอนุญาตของทุกโจทย์ ซึ่งฉบับหลังอ้างถึง |
 
-## นำร่องวิธีวัด
+## ถอดออกจากที่เก็บ 19 พ.ย. 2026
 
-| รายงาน | วัดอะไร |
-|---|---|
-| [harness-database-pilot-2026-09-18.md](harness-database-pilot-2026-09-18.md) | นำร่องวิธีวัดงานฐานข้อมูล Aetox เทียบ Codex |
+ชุดที่รันแล้วไม่ได้ชนะ และชุดที่ยังสรุปไม่ได้ ถูกถอดออกทั้งฉบับ — ยังอยู่ใน git history:
+HARD-SOL · HARD5 · coding-harness 1.9.3 · coding-harness 1.9.7 · นำร่องงานฐานข้อมูล · cache ของ Claude Code ·
+งานวิจัยและเหตุผล · ตรวจการปล่อยรุ่น 1.9.4 / 1.9.5 / 1.9.10 · งานทีม Living Realm (แถวที่ชนะย้ายไป [WINS.md](WINS.md))
 
 ---
 

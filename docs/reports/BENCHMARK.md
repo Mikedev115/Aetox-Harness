@@ -766,7 +766,6 @@ Store ถือเลข `1.9.10.0` มี exe hash ตรงกับ portable 
 หารตัวคูณด้วย 112.25048828125 MiB: Copilot CLI 1 · Claude Code 2 · Zed 4 · Qwen 4 · OpenCode 4 ·
 Comet 4 · Codex npm 6 · Cursor 8 · Windsurf 8 · Antigravity 9 · Codex เนทีฟ 10 · VS Code 10 · Ollama 25
 ไม่ได้วัด RAM เวลาเปิด จำนวนเทสต์ UI หรือขนาดคู่แข่งใหม่
-รายละเอียดอยู่ใน[รายงานตรวจแพ็กเกจ 1.9.10](release-1.9.10-verification.md)
 
 ### 2026-10-02 — วัด artifact และตรวจแพ็กเกจ v1.9.5
 
@@ -782,7 +781,7 @@ exe ของ Store ตรงกับ portable ทั้งสองตัว �
 หารตัวคูณด้วย 91.55615234375 MiB: Copilot CLI 1 (137 / 91.556 ≈ 1.496 จึงปัดลงจาก 2 ในรุ่นก่อน) ·
 Claude Code 3 · Zed 5 · Qwen 5 · OpenCode 5 · Comet 5 · Codex npm 8 · Cursor 10 · Windsurf 10 ·
 Antigravity 11 · Codex เนทีฟ 12 · VS Code 13 · Ollama 31 รอบนี้ไม่วัดจำนวนเทสต์ UI, RAM, เวลาเปิด
-หรือขนาดคู่แข่งใหม่ รายละเอียดและ hash อยู่ใน[รายงานตรวจแพ็กเกจ 1.9.5](release-1.9.5-verification.md)
+หรือขนาดคู่แข่งใหม่
 
 ### 2026-09-30 — วัด artifact และตรวจแพ็กเกจ v1.9.4
 
@@ -797,8 +796,7 @@ exe ของ Store ตรงกับ portable ทั้งสองตัว �
 
 หารตัวคูณด้วย 91.2333984375 MiB: Copilot CLI 2 · Claude Code 3 · Zed 5 · Qwen 5 · OpenCode 5 ·
 Comet 5 · Codex npm 8 · Cursor 10 · Windsurf 10 · Antigravity 11 · Codex เนทีฟ 12 · VS Code 13 · Ollama 31
-รอบนี้ไม่วัดจำนวนเทสต์ UI, RAM, เวลาเปิด หรือขนาดคู่แข่งใหม่ รายละเอียดและ hash ทุกไฟล์อยู่ใน
-[รายงานตรวจแพ็กเกจ 1.9.4](release-1.9.4-verification.md)
+รอบนี้ไม่วัดจำนวนเทสต์ UI, RAM, เวลาเปิด หรือขนาดคู่แข่งใหม่
 
 ### 2026-09-17 — วัด artifact และชุดทดสอบของ v1.7.2
 

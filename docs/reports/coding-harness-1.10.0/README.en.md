@@ -171,7 +171,7 @@ The full split, including cache-hit rates and Aetox 1.9.7, is in the [Thai repor
 ### What benchmark numbers measure, and what they do not
 
 A benchmark gives one instruction and nobody answers questions. Every harness gets the same instruction, byte for byte, so the numbers mostly reflect the main agent working alone.
-In larger real work, helper agents take reading and repetitive loops off the main agent, so it does not carry the whole context ([report](../LIVING-REALM-DELEGATION-TOKENS-20261004.md), Thai).
+In larger real work, helper agents take reading and repetitive loops off the main agent, so it does not carry the whole context ([source](../WINS.md)).
 High token use in a benchmark is therefore not the whole picture of real-world cost.
 
 ---

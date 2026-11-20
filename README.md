@@ -260,7 +260,7 @@ the others. And SWE-bench is the suite we do not win, which is already in this t
 - **Thai slides**: **98 against 49** with the skill off
 - **A video take**: 17.5 s → **11.1 s**, four silences folded and one filler cut, still editable
 - **Teams**: the main agent's context **107k instead of 190k** ·
-  [the whole system measured](docs/reports/LIVING-REALM-DELEGATION-TOKENS-20261004.md)
+  [the whole system measured](docs/reports/WINS.md)
 - **It learns you**: of 16 lines the agent proposed about its owner in three days, 4 were kept and all four were
   about the person; 0 of 8 proposals about the machine survived. That is the bar being applied, not a feature being
   advertised.
