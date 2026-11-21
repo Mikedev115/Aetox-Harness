@@ -33,7 +33,7 @@
 | `internal/` (engine, tools, providers) | ✅ ใช้จริง | ✅ **เทสต์ + race ผ่านบนเคอร์เนลจริง** | ⚠️ type-check ผ่าน ยังไม่เคยรัน |
 | `cmd/aetox` (CLI) + `internal/tui` (จอเต็ม) | ✅ ใช้จริง · จอเต็มทดสอบผ่าน ConPTY และตัวจำลองเทอร์มินัล | ✅ **เทสต์ + race ผ่าน** (จอเต็มยังไม่เคยรันบนเครื่องจริง) | ⚠️ type-check ผ่าน ยังไม่เคยรัน |
 | `desktop/` ทั้งแพ็กเกจ | ✅ ใช้จริง | ✅ **`go test ./...` + `-race` ผ่าน** | ⚠️ type-check ผ่าน ยังไม่เคยรัน |
-| `desktop/` แท็บ browser | ✅ ใช้จริง | ⏳ stub (เฟส 3a) | ⏳ stub (เฟส 3b) |
+| `desktop/` แท็บ browser | ✅ ใช้จริง | ✅ **ใช้จริงบน WebKitGTK (เฟส 3a, 21 พ.ย. 2026)** — ข้อจำกัดอยู่ใน §เฟส 3a | ⏳ stub (เฟส 3b) |
 | binary ภายนอก (tesseract, ffmpeg) | ✅ | ✅ มีข้อความติดตั้งแยก OS อยู่แล้ว | ✅ auto-install ผ่าน brew อยู่แล้ว |
 
 > **ระวังการอ่านตาราง (แก้ 7 ส.ค. 2026):** ✅ ของ Linux = *รันจริงบนเคอร์เนล Linux แล้วผ่าน* ·
@@ -50,9 +50,53 @@
 | **0** | CI matrix — job `unix` (ubuntu + macos), Linux เพิ่ม `-race` | ✅ **เสร็จ** |
 | **1** | `terminal.go` → `ptySession` + `terminal_windows.go` / `terminal_unix.go` (`creack/pty` v1.1.24) | ✅ **เสร็จ** |
 | **2** | `browser.go` → `hostBackend`/`tabView` + `browser_windows.go` + `browser_other.go` (stub) | ✅ **เสร็จ** |
-| 3a | `browser_linux.go` — WebKitGTK widget ใน `GtkOverlay`/`GtkFixed` | ยังไม่เริ่ม |
+| 3a | `browser_linux.go` — WebKitGTK widget ใน `GtkOverlay`/`GtkFixed` | ✅ **เสร็จ 21 พ.ย. 2026** (ดู §เฟส 3a ด้านล่าง) |
 | 3b | `browser_darwin.go` — `WKWebView` เป็น subview ของ Wails `NSView` | ยังไม่เริ่ม |
 | 4 | packaging (`.deb`/`.rpm`/tar.gz + `.app`/`.dmg`) + `bench.sh` | ยังไม่เริ่ม |
+
+### เฟส 3a — สิ่งที่ทำเสร็จ และสิ่งที่มันยังไม่เท่า Windows
+
+`desktop/browser_linux.go` + `desktop/browser_gtk_linux.c/.h` ทำ `hostBackend`/`tabView`
+ครบ 12 เมธอดบน WebKitGTK: แทรก `GtkOverlay`+`GtkFixed` ครอบ `webview-box` ของ Wails
+(หน้าต่างลอยใช้ไม่ได้ — Wayland ให้แอปเลือกตำแหน่ง toplevel ไม่ได้), bridge ชุดเดียวกับ
+WebView2 (`window.webkit.messageHandlers.aetox`), snapshot ผ่าน
+`webkit_web_view_get_snapshot`, PDF ผ่าน GTK print backend ("Print to File"), zoom,
+Inspector, detach เป็นหน้าต่างของตัวเอง, และ callbacks ครบตาม `tabCallbacks`
+
+`callEngine` ตอบทุกเมธอดที่ระบบเรียกจริง โดยแปลงเป็นของ WebKit เอง (ไม่ใช่ CDP):
+
+| เมธอด | ของ WebKit ที่รองรับ |
+|:--|:--|
+| `Runtime.evaluate` | `webkit_web_view_evaluate_javascript` + envelope ที่ประกอบเป็นรูป CDP |
+| `Browser.getVersion` | UA จริงของแท็บ + ชื่อผลิตภัณฑ์ของโฮสต์ |
+| `Emulation.setUserAgentOverride` | `WebKitSettings` ของแท็บนั้น (`webkit_web_view_set_settings`) |
+| `Emulation.setDeviceMetricsOverride` / `setTouchEmulationEnabled` | user script ต่อแท็บ: `devicePixelRatio`, `maxTouchPoints`, `ontouchstart`, meta viewport |
+| `DOM.enable` / `DOM.setFileInputFiles` | handle ที่ envelope แจกให้ DOM node + `DataTransfer` ที่ยัดไบต์จริง (เพดาน 32 MiB) |
+| `Input.insertText` / `dispatchKeyEvent` / `dispatchMouseEvent` | event ในหน้า (`setRangeText`, `execCommand`, `KeyboardEvent`, `MouseEvent`) |
+| `Page.getLayoutMetrics` / `Page.captureScreenshot` | วัดจาก layout ของหน้า + snapshot `VISIBLE`/`FULL_DOCUMENT` แล้ว crop ตาม clip |
+| `Page.printToPDF` | GTK print backend ("Print to File") |
+
+permission ได้คำตอบเท่า Windows ด้วยกลไกของโฮสต์เอง: WebKitGTK ไม่ส่ง flag user-initiated
+มาให้ จึงฟัง `button-press-event`/`key-press-event` บน webview (คลิก/คีย์ที่ compositor
+ส่งถึงแท็บจริง) และนับว่าภายใน 5 วินาทีคือ "ผู้ใช้กด" — สคริปต์แตะคิวอีเวนต์ของ GDK ไม่ได้
+จึงปลอมไม่ได้
+
+สิ่งที่ยังไม่เท่า: event จาก `Input.*` เป็น event ของหน้า ไม่ใช่ของเอนจิน (`isTrusted=false`)
+หน้าที่ยึด `isTrusted` จึงยังต้องใช้ทาง JS ของ `browser_keys.go` — ตรงนี้ WebView2 ดีกว่า ·
+`setShape` วาดขอบโค้ง/ติ่งด้วย cairo แทนการตัดหน้าต่าง (สีเป็นพื้นของแอป ไม่ใช่การเจาะจริง) ·
+`sendBehind` ไม่มีความหมายใน overlay (แท็บถูกจอดนอกหน้าต่างแทน) · และ z-order บน GNOME/KDE
+จริงยังต้องดูด้วยตาเหมือนเดิม
+
+ที่ **ดีกว่า Windows**: การถ่ายภาพ/พิมพ์ PDF ของแท็บที่ไม่ถูกเห็นทำงานได้โดยไม่ต้องมีหน้าต่างลอย
+นอกจอ — Windows ต้องสร้าง popup ที่ -32000 เพราะ child window เป็นได้อย่างเดียวระหว่าง
+"วาดอยู่" กับ "ไม่มีใครเห็น" (browser_windows.go openTab) ส่วนที่นี่ web process วาดภาพเอง
+ไม่สนใจว่าวิดเจ็ตอยู่ตรงไหน · และแคปทั้งหน้าได้จาก `SNAPSHOT_REGION_FULL_DOCUMENT` ครั้งเดียว
+
+หลักฐาน: `desktop/browser_linux_live_test.go` (แท็ก `aetoxlivetest` +
+`AETOX_LINUX_BROWSER_LIVE=1`) รันบนจอ WSLg ผ่าน Docker — โหลดหน้า, อ่านข้อความด้วย
+`Runtime.evaluate`, snapshot 10,311 ไบต์, PDF 738,801 ไบต์, และเมธอดที่ไม่รองรับถูกปฏิเสธ
+พร้อมชื่อ; `go vet -tags webkit2_41 ./desktop/` ผ่าน และ `scripts/linux/build.sh` บิลด์แอปได้
+(80.7 MB, 3m46s)
 
 ## แผนที่ไฟล์ — ไฟล์ไหนของ OS ไหน
 
