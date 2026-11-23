@@ -4,7 +4,7 @@
     "homepage": "https://github.com/Mikedev115/Aetox-Harness",
     "license": "Proprietary",
     "url": "https://github.com/Mikedev115/Aetox-Harness/releases/download/v1.11.35/aetox-cli-windows-amd64.zip",
-    "hash": "E9F45027DFFC4EE688CCED2BC607640E7217D68BD5BD2FAB2828739143C0DF53",
+    "hash": "F15EDD2D988C6627B70091337E92A7BB18FE0154257A3042F2A949F421FBD348",
     "bin": "aetox.exe",
     "notes": "Uses the engine of the Aetox app when the app is installed on this machine (one engine per data folder), else the engine that comes with this package. Keys, sessions and memory are the app's (%APPDATA%\\aetox). First run with no model chosen asks for a provider; `aetox login codex` signs in instead of a key.",
     "checkver": "github",
