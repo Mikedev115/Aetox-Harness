@@ -200,8 +200,17 @@ The model thinks. The environment does the rest — with real parts, not simulat
 ## Build an environment of your own
 
 - **Add your own tools** — have the agent build a new one to your need
+- **Teach it a skill** — a folder with a `SKILL.md`; tick it onto the desks that need it, or keep it inside one
+  worker's home so the deck writer never sees the tax spec
+- **Keep your prompts** — a `.md` in `prompts/` is a `/name`; one that matches a built-in replaces it, and
+  `$ARGUMENTS` takes what you type after it
+- **Hire a worker** — it carries its own skills, its own MCP servers and its own opening line, as files in its
+  folder
+- **Ship it as one pack** — one install carries skills, prompts, agents, teams, hooks, MCP servers and rooms
 - **Build your own work room** — design the 3D space on the right as you like
 - **Make the system look like yours** — set the background to your own style
+
+None of it enlarges what rides on every round: names on the shelf, bodies on demand.
 
 ## Powered by Aetox Harness
 
@@ -210,7 +219,10 @@ A context-management architecture that lets the agent extend what it can do, wit
 - A specialised tool is kept as an index; the real detail loads only when it is called
 - A tool's token cost drops by up to 10×
 - Tools can be added freely, without swelling the context
-- Skills and specialised commands: the system names them, and the agent opens the one the job needs
+- Skills and specialised commands: 47 skills and 37 `/commands` ship with it, and the system names them — a line
+  each in the prompt, the body only when a job opens it
+- 152 MCP servers wait on a shelf, half of them labelled with what they cost in tokens before you install one;
+  a server adds names, not a whole set of schemas
 - Memory is split by category and by detail, so the agent reaches what it needs without loading all of it at once
 
 **The result: the agent reaches every tool and every piece of knowledge it needs, using only the context that requires it — saving tokens, and carrying nothing it is not using.**
