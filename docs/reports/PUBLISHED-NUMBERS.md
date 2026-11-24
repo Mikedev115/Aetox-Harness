@@ -95,7 +95,7 @@
 ตัวติดตั้ง **48.1 MiB** · portable **47.4 MiB** · ในเครื่อง **121.4 MiB สองไฟล์** (`aetox.exe` 71.33 + `aetox-engine.exe` 50.10) ·
 CLI **31.0 / 41.8 MiB** · Store **48.8 MiB / 1.11.37.0** (ยังไม่ส่ง) — ค่าอยู่ที่ [BENCHMARK.md](BENCHMARK.md) ข้อ 4 กับข้อ 13 ไม่มีสำเนาที่นี่ ·
 ผลรวมขยับขึ้น 31,744 ไบต์ (121.3979 → 121.4282) ปัดเป็น 121.4 เท่าเดิม ตัวคูณ “เล็กกว่า X เท่า” ทั้ง 13 รายการจึงเท่าเดิม · README ทั้งสามยังไม่มีเลขขนาดในเนื้อหา ·
-โค้ด Android เปลี่ยนตั้งแต่ mobile-v0.3.19 (0ed54f108) และ `build.gradle` ประกาศ 0.3.20 (versionCode 23) แต่ยังไม่ได้รัน `release-mobile.ps1` — รุ่น Windows นี้ไม่มี APK ในงานบิลด์
+มือถือ **0.3.20** (versionCode 23, SHA 142ca65e…) ออกเป็น release `mobile-v0.3.20` แล้ว (pre-release, Latest ยังเป็น Windows) และ `mobile-latest.json` ชี้รุ่นนี้ · worktree ของรุ่น Windows นี้ไม่มี APK เพราะไม่ได้คัดลอกลง `mobile/public/installers/`
 
 **อัปเดต 24 พ.ย. 2026 (v1.11.36)** — วัดจาก artifact ที่เผยแพร่จริง (zip ที่โหลดจาก release มี SHA-256 ตรง `checksums.txt` 7787E1D7…):
 ตัวติดตั้ง **48.1 MiB** · portable **47.4 MiB** · ในเครื่อง **121.4 MiB สองไฟล์** (`aetox.exe` 71.31 + `aetox-engine.exe` 50.08) ·
