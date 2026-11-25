@@ -52,7 +52,41 @@
 | **2** | `browser.go` → `hostBackend`/`tabView` + `browser_windows.go` + `browser_other.go` (stub) | ✅ **เสร็จ** |
 | 3a | `browser_linux.go` — WebKitGTK widget ใน `GtkOverlay`/`GtkFixed` | ✅ **เสร็จ 21 พ.ย. 2026** (ดู §เฟส 3a ด้านล่าง) |
 | 3b | `browser_darwin.go` — `WKWebView` เป็น subview ของ Wails `NSView` | ยังไม่เริ่ม |
-| 4 | packaging (`.deb`/`.rpm`/tar.gz + `.app`/`.dmg`) + `bench.sh` | ยังไม่เริ่ม |
+| 4 | packaging (`.deb`/`.rpm`/tar.gz + `.app`/`.dmg`) + `bench.sh` | 🟡 **Linux `.deb` + tar.gz เสร็จ 26 พ.ย. 2026** (ดู §เฟส 4) · `.rpm`, macOS, `bench.sh` ยังไม่เริ่ม |
+
+### เฟส 4 (Linux) — แพ็ก, อัปเดตตัวเอง, ความลับ, process ลูก · 26 พ.ย. 2026
+
+`bash scripts/linux/build.sh` บิลด์แอป + engine ใน Docker แล้วแพ็กสองแบบไว้ที่ `dist/linux/`
+และ `scripts/release-local.ps1` เรียกมันผ่าน WSL ทุกรอบ release (เช็ค Docker ก่อนเริ่มบิลด์อะไร)
+ทั้งสองไฟล์อยู่ใน `checksums.txt` ที่เซ็นแล้ว และ `cmd/relcheck` จะไม่ปล่อย release ที่ไม่มี tarball
+
+| ไฟล์ | อยู่ที่ไหนบนเครื่อง | อัปเดต |
+|:--|:--|:--|
+| `aetox_<version>_amd64.deb` | `/opt/aetox/` + เมนู (`/usr/share/applications/aetox.desktop`) · `Depends: libwebkit2gtk-4.1-0, libgtk-3-0t64 \| libgtk-3-0` | การ์ดพาไปหน้า Releases (root เป็นเจ้าของ ไม่มี apt repo) |
+| `aetox-linux-amd64-portable.tar.gz` | โฟลเดอร์ `aetox/` ที่ผู้ใช้แตกไว้ มีไฟล์ `.aetox-portable` | กดปุ่มเดียว: ดาวน์โหลด → ตรวจลายเซ็น + hash → rename สลับ app กับ engine → relaunch ผ่าน `/bin/sh` ที่รอ pid เดิมตาย |
+
+ไฟล์ประกอบอยู่ที่ [desktop/build/linux/](desktop/build/linux/README.md) · ชื่อ tarball ถูกจับทั้งชื่อ ไม่ใช่ suffix
+เพราะแอป Windows ที่อยู่ในมือคนแล้วหาไฟล์ด้วย `-portable.zip` (`internal/update` `LinuxPortableName`)
+
+**ความลับที่พัก:** `internal/atrest/secret_linux.go` เก็บ key สุ่ม 256 บิตหนึ่งตัวไว้ใน Secret Service
+(GNOME Keyring / KWallet / KeePassXC) แล้วซีลไฟล์ด้วย AES-256-GCM (`keyring:v1:` + base64)
+เครื่องที่ไม่มี keyring (server, SSH) เขียน plaintext 0600 เหมือนเดิม · `AETOX_KEYRING=off` ปิดได้ ·
+ไม่เคยเรียก `dbus-launch` เอง · **ข้อแลกที่ต้องรู้:** ไฟล์ที่ซีลใน desktop session เปิดจาก session
+ที่ไม่มี keyring ไม่ได้ จะอ่านเป็น "ยังไม่มี credentials" เหมือน DPAPI blob ที่ย้ายไปอีก account
+
+**process ลูกตายตามแอป:** `proc.HideConsole` (ที่ทุก spawn site เรียกอยู่แล้ว) ใส่ `Pdeathsig=SIGKILL`
+บน Linux · `proc.Breakaway` ถอดออกแล้วให้ `Setsid` (waiter ของ update, model server ของผู้ใช้) ·
+ครอบคลุมลูกตรงเท่านั้น หลานถูกส่งต่อให้ init — process group ของ `KillOnCancel` ยังเก็บตอน cancel/shutdown
+
+**bug ของ Linux ที่เจอระหว่างทาง:** (1) ทุกที่ที่ตัด `file:///` ทิ้งทั้งก้อนทำให้ path Linux กลายเป็น relative
+(`/tmp/x` → `tmp/x`) — deck note, agent pages, การ์ดไฟล์ที่ส่งมอบ ตอนนี้ผ่าน `engine.FileURLPath` ตัวเดียว ·
+(2) `SetViewZoom` มีแค่ใน `_windows.go` บิลด์ Linux จึงพังที่ `npm run build` ตั้งแต่ 23 พ.ย. — เพิ่ม stub ที่ตอบ 1
+(ยังไม่ zoom จริงบน Linux)
+
+**ยังไม่ได้พิสูจน์:** ติดตั้ง `.deb` บน GNOME/KDE จริง, เมนู/ไอคอน/การจับกลุ่มหน้าต่าง (`StartupWMClass=aetox`
+ตรงกับ `ProgramName`), และ self-update ครบวงจรกับ release จริง (เทสต์ครอบ swap + verify แต่ยังไม่มี release ที่มี tarball)
+
+ตรวจเอง: `bash scripts/linux/test-in-docker.sh` — รันเทสต์บนเคอร์เนล Linux พร้อม gnome-keyring จริงใน D-Bus session ส่วนตัว
 
 ### เฟส 3a — สิ่งที่ทำเสร็จ และสิ่งที่มันยังไม่เท่า Windows
 
@@ -193,7 +227,7 @@ docker run --rm -v "E:/Aetox/Aetox:/repo:ro" -v aetox-gomod:/go/pkg/mod golang:1
 
 1. **macOS ทุกอย่าง** — เฟส 3b จะ iterate ช้าที่สุด (แก้ 1 บรรทัด = รอ CI 1 รอบ ไม่เห็นหน้าจอ) นี่คือเหตุผลที่ทำ Linux ให้จบก่อน
 2. **z-order / compositing บน WM จริง** — Docker/WSLg/xvfb บอกได้แค่ "รันได้ วาดออก" บอกไม่ได้ว่าบน GNOME/KDE/tiling WM หน้าต่างลูกอยู่ถูกชั้น ซึ่งเป็นหัวใจทั้งหมดของงาน **ต้องมี Linux desktop จริงหรือ VM**
-3. **`proc.KillTreeOnExit` เป็น no-op นอก Windows** — ไม่มี Job Object `shutdown()` เก็บ mcp/lsp/terminal เองอยู่แล้ว จึงพังเฉพาะตอนถูก force-kill
+3. **`proc.KillTreeOnExit` เป็น no-op นอก Windows** — ไม่มี Job Object · บน Linux ลูกตรงทุกตัวได้ `Pdeathsig` แทนแล้ว (26 พ.ย. 2026, §เฟส 4) ที่เหลือคือหลานตอนแอปถูก force-kill
 4. **`WebviewUserDataPath` มีเฉพาะ `options.Windows`** — กฎ §14 บังคับกับ webview ของตัวแอปไม่ได้นอก Windows แต่**แท็บ browser ยังบังคับได้ทุก OS** เพราะเป็นโค้ดที่เราคุมเอง (`WebKitWebsiteDataManager`/`WKWebsiteDataStore` รับ path ตรงๆ)
 5. **Wails v2.13 ไม่เปิด native window handle** — ไม่มี `NativeWindowHandle`/`GetNativeHandle` ในโมดูลเลย กฎข้อ 1 ของ blueprint จึงทำตามไม่ได้ถ้าไม่ patch Wails เป็น fork ตัวที่ 3 ใน `third_party/` (§48 ท้ายสุด)
 
