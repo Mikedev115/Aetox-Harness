@@ -73,8 +73,8 @@ brilliance. The model is yours; whichever one you have.
 <p align="center">
   <strong><a href="https://github.com/Mikedev115/Aetox-Harness/releases/latest/download/aetox-amd64-installer.exe">Download the Windows installer (.exe)</a></strong>
   · <a href="https://github.com/Mikedev115/Aetox-Harness/releases/latest/download/aetox-cli-setup.exe">Aetox CLI</a>
-  · <a href="#install">Scoop and portable zip</a><br>
-  Windows 10+ · x64 · Free to use · Bring your own model, or run one locally for free
+  · <a href="#install">Scoop, portable zip and Linux</a><br>
+  Windows 10+ · Linux (Ubuntu 22.04+, Debian 12+) · x64 · Free to use · Bring your own model, or run one locally for free
 </p>
 
 <p align="center">
@@ -214,18 +214,22 @@ None of it enlarges what rides on every round: names on the shelf, bodies on dem
 
 ## Powered by Aetox Harness
 
+The harness is the model's workbench; a skill is the manual that sits on it. When the two descriptions point the same way, the agent picks the right manual at the right moment. When they disagree, it carries the wrong one — or none at all, with the right one still on the shelf.
+
 A context-management architecture that lets the agent extend what it can do, without carrying every detail all the time.
 
 - A specialised tool is kept as an index; the real detail loads only when it is called
 - A tool's token cost drops by up to 10×
 - Tools can be added freely, without swelling the context
-- Skills and specialised commands: 47 skills and 37 `/commands` ship with it, and the system names them — a line
+- Skills and specialised commands: 48 skills and 37 `/commands` ship with it, and the system names them — a line
   each in the prompt, the body only when a job opens it
 - 152 MCP servers wait on a shelf, half of them labelled with what they cost in tokens before you install one;
   a server adds names, not a whole set of schemas
 - Memory is split by category and by detail, so the agent reaches what it needs without loading all of it at once
 
 **The result: the agent reaches every tool and every piece of knowledge it needs, using only the context that requires it — saving tokens, and carrying nothing it is not using.**
+
+A skill is a guide, not a cage. It is not a rule and not a lock: it shows the model a better way to do a job, and it does not decide what the model is allowed to do. When no skill fits the moment, the model still works its own way. So there is nothing to fear about the harness capping a large model — what it adds is a floor, not a ceiling: the same job comes out the same way whether or not the model remembers how it went last time.
 
 ## It learns how you work
 
@@ -316,6 +320,14 @@ measurement of that split; it is not re-run on every release.
 <sub>Rounds swing 1.5–2.5 points, so a gap of a few points reads as a tie · the method and every round are in
 [the report](docs/reports/coding-harness-1.10.0/README.en.md)</sub>
 
+## Questions that come up
+
+**Do I need an expensive model?** — Not for every job. Aetox harness is tuned together with the skills that ship inside it, so small and mid-sized models land close to a large one. A large model slips and forgets too — which is what makes the skills worth more: the same model, fewer misses. Switch models to fit the job.
+
+**How is this different from Claude Code or Codex?** — Nothing ties you to one provider: you switch models per job, and the system manages the context itself instead of sending everything into the model every round.
+
+**How do I know it is actually better?** — Don't take it on trust — [the numbers](#measured-results) and the [reports](docs/reports/README.md) are published, prompts, starting files and hidden tests included. Run any task yourself.
+
 ## Inside the box
 
 | | What it does | More |
@@ -349,6 +361,8 @@ and it draws on your own GPU, FLUX.2 klein included. [Local pictures](docs/LOCAL
 | **Installer** | [aetox-amd64-installer.exe](https://github.com/Mikedev115/Aetox-Harness/releases/latest/download/aetox-amd64-installer.exe) | In the app: **Download the update → Restart to update** |
 | **Aetox CLI** | [aetox-cli-setup.exe](https://github.com/Mikedev115/Aetox-Harness/releases/latest/download/aetox-cli-setup.exe) | Per user, no admin rights, adds itself to PATH |
 | **Scoop** | `scoop install https://raw.githubusercontent.com/Mikedev115/Aetox-Harness/main/scoop/aetox.json` | `scoop update aetox` |
+| **Linux .deb** (Ubuntu 22.04+, Debian 12+) | `aetox_<version>_amd64.deb` from [Releases](https://github.com/Mikedev115/Aetox-Harness/releases/latest), then `sudo apt install ./aetox_*_amd64.deb` | Install the next .deb the same way; the app links to it |
+| **Linux portable** | [aetox-linux-amd64-portable.tar.gz](https://github.com/Mikedev115/Aetox-Harness/releases/latest/download/aetox-linux-amd64-portable.tar.gz), unpack anywhere you can write | In the app: **Download the update → Restart to update** |
 
 The installer is not code-signed yet, so Windows may show **"Windows protected your PC"**: choose **More info →
 Run anyway**, or use the Store build, which Microsoft signs. Portable zip, antivirus notes and what to do when an
@@ -367,6 +381,12 @@ update does not take: [the update guide](docs/UPDATING.md).
   machine with data you cannot lose, give Aetox an API key of its own and run it in a VM or Windows Sandbox.
 
 [Safety in detail](https://mikedev115.github.io/Aetox-landing/safety/) · Found a security problem? [SECURITY.md](SECURITY.md) says how to report it privately.
+
+## Where it came from
+
+This started as a hobby in early-to-mid 2026 — I wanted an AI assistant that lives on the computer, one that works with real files, real pages and real commands, not just answers in a chat box. The idea it started from: a model fails at most things not because it cannot think, but because it has no hands, no eyes, and no memory organised into a system. So the missing parts became tools, one at a time, until they were the floor the whole thing stands on.
+
+At first I used Claude Code and Codex for my own work. The problem was that neither could drop to a cheaper model: a job that did not need the expensive one still cost the full month. So I built the code mode on the same Aetox harness base, paid for the models out of my own pocket, and tuned the harness against the others — hunting where mine fell short and going back to fix it — until it could take software work in place of Claude Code. And nothing ties it to one provider: the model is yours to switch.
 
 ## Source, licence and who makes it
 
