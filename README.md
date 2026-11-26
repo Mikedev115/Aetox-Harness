@@ -7,9 +7,13 @@
 <h3 align="center">The environment where an AI works as one system</h3>
 
 <p align="center">
-Aetox Harness is the working environment for AI on your computer — one system where the model, the skills, the team,
-the code and the memory work together. The more you use it, the more it understands how you work. The job comes back
-as a file you can open and use, on your machine, on the model you already have.
+Aetox harness is the environment that lets AI actually work on your computer — it reads the project, plans, then works
+with a real terminal and a real browser, writes documents or edits code in the real project, and only says it is done
+once the work has been checked. Its skills are tuned together with the harness, so the system fits together and the
+model's own strengths still lead. Your data stays on your machine, and the cost goes down through the architecture that
+manages context: memory is split into nodes with an index, skills and MCP tools are kept as names, and the full context
+loads only for the part a job is using — so the agent reaches every skill, tool and memory without carrying all of it
+in every request.
 </p>
 
 <table>
@@ -221,7 +225,7 @@ A context-management architecture that lets the agent extend what it can do, wit
 - A specialised tool is kept as an index; the real detail loads only when it is called
 - A tool's token cost drops by up to 10×
 - Tools can be added freely, without swelling the context
-- Skills and specialised commands: 48 skills and 37 `/commands` ship with it, and the system names them — a line
+- Skills and specialised commands: 49 skills and 37 `/commands` ship with it, and the system names them — a line
   each in the prompt, the body only when a job opens it
 - 152 MCP servers wait on a shelf, half of them labelled with what they cost in tokens before you install one;
   a server adds names, not a whole set of schemas
