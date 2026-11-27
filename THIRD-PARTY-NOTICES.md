@@ -219,6 +219,7 @@ originals are unmodified in their own repositories.
 | `aetox-break-trace` (agent `sheet`) | break-trace | Anthropic, PBC | Apache-2.0 |
 | `aetox-contract-standards` (agent `doc`) | Standard Agreements | Common Paper | CC BY 4.0 |
 | `aetox-video-teardown` | skills/rea-video | JuneYaooo | Apache-2.0 |
+| `aetox-ux-check` (and the tester's How a person meets it) | ux-audit; heuristic-evaluator; ux-heuristics | Jeremy Dawes (Jezweb); MC Dean; Wondel.ai sp. z o.o. | MIT |
 
 `aetox-contract-standards` is different in kind from the rest of this table: it
 carries **the licensed work itself**, not instructions adapted from one. The
