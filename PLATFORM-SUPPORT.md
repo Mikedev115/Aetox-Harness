@@ -83,8 +83,33 @@
 (2) `SetViewZoom` มีแค่ใน `_windows.go` บิลด์ Linux จึงพังที่ `npm run build` ตั้งแต่ 23 พ.ย. — เพิ่ม stub ที่ตอบ 1
 (ยังไม่ zoom จริงบน Linux)
 
-**ยังไม่ได้พิสูจน์:** ติดตั้ง `.deb` บน GNOME/KDE จริง, เมนู/ไอคอน/การจับกลุ่มหน้าต่าง (`StartupWMClass=aetox`
-ตรงกับ `ProgramName`), และ self-update ครบวงจรกับ release จริง (เทสต์ครอบ swap + verify แต่ยังไม่มี release ที่มี tarball)
+### รอบพิสูจน์ 26 พ.ย. 2026 — ติดตั้งจริง เปิดจริง และเทสต์ทั้ง repo บน Linux
+
+| เช็ค | ผล | ตรวจซ้ำด้วย |
+|:--|:--|:--|
+| `apt install ./aetox_*.deb` บน Ubuntu 22.04 / 24.04 / 26.04, Debian 12 / 13 | ✅ ทั้ง 5 — Depends ครบจาก archive ของ distro, `desktop-file-validate` ผ่าน, ไม่มี lib หาย, ถอนออกสะอาด | `bash scripts/linux/install-test.sh` |
+| glibc ที่ต้องใช้ | สูงสุด `GLIBC_2.34` → ประกาศ `libc6 (>= 2.34)` ใน Depends (เครื่องเก่ากว่านี้ apt บอกตั้งแต่ตอนติดตั้ง ไม่ใช่พังตอนเปิด) | `objdump -T dist/linux/aetox` |
+| เปิดแอปที่ติดตั้งจาก `.deb` บน X11 และ Wayland (WSLg) | ✅ หน้าต่างขึ้น engine ขึ้นข้างแอป · `WM_CLASS = "aetox"` ตรง `StartupWMClass` | `bash scripts/linux/gui-smoke.sh` (`GDK_BACKEND=wayland` สำหรับ Wayland) |
+| ภาษาจีน/ไทย | ✅ ทั้งเครื่องที่มีและ**ไม่มี** CJK font — คำจีนที่แอปเขียนเองบน UI ไทย/อังกฤษ (`你好`, `简体中文`) ใช้ Noto Sans SC ที่ bundle มา (`[lang|="zh"]` ใน `style.css`) · `.deb` แนะนำ `fonts-noto-cjk`, `fonts-noto-color-emoji`, `fonts-thai-tlwg` ไว้สำหรับข้อความที่ผู้ใช้/โมเดลเขียน | gui-smoke + เลือก 中文 |
+| self-update ของ tarball ครบวงจร | ✅ ถาม feed → ดาวน์โหลด → ตรวจลายเซ็น + hash → swap app/engine → process เดิมจบ → `/bin/sh` เปิดตัวใหม่ | `TestLinuxPortableUpdateEndToEnd` |
+| แท็บ browser (WebKitGTK) | ✅ โหลด/อ่าน DOM/snapshot/PDF · zoom 1.5 ดัน `devicePixelRatio` 1→1.5 จริง | `TestLinuxBrowserHostLive` |
+| ความลับที่พัก | ✅ หลาย process สร้าง key พร้อมกันได้ key เดียว (เดิม app กับ engine ตอนเปิดครั้งแรกอาจได้คนละ key → credentials อ่านไม่ออกถาวร) | `TestLiveSecretServiceRaceEndsWithOneKey` |
+| notification ตอนงานเสร็จ | ✅ ใหม่บน Linux: `org.freedesktop.Notifications` (GNOME/KDE/XFCE/dunst/mako) แทนที่อันเดิม กดแล้วเปิดแชตนั้น · urgency hint แทน flash taskbar | `TestLinuxAttentionToastReachesTheDesktopAndItsPressOpensTheChat` |
+| zoom หน้าแอป (Ctrl +/−/0, Ctrl+wheel) | ✅ ใหม่บน Linux: page zoom ของ WebKitWebView ใน `webview-box` | `webview_zoom_linux.go` |
+| `go test ./...` บนเคอร์เนล Linux | ✅ ทุกแพ็กเกจที่เขียวบน Windows ก็เขียวบน Linux · ที่ยังแดงคือแดงบน Windows ด้วย (ของเดิมบน main ไม่ใช่เรื่อง Linux) | `bash scripts/linux/test-in-docker.sh -timeout 30m ./...` |
+
+**bug ที่รอบนี้ขุดเจอ (แก้แล้ว):** (1) ด่าน shell ไม่ขยาย `~` บน Linux — `cat ~/.ssh/id_rsa`, `timeout 60 cat ~/…`,
+`sudo … cat ~/…` ผ่านด่านเพราะถูกอ่านเป็นโฟลเดอร์ชื่อ `~` ในโปรเจกต์ (`proc` native `HostPath`) · (2) คำสั่งที่ `ssh` ส่งไปรัน
+บนเครื่องปลายทาง (`ssh prod "cd /srv/app && git pull"`) ถูกตรวจเป็น path ในเครื่องเรา → deploy ผ่าน ssh ไม่ได้เลยบน Linux
+ตอนนี้ path แบบ `/…` ในคำสั่งปลายทางเป็นของปลายทาง ยกเว้น credential store ของเครื่องเรา, `~` และ redirect (`<`, `>`) ที่ยังเป็น local ·
+(3) key ของ ssh ที่เขียนเป็น absolute path ถูกปฏิเสธเพราะ line scan นับเป็น "guess" ซ้ำ · (4) ค่า env สั้นๆ ที่ชื่อมี KEY
+(`AETOX_KEYRING_LIVE=1`) ทำให้ทุก "1" ในผลลัพธ์ของ CLI agent กลายเป็น `[redacted]` · (5) ชื่อโฟลเดอร์ต่างตัวพิมพ์ถูกถือเป็นโฟลเดอร์เดียว
+(`config`, `journal`, `assetlib`) · (6) zip entry ที่มี `\` แตกเป็นคนละต้นไม้แล้วแต่ OS — ปฏิเสธทุก OS แล้ว ·
+(7) ชื่อไฟล์ที่ส่งไปมือถือ/โปรไฟล์ตัดที่ `/` อย่างเดียว — ตัดทั้งสองแบบแล้ว · (8) `.desktop` มีสอง main category → เมนูโชว์สองที่ ·
+(9) หน้า sign-in ไม่มีลิงก์ให้กดเองถ้าเปิด browser ไม่ได้ — มี "เปิดหน้านั้นอีกครั้ง" + "คัดลอกลิงก์" แล้ว
+
+**ยังเป็นของ Windows อย่างเดียว (บอกผู้ใช้ตรงๆ ไม่ใช่เงียบ):** computer use, อ่านออกเสียง, อัดประชุม, หน้าต่างที่สอง,
+ตัว companion ที่ออกไปนอกหน้าต่าง, รายการไฟล์จาก clipboard · ยังไม่เคยเห็นด้วยตาบน GNOME/KDE จริง (ทดสอบบน WSLg ทั้ง X11 และ Wayland)
 
 ตรวจเอง: `bash scripts/linux/test-in-docker.sh` — รันเทสต์บนเคอร์เนล Linux พร้อม gnome-keyring จริงใน D-Bus session ส่วนตัว
 
