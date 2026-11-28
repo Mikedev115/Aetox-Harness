@@ -78,7 +78,8 @@ Aetox harness คือสภาพแวดล้อมที่ทำให้
   <a href="docs/release-notes/">มีอะไรใหม่</a> ·
   <a href="docs/reports/README.md">รายงานผลวัด</a> ·
   <a href="README.md">English</a> ·
-  <a href="README.zh.md">中文</a>
+  <a href="README.zh.md">中文</a> ·
+  <a href="README.tr.md">Türkçe</a>
 </p>
 
 <p align="center">

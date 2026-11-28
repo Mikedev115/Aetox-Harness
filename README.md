@@ -86,7 +86,8 @@ brilliance. The model is yours; whichever one you have.
   <a href="docs/release-notes/">What's new</a> ·
   <a href="docs/reports/README.md">Reports</a> ·
   <a href="README.th.md">ภาษาไทย</a> ·
-  <a href="README.zh.md">中文</a>
+  <a href="README.zh.md">中文</a> ·
+  <a href="README.tr.md">Türkçe</a>
 </p>
 
 <p align="center">

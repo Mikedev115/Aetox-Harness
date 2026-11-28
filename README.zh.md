@@ -78,7 +78,8 @@ Aetox Harness 是运行在你电脑上的 AI 工作环境 —— 把模型、技
   <a href="docs/release-notes/">更新内容</a> ·
   <a href="docs/reports/README.md">测评报告</a> ·
   <a href="README.md">English</a> ·
-  <a href="README.th.md">ภาษาไทย</a>
+  <a href="README.th.md">ภาษาไทย</a> ·
+  <a href="README.tr.md">Türkçe</a>
 </p>
 
 <p align="center">
